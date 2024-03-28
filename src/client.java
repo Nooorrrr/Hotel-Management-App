@@ -1,3 +1,3 @@
-public class client {
+public class Client {
     
 }
