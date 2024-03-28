@@ -3,6 +3,8 @@ public class Date {
     private int month;
     private int year;
 
+    
+
     public Date(int day, int month, int year) {
         this.day = day;
         this.month = month;
@@ -24,5 +26,31 @@ public class Date {
             }
         }
         return null;
+    }
+
+    public boolean isAfter(Date date) {
+        if (year > date.year) {
+            return true;
+        }
+        if (year == date.year && month > date.month) {
+            return true;
+        }
+        if (year == date.year && month == date.month && day > date.day) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isBefore(Date date) {
+        if (year < date.year) {
+            return true;
+        }
+        if (year == date.year && month < date.month) {
+            return true;
+        }
+        if (year == date.year && month == date.month && day < date.day) {
+            return true;
+        }
+        return false;
     }
 }
