@@ -4,7 +4,7 @@ public class Admin extends User {
 
     private Map <Integer,Reservation> reservations;
     private Map <Integer, Chambre> chambres;
-    private Map <Integer, Client> clients;
+    private Map <Integer, client> clients;
     //private Map <Integer, Reservation> reservations;
 
     public Admin(String Username, String Password) {
