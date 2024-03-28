@@ -8,7 +8,7 @@ public class Admin extends User {
     //private Map <Integer, Reservation> reservations;
 
     public Admin(String Username, String Password) {
-        super(Username, Password);
+        super("Admin", Password);
         //TODO Auto-generated constructor stub
     }
     
