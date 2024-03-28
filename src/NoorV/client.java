@@ -1,3 +1,4 @@
+package NoorV;
 public class client extends User{
 
     //jsp wsh nzidolo comme attribut lmouhim extends user w 5las 
