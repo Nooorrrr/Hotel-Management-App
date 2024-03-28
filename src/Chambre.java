@@ -1,14 +1,13 @@
 
 
 public class Chambre {
-
-    
-    private int NumChambre;
+ 
+    private static int NumChambre=0;
     private String typeChambre;
     private boolean estDisponible;
 
-    public Chambre(int NumChambre, String typeChambre) {
-        this.NumChambre = NumChambre;
+    public Chambre(String typeChambre) {
+        NumChambre++;
         this.typeChambre = typeChambre;
         this.estDisponible = true;
     }
