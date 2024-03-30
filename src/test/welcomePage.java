@@ -12,14 +12,25 @@ public class welcomePage extends javax.swing.JFrame {
     private int posX, posY;
 
     public welcomePage() {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(welcomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(welcomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(welcomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(welcomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         initComponents();
         EmailTxtField.setBackground(new java.awt.Color(255, 255, 255, 0));
         PswField.setBackground(new java.awt.Color(255, 255, 255, 0));
-        loginButton.setFocusable(false);
-        loginButton.setBackground(new java.awt.Color(244, 226, 133));
-        loginButton.setForeground(new java.awt.Color(51,89,38));
-        //loginButton.setLineBorder();
-
     }
 
     /**
@@ -54,11 +65,13 @@ public class welcomePage extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setMinimumSize(new java.awt.Dimension(834, 400));
         setUndecorated(true);
+
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
             }
         });
+
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 formMousePressed(evt);
@@ -69,7 +82,7 @@ public class welcomePage extends javax.swing.JFrame {
         Left.setBackground(new java.awt.Color(255, 255, 255));
         Left.setPreferredSize(new java.awt.Dimension(400, 400));
 
-        image.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\Desktop\\java\\hotel\\src\\main\\java\\images\\IMG_19531.jpg")); // NOI18N
+        image.setIcon(new javax.swing.ImageIcon("src\\images\\IMG_19531.jpg")); // NOI18N
 
         javax.swing.GroupLayout LeftLayout = new javax.swing.GroupLayout(Left);
         Left.setLayout(LeftLayout);
@@ -158,10 +171,10 @@ public class welcomePage extends javax.swing.JFrame {
         right.add(EmailTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 290, 30));
 
         pswIcon.setForeground(new java.awt.Color(255, 255, 255));
-        pswIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\Desktop\\java\\hotel\\src\\main\\java\\images\\4830995_padlock_password_secure_security_signin_icon.png")); // NOI18N
+        pswIcon.setIcon(new javax.swing.ImageIcon("src\\images\\4830995_padlock_password_secure_security_signin_icon.png")); // NOI18N
         right.add(pswIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 50, 50));
 
-        emailIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\Desktop\\java\\hotel\\src\\main\\java\\images\\211604_email_icon.png")); // NOI18N
+        emailIcon.setIcon(new javax.swing.ImageIcon("src\\images\\211604_email_icon.png")); // NOI18N
         right.add(emailIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 40, 50));
 
         SignUpLabel.setBackground(new java.awt.Color(242, 204, 143));
@@ -260,7 +273,6 @@ public class welcomePage extends javax.swing.JFrame {
         SignUpLabel.setForeground(new java.awt.Color(217, 153, 88));
     }
 
-
     private void formMousePressed(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         posX = evt.getX();
@@ -328,6 +340,7 @@ public class welcomePage extends javax.swing.JFrame {
             }
         });
     }
+
 
     // Variables declaration - do not modify
     private javax.swing.JTextField EmailTxtField;
