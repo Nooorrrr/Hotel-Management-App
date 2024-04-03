@@ -6,32 +6,44 @@ import java.util.List;
 
 public class client extends User{
 
-    //jsp wsh nzidolo comme attribut lmouhim extends user w 5las 
-    private static int ClientId=0;
-    private List <Reservation> reservations = new ArrayList<>();
+    private int id;
+    private String nom;
+    private String prenom;
+    private String email;
+    private String adresse;
+    private String telephone;
+    private List<Reservation> reservations;
 
-    public client(String Username, String Password) {
+    public client(String Username, String Password, int id, String nom, String prenom, String email, String adresse, String telephone) {
         super(Username, Password);
-        ClientId++;
-       
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.reservations = new ArrayList<>();
     }
 
-        public void reserverChambre(int NumChambre, Date dateDebut, Date dateFin) throws Exception{
-            if(dateDebut.isAfter(dateFin)){
-                throw new Exception("Date debut doit etre avant date fin");
-            }
-          //  Reservation reservation = new Reservation(ClientId, NumChambre, dateDebut, dateFin);
-           // reservations.put(reservation.getId(), reservation); ki yrezervi lazm tet7at 3nd l admin demande te3 reservation
-        }
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
 
-        public void annulerReservation(int NumChambre){
-           //  if (reservation.getDateDebut().isAfter(LocalDate.now())){
-             //   throw new Exception("Vous ne pouvez pas annuler une reservation qui est deja passee");
-             
-       // }
-        //else{
-            //reservations.remove(reservation.getId());
-        //}
+    public void addReservation(Reservation reservation){
+        reservations.add(reservation);
+    }
+
+    public void removeReservation(Reservation reservation){
+        reservations.remove(reservation);
+    }
+
+    public void afficherReservations(){
+        for (Reservation reservation : reservations) {
+            System.out.println(reservation);
+        }
+    }
+
+    public void demandeReservation(){
         
     }
 }

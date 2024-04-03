@@ -20,16 +20,23 @@ public class Reservation{
     private TypeChambre typeChambre;
     private Status status;
     
-
-    public Reservation(int ClientId, int NumChambre, Date dateDebut, Date dateFin, TypeChambre typeChambre) {
+    public Reservation(int clientid){
+        this(0, null, null, null);
+        this.ClientId = clientid;
+    }
+    public Reservation(int ClientId, Date dateDebut, Date dateFin, TypeChambre typeChambre) {
         this.ClientId = ClientId;
-        this.NumChambre = NumChambre;
+        this.NumChambre =0;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.typeChambre = typeChambre;
         this.status = Status.EN_ATTENTE;
     }
 
+    
+    public Reservation(int i, Object object, Object object2, Object object3) {
+        //TODO Auto-generated constructor stub
+    }
     public int getClientId() {
         return ClientId;
     }
@@ -56,6 +63,22 @@ public class Reservation{
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public void setDateFin(Date dateFin){
+        this.dateFin = dateFin;
+    }
+
+    public void setNumChambre(int numChambre) {
+        NumChambre = numChambre;
+    }
+
+    public void setTypeChambre(TypeChambre typeChambre) {
+        this.typeChambre = typeChambre;
     }
   
 }
