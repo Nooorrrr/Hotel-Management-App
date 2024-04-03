@@ -1,10 +1,11 @@
 package NoorV;
+
+import java.time.LocalDate;
+
 public class Date {
     private int day;
     private int month;
     private int year;
-
-    
 
     public Date(int day, int month, int year) {
         this.day = day;
@@ -54,4 +55,10 @@ public class Date {
         }
         return false;
     }
+
+    public boolean isBeforeToday(){
+        Date today = new Date(LocalDate.now().getDayOfMonth(), LocalDate.now().getMonthValue(), LocalDate.now().getYear());
+        return isBefore(today);
+    }
+
 }

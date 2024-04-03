@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Admin extends User {
 
-    private Map <Integer,Reservation> reservations;
+    private Map <Integer,Reservation> demandeReservations;
     private Map <Integer, Chambre> chambres;
     private Map <Integer, client> clients;
     //private Map <Integer, Reservation> reservations;
@@ -14,9 +14,8 @@ public class Admin extends User {
     }
     
     public void AjouterChambre(){
-        String typechambre="simple";
-        Chambre chambre = new Chambre(typechambre);
-        chambres.put(chambre.getNumeroChambre(), chambre);
+        
+       // chambres.put(chambre.getNumeroChambre(), chambre);
     }
 
     public void SupprimerChambre(int NumChambre){
