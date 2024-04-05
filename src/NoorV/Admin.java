@@ -3,20 +3,21 @@ import java.util.Map;
 
 public class Admin extends User {
 
-    private Map <Integer,Reservation> reservations;
+
+    private Map <Integer,Reservation> demandeReservations;
     private Map <Integer, Chambre> chambres;
     private Map <Integer, client> clients;
-    //private Map <Integer, Reservation> reservations;
+   
+    //rooms in thehotel 
 
-    public Admin(String Username, String Password) {
-        super(Username, Password);
+
+    public Admin() {
+        super("Admin", "Password");
         //TODO Auto-generated constructor stub
     }
     
-    public void AjouterChambre(){
-        String typechambre="simple";
-        Chambre chambre = new Chambre(typechambre);
-        chambres.put(chambre.getNumeroChambre(), chambre);
+    public void AjouterChambre(Chambre chambre){ 
+       chambres.put(chambre.getNumeroChambre(), chambre);
     }
 
     public void SupprimerChambre(int NumChambre){

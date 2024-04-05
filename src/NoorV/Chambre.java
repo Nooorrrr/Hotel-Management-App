@@ -1,13 +1,12 @@
 package NoorV;
 
-
 public class Chambre {
- 
-    private static int NumChambre=0;
-    private String typeChambre;
+
+    private static int NumChambre = 0;
+    private TypeChambre typeChambre;
     private boolean estDisponible;
 
-    public Chambre(String typeChambre) {
+    public Chambre(TypeChambre typeChambre) {
         NumChambre++;
         this.typeChambre = typeChambre;
         this.estDisponible = true;
@@ -17,7 +16,7 @@ public class Chambre {
         return NumChambre;
     }
 
-    public String getTypeChambre() {
+    public TypeChambre getTypeChambre() {
         return typeChambre;
     }
 
@@ -29,4 +28,3 @@ public class Chambre {
         this.estDisponible = disponible;
     }
 }
-

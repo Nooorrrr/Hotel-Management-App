@@ -1,25 +1,49 @@
 package NoorV;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class client extends User{
 
-    //jsp wsh nzidolo comme attribut lmouhim extends user w 5las 
-    private static int ClientId=0;
-    public client(String Username, String Password) {
+    private int id;
+    private String nom;
+    private String prenom;
+    private String email;
+    private String adresse;
+    private String telephone;
+    private List<Reservation> reservations;
+
+    public client(String Username, String Password, int id, String nom, String prenom, String email, String adresse, String telephone) {
         super(Username, Password);
-        ClientId++;
-       
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.reservations = new ArrayList<>();
     }
 
-    public void reserverChambre(int NumChambre, Date dateDebut, Date dateFin) throws Exception{
-        if(dateDebut.isAfter(dateFin)){
-            throw new Exception("Date debut doit etre avant date fin");
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void addReservation(Reservation reservation){
+        reservations.add(reservation);
+    }
+
+    public void removeReservation(Reservation reservation){
+        reservations.remove(reservation);
+    }
+
+    public void afficherReservations(){
+        for (Reservation reservation : reservations) {
+            System.out.println(reservation);
         }
-        Reservation reservation = new Reservation(ClientId, NumChambre, dateDebut, dateFin);
-       // reservations.put(reservation.getId(), reservation); ki yrezervi lazm tet7at 3nd l admin demande te3 reservation
     }
 
-    public void annulerReservation(int NumChambre){
-         //bon hna lazm ncompari la date te3 reservation ta3o w la date actuel since may9drsh yannuli w ki tkon jazet la date te3 debut 
-         // lazm n7aws 3la a way njib biha date actuelle without library 
+    public void demandeReservation(){
+        
     }
-    
 }
