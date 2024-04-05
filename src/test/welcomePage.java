@@ -104,7 +104,6 @@ public class welcomePage extends javax.swing.JFrame {
         getContentPane().add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 400));
 
         right.setBackground(new java.awt.Color(51, 89, 38));
-        right.setForeground(new java.awt.Color(138, 114, 64));
         right.setPreferredSize(new java.awt.Dimension(434, 400));
         right.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -122,7 +121,6 @@ public class welcomePage extends javax.swing.JFrame {
         });
         right.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 6, -1, -1));
 
-        loginLabel.setBackground(new java.awt.Color(242, 204, 143));
         loginLabel.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         loginLabel.setForeground(new java.awt.Color(217, 153, 88));
         loginLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -130,7 +128,7 @@ public class welcomePage extends javax.swing.JFrame {
         loginLabel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         right.add(loginLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 423, -1));
 
-        jLabel2.setBackground(new java.awt.Color(242, 204, 143));
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(217, 153, 88));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,14 +136,12 @@ public class welcomePage extends javax.swing.JFrame {
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         right.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 411, -1));
 
-        emailLabel.setBackground(new java.awt.Color(242, 204, 143));
         emailLabel.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         emailLabel.setForeground(new java.awt.Color(217, 153, 88));
         emailLabel.setText("Email");
         emailLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         right.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 163, -1));
 
-        pswLabel.setBackground(new java.awt.Color(242, 204, 143));
         pswLabel.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         pswLabel.setForeground(new java.awt.Color(217, 153, 88));
         pswLabel.setText("Password");
@@ -177,7 +173,6 @@ public class welcomePage extends javax.swing.JFrame {
         emailIcon.setIcon(new javax.swing.ImageIcon("src\\images\\211604_email_icon.png")); // NOI18N
         right.add(emailIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 40, 50));
 
-        SignUpLabel.setBackground(new java.awt.Color(242, 204, 143));
         SignUpLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SignUpLabel.setForeground(new java.awt.Color(217, 153, 88));
         SignUpLabel.setText("Sign Up");
@@ -206,7 +201,6 @@ public class welcomePage extends javax.swing.JFrame {
         loginButton.setForeground(new java.awt.Color(51, 66, 38));
         loginButton.setText("LOGIN");
         loginButton.setBorder(null);
-        loginButton.setBorderPainted(false);
         loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loginButton.setFocusPainted(false);
         loginButton.setFocusable(false);
@@ -221,7 +215,6 @@ public class welcomePage extends javax.swing.JFrame {
         });
         right.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 140, 40));
 
-        jLabel10.setBackground(new java.awt.Color(242, 204, 143));
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(217, 153, 88));
         jLabel10.setText("Don't have an account ?");
