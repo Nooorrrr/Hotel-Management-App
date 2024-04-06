@@ -3,7 +3,7 @@ package NoorV;
 enum TypeChambre{
     SIMPLE,
     DOUBLE,
-    VIP
+    SUITE
 }
 
 enum Status{

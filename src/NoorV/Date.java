@@ -7,6 +7,8 @@ public class Date {
     private int month;
     private int year;
 
+    public Date(){};
+
     public Date(int day, int month, int year) {
         this.day = day;
         this.month = month;
@@ -59,6 +61,15 @@ public class Date {
     public boolean isBeforeToday(){
         Date today = new Date(LocalDate.now().getDayOfMonth(), LocalDate.now().getMonthValue(), LocalDate.now().getYear());
         return isBefore(today);
+    }
+
+    public Date fromString(String date) {
+        String[] parts = date.split("-");
+        return new Date(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+    }
+
+    public String toString() {
+        return day + "-" + month + "-" + year;
     }
 
 }

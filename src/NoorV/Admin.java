@@ -10,7 +10,6 @@ public class Admin extends User {
    
     //rooms in thehotel 
 
-
     public Admin() {
         super("Admin", "Password");
         //TODO Auto-generated constructor stub
@@ -22,6 +21,10 @@ public class Admin extends User {
 
     public void SupprimerChambre(int NumChambre){
         chambres.remove(NumChambre);
+    }
+
+    public void AjouterClient(client client){
+        clients.put(client.getId(), client);
     }
 
     public void ChambreVide(){
@@ -39,6 +42,8 @@ public class Admin extends User {
             }
         }
     }
+
+    
 
     
 
