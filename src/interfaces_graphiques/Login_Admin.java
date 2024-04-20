@@ -1,33 +1,25 @@
 package interfaces_graphiques;
 
-
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
-public class Login extends JFrame {
-
+public class Login_Admin extends JFrame {
     private int posX, posY;
-    private JTextField email = new JTextField();
-    private JLabel email_icon = new JLabel();
     private JLabel exit = new JLabel();
-    private JLabel email_label = new JLabel();
     private JLabel psw_label = new JLabel();
     private JPanel panel = new JPanel();
     private JLabel line1 = new JLabel();
     private JLabel line2 = new JLabel();
-    private JLabel line3 = new JLabel();
     private JButton login = new JButton();
-    private JLabel message = new JLabel();
     private JPasswordField psw = new JPasswordField();
     private JLabel psw_icon = new JLabel();
-    private JLabel signup = new JLabel();
     private JLabel title = new JLabel();
     private JLabel logo = new JLabel();
     private JLabel left = new JLabel();
 
 
-    public Login() {
+    public Login_Admin() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(800,450));
         setUndecorated(true);
@@ -66,88 +58,37 @@ public class Login extends JFrame {
         exit.setBounds(770, 0, 30, 50);
         panel.add(exit);
 
-        email_icon.setIcon(new ImageIcon("src/images/email-25.png"));
-        email_icon.setBounds(750, 210, 25, 25);
-        panel.add(email_icon);
 
         psw_icon.setIcon(new ImageIcon("src/images/m-d-p-25.png"));
-        psw_icon.setBounds(750, 280, 25, 25);
+        psw_icon.setBounds(720, 260, 25, 25);
         panel.add(psw_icon);
 
-        line1.setForeground(new Color(209, 174, 149));
+        line1.setForeground(new Color(209, 174, 149,80));
         line1.setHorizontalAlignment(SwingConstants.CENTER);
         line1.setText("_____________________________________________________");
-        line1.setBounds(400, 150, 380, 14);
+        line1.setBounds(400, 160, 380, 14);
         panel.add(line1);
 
-        email_label.setFont(new Font("Lucida Calligraphy", 0, 16));
-        email_label.setForeground(new Color(209, 174, 149));
-        email_label.setHorizontalAlignment(SwingConstants.CENTER);
-        email_label.setText("E-mail : ");
-        email_label.setBounds(429, 190, 80, 30);
-        email.setBackground(new Color(255, 255, 255, 0));
-        panel.add(email_label);
 
-
-        psw_label.setFont(new Font("Lucida Calligraphy", 0, 16));
+        psw_label.setFont(new Font("Lucida Calligraphy", 0, 18));
         psw_label.setForeground(new Color(209, 174, 149));
-        psw_label.setText("Password : ");
-        psw_label.setBounds(410, 270, 95, 20);
+        psw_label.setText("Password");
         psw.setBackground(new Color(255, 255, 255, 0));
+        psw_label.setBounds(550, 230, 95, 20);
         panel.add(psw_label);
 
         line2.setForeground(new Color(214, 178, 125));
-        line2.setText("________________________________");
-        line2.setBounds(510, 230, 260, 24);
+        line2.setText("__________________________");
+        line2.setBounds(500, 280, 260, 24);
         panel.add(line2);
 
-        line3.setForeground(new Color(214, 178, 125));
-        line3.setText("________________________________");
-        line3.setBounds(510, 303, 260, 24);
-        panel.add(line3);
 
-        message.setFont(new Font("Segoe UI Historic", 0, 13));
-        message.setForeground(new Color(209, 174, 149));
-        message.setText("Don't have an account ?");
-        message.setBounds(490, 400, 150, 20);
-        panel.add(message);
-
-        signup.setFont(new Font("Segoe UI", 1, 13));
-        signup.setForeground(new Color(209, 174, 149));
-        signup.setText("Sign Up");
-        signup.setCursor(new Cursor(HAND_CURSOR));
-        signup.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                signupMouseClicked(evt);
-            }
-            public void mouseEntered(MouseEvent evt) {
-                signupMouseEntered(evt);
-            }
-            public void mouseExited(MouseEvent evt) {
-                signupMouseExited(evt);
-            }
-            public void mousePressed(MouseEvent evt) {
-                signupMousePressed(evt);
-            }
-            public void mouseReleased(MouseEvent evt) {
-                signupMouseReleased(evt);
-            }
-        });
-        signup.setBounds(640, 400, 60, 20);
-        panel.add(signup);
-
-        email.setFont(new Font("Segoe UI Semilight", 0, 15));
-        email.setForeground(new Color(209, 174, 149));
-        email.setBorder(null);
-        email.setCaretColor(new Color(209, 174, 149));
-        email.setBounds(510, 210, 230, 30);
-        panel.add(email);
-
-        psw.setFont(new Font("Segoe UI Semilight", 0, 16));
+        psw.setFont(new Font("Segoe UI Semilight", 0, 18));
         psw.setForeground(new Color(209, 174, 149));
         psw.setBorder(null);
         psw.setCaretColor(new Color(209, 174, 149));
-        psw.setBounds(510, 290, 230, 20);
+        psw.setHorizontalAlignment(JTextField.CENTER);
+        psw.setBounds(480, 273, 230, 20);
         panel.add(psw);
 
         login.setBackground(new Color(209, 174, 149));
@@ -169,17 +110,17 @@ public class Login extends JFrame {
                 loginActionPerformed(evt);
             }
         });
-        login.setBounds(530, 340, 140, 40);
+        login.setBounds(530, 360, 140, 40);
         panel.add(login);
 
         title.setFont(new Font("Constantia", 0, 40));
         title.setForeground(new Color(214, 178, 125));
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setText("LOGIN");
-        title.setBounds(510, 120, 180, 50);
+        title.setBounds(510, 130, 180, 50);
         panel.add(title);
 
-        left.setIcon(new ImageIcon("src/images/4.png"));
+        left.setIcon(new ImageIcon("src/images/8.png"));
         left.setBounds(0, 0, 380, 450);
         panel.add(left);
 
@@ -231,26 +172,6 @@ public class Login extends JFrame {
     private void exitMousePressed(MouseEvent evt) {
         exit.setForeground(new Color(64, 34, 25));
     }
-
-    private void signupMouseClicked(MouseEvent evt) {
-        this.setVisible(false);
-        Signup s = new Signup();
-        s.setVisible(true);
-    }
-    private void signupMousePressed(MouseEvent evt) {
-        signup.setForeground(new Color(64, 34, 25));
-    }
-    private void signupMouseReleased(MouseEvent evt) {
-        signup.setForeground(new Color(209, 174, 149));
-    }
-
-    private void signupMouseEntered(MouseEvent evt) {
-        signup.setForeground(new Color(64, 34, 25));
-    }
-
-    private void signupMouseExited(MouseEvent evt) {
-        signup.setForeground(new Color(209, 174, 149));
-    }
     private void loginActionPerformed(ActionEvent evt) {
         login();
     }
@@ -264,10 +185,9 @@ public class Login extends JFrame {
     }
 
     private void login() {
-        String Email = email.getText();
         String password = String.valueOf(psw.getPassword());
 
-        if (Email.isEmpty() || password.isEmpty()){
+        if (password.isEmpty()){
             Warning1 d = new Warning1(this , true);
             d.setVisible(true);
         }

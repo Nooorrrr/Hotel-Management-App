@@ -128,14 +128,16 @@ public class Signup extends JFrame {
         SignUp.setFocusable(false);
         SignUp.setBounds(480, 460, 140, 40);
         SignUp.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                SignUpMouseClicked(evt);
-            }
             public void mousePressed(MouseEvent evt) {
                 SignUpMousePressed(evt);
             }
             public void mouseReleased(MouseEvent evt) {
                 SignUpMouseReleased(evt);
+            }
+        });
+        SignUp.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                SignUpActionPerformed(evt);
             }
         });
         panel.add(SignUp);
@@ -349,16 +351,6 @@ public class Signup extends JFrame {
         l.setVisible(true);
     }
 
-    private void SignUpMousePressed(MouseEvent evt) {
-        SignUp.setForeground(new Color(209, 174, 149));
-        SignUp.setBackground(new Color(64, 34, 25));
-    }
-
-    private void SignUpMouseReleased(MouseEvent evt) {
-        SignUp.setBackground(new Color(209, 174, 149));
-        SignUp.setForeground(new Color(64, 34, 25));
-    }
-
     private void viewActionPerformed(ActionEvent evt) {
         if(view.isSelected()){
             psw.setEchoChar((char)0);
@@ -399,10 +391,18 @@ public class Signup extends JFrame {
             pswlabel.setText("Password");
     }
 
-    private void SignUpMouseClicked(MouseEvent evt) {
-        registerUser();
+    private void SignUpMousePressed(MouseEvent evt) {
+        SignUp.setForeground(new Color(209, 174, 149));
+        SignUp.setBackground(new Color(64, 34, 25));
     }
 
+    private void SignUpMouseReleased(MouseEvent evt) {
+        SignUp.setBackground(new Color(209, 174, 149));
+        SignUp.setForeground(new Color(64, 34, 25));
+    }
+    private void SignUpActionPerformed(ActionEvent evt) {
+        registerUser();
+    }
     private void registerUser() {
         String firstName = Name.getText();
         String Phone = phone.getText();

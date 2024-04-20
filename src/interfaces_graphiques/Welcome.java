@@ -29,8 +29,8 @@ public class Welcome extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // Fermer la fenêtre
-                Login l = new Login(); // ouvrir la fenètre de login
-                l.setVisible(true);
+                Choice c = new Choice(); // ouvrir la fenètre de login
+                c.setVisible(true);
             }
         });
         timer.setRepeats(false); // Ne pas répéter le timer
