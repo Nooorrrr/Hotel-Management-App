@@ -37,6 +37,38 @@ public class Admin {
         }
     }
 
+    public void addRoom(RoomType typeChambre, Vue vue, boolean hasBuffet){
+        Room newRoom = new Room(typeChambre, vue, hasBuffet);
+        rooms.put(newRoom.getNumeroChambre(), newRoom);
+    }
+
+    public void removeRoom(int numeroChambre){
+        rooms.remove(numeroChambre);
+    }
+
+    public Room getRoomByNumber(int numeroChambre){
+        return rooms.get(numeroChambre);
+    }
+
+    public Map<Integer, Reservation> getReservationsRequest() {
+        return reservationsRequest;
+    }
+
+    public Map<Integer, Room> getRooms() {
+        return rooms;
+    }
+
+    public HashMap<String, User> getUsers() {
+        return users;
+    }
+
+    public void handleReservationRequest(Reservation reservation, Status status){
+        reservation.setStatus(status);
+        if (status == Status.ACCEPTED){
+            reservation.getChambre().setAvailability(false);
+        }
+    }
+
 
     
 
