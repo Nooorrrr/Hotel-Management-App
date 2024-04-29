@@ -410,7 +410,7 @@ public class Signup extends JFrame {
         String password = String.valueOf(psw.getPassword());
 
         if (firstName.isEmpty() || Phone.isEmpty() || Email.isEmpty() || password.isEmpty()){
-            Warning1 d = new Warning1(this , true);
+            Warning1 d = new Warning1(this , true,"");
             d.setVisible(true);
         }
        /* else{

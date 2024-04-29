@@ -15,7 +15,7 @@ public class Warning1 extends JDialog {
     private JLabel icon = new JLabel();
     private JPanel panel = new JPanel();
 
-    public Warning1(Frame parent, boolean modal) {
+    public Warning1(Frame parent, boolean modal,String mess) {
         super(parent, modal);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -81,7 +81,7 @@ public class Warning1 extends JDialog {
 
         message.setFont(new Font("SimSun", 0, 14));
         message.setForeground(new Color(184, 153, 132));
-        message.setText("Please Enter All Fields");
+        message.setText(mess);
         message.setBounds(90, 90, 180, 20);
         panel.add(message);
 

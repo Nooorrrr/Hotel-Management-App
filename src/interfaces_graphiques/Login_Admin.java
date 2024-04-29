@@ -79,7 +79,7 @@ public class Login_Admin extends JFrame {
 
         line2.setForeground(new Color(214, 178, 125));
         line2.setText("__________________________");
-        line2.setBounds(500, 280, 260, 24);
+        line2.setBounds(505, 280, 260, 24);
         panel.add(line2);
 
 
@@ -188,7 +188,7 @@ public class Login_Admin extends JFrame {
         String password = String.valueOf(psw.getPassword());
 
         if (password.isEmpty()){
-            Warning1 d = new Warning1(this , true);
+            Warning1 d = new Warning1(this , true,"");
             d.setVisible(true);
         }
     }

@@ -4,6 +4,7 @@ package interfaces_graphiques;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import main.* ;
 
 public class Login extends JFrame {
 
@@ -247,12 +248,11 @@ public class Login extends JFrame {
     private void signupMouseEntered(MouseEvent evt) {
         signup.setForeground(new Color(64, 34, 25));
     }
-
     private void signupMouseExited(MouseEvent evt) {
         signup.setForeground(new Color(209, 174, 149));
     }
     private void loginActionPerformed(ActionEvent evt) {
-        login();
+        authentification();
     }
     private void loginMousePressed(MouseEvent evt) {
         login.setForeground(new Color(209, 174, 149));
@@ -263,13 +263,21 @@ public class Login extends JFrame {
         login.setForeground(new Color(64, 34, 25));
     }
 
-    private void login() {
+    private void authentification() {
         String Email = email.getText();
         String password = String.valueOf(psw.getPassword());
 
         if (Email.isEmpty() || password.isEmpty()){
-            Warning1 d = new Warning1(this , true);
+            Warning1 d = new Warning1(this , true, "please enter all fields");
             d.setVisible(true);
         }
+       /* else{
+            if(login (email.getText(),psw.getPassword()!=null);
+            {
+                dispose();
+
+            }
+
+        }*/
     }
 }
