@@ -189,7 +189,7 @@ public class Principal_client extends JFrame {
         day_checkout.setSelectedIndex(-1);
         day_checkout.setBorder(null);
         day_checkout.setRequestFocusEnabled(false);
-        day_checkout.setBounds(500, 560, 72, 20);
+        day_checkout.setBounds(410, 560, 72, 20);
         panel.add(day_checkout);
 
         //month_checkout.setBackground(new Color(109, 84, 70));
@@ -199,7 +199,7 @@ public class Principal_client extends JFrame {
         month_checkout.setSelectedIndex(-1);
         month_checkout.setBorder(null);
         month_checkout.setRequestFocusEnabled(false);
-        month_checkout.setBounds(410, 560, 72, 20);
+        month_checkout.setBounds(500, 560, 72, 20);
         panel.add(month_checkout);
 
         //year_checkout.setBackground(new Color(109, 84, 70));
@@ -220,7 +220,7 @@ public class Principal_client extends JFrame {
         day_checkin.setSelectedIndex(-1);
         day_checkin.setBorder(null);
         day_checkin.setRequestFocusEnabled(false);
-        day_checkin.setBounds(500, 530, 72, 20);
+        day_checkin.setBounds(410, 530, 72, 20);
         panel.add(day_checkin);
 
 
@@ -230,7 +230,7 @@ public class Principal_client extends JFrame {
         month_checkin.setSelectedIndex(-1);
         month_checkin.setBorder(null);
         month_checkin.setRequestFocusEnabled(false);
-        month_checkin.setBounds(410, 530, 72, 20);
+        month_checkin.setBounds(500, 530, 72, 20);
         panel.add(month_checkin);
 
 
@@ -369,13 +369,13 @@ public class Principal_client extends JFrame {
         Daylabel.setFont(new Font("Segoe Print", 0, 14));
         Daylabel.setForeground(new Color(87, 47, 37));
         Daylabel.setText("Day");
-        Daylabel.setBounds(510, 500, 40, 20);
+        Daylabel.setBounds(410, 500, 40, 20);
         panel.add(Daylabel);
 
         Monthlabel.setFont(new Font("Segoe Print", 0, 14));
         Monthlabel.setForeground(new Color(87, 47, 37));
         Monthlabel.setText("Month");
-        Monthlabel.setBounds(410, 500, 60, 20);
+        Monthlabel.setBounds(510, 500, 60, 20);
         panel.add(Monthlabel);
 
         Yearlabel.setFont(new Font("Segoe Print", 0, 14));
@@ -424,7 +424,7 @@ public class Principal_client extends JFrame {
             table.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        tablepane.setBounds(270, 210, 530, 238);
+        tablepane.setBounds(270, 210, 530, 236);
         tablepane.setBackground(new Color(255, 255, 255,0));
         panel.add(tablepane);
 
