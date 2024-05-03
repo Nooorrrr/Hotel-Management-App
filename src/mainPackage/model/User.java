@@ -66,10 +66,5 @@ public TreeMap getReservations() {
 public void setReservations(TreeMap reservations) {
     this.reservations = reservations;
 }
-  
-
-
-
-
 
 }

@@ -26,12 +26,12 @@ public class Principal_client extends JFrame {
     private JLabel jLabel13 = new JLabel();
     private JLabel jLabel10 = new JLabel();
     private JLabel jLabel1 = new JLabel();
-    private JComboBox<String> day_checkout = new JComboBox<String>();
-    private JComboBox<String> month_checkout = new JComboBox<String>();
-    private JComboBox<String> year_checkout = new JComboBox<String>();
-    private JComboBox<String> day_checkin = new JComboBox<String>();
-    private JComboBox<String> month_checkin = new JComboBox<String>();
-    private JComboBox<String> year_checkin = new JComboBox<String>();
+    private JTextField day_checkout = new JTextField();
+    private JTextField month_checkout = new JTextField();
+    private JTextField year_checkout = new JTextField();
+    private JTextField day_checkin = new JTextField();
+    private JTextField month_checkin = new JTextField();
+    private JTextField year_checkin = new JTextField();
     private JComboBox<String> type = new JComboBox<String>();
     private JComboBox<String> category = new JComboBox<String>();
     private JComboBox<String> view = new JComboBox<String>();
@@ -48,12 +48,12 @@ public class Principal_client extends JFrame {
     private JLabel Yearlabel = new JLabel();
     private JScrollPane tablepane = new JScrollPane();
     private JTable table = new JTable();
-    private JLabel jLabel15 = new JLabel();
+    private JLabel Background = new JLabel();
 
     public Principal_client() {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(900,700));
+        setMinimumSize(new java.awt.Dimension(1000, 700));
         setAutoRequestFocus(false);
         setFocusable(false);
         setUndecorated(true);
@@ -93,11 +93,11 @@ public class Principal_client extends JFrame {
                 exitMousePressed(evt);
             }
         });
-        exit.setBounds(866, 15, 20, 20);
+        exit.setBounds(970, 10, 18, 39);
         panel.add(exit);
 
         person.setIcon(new ImageIcon("src/mainPackage/images/utilisateur-60.png"));
-        person.setBounds(70, 60, 70, 70);
+        person.setBounds(90, 60, 60, 60);
         panel.add(person);
 
         name.setFont(new Font("Segoe Print", 0, 14));
@@ -107,150 +107,147 @@ public class Principal_client extends JFrame {
         name.setFocusable(false);
         name.setBackground(new Color(255, 255, 255,0));
         name.setText("yasmine maroua behih ");
-        name.setBounds(130, 70, 180, 50);
+        name.setBounds(160, 70, 170, 40);
         panel.add(name);
 
-        title.setFont(new Font("High Tower Text", 1, 18));
+        title.setFont(new Font("High Tower Text", 1, 20));
         title.setForeground(new Color(255, 255, 255));
         title.setText("YOUR RESERVATION LIST");
-        title.setBounds(400, 180, 260, 30);
+        title.setBounds(460, 180, 280, 24);
         panel.add(title);
 
         addicon.setIcon(new ImageIcon("src/mainPackage/images/add-60.png"));
-        addicon.setBounds(50, 320, 60, 50);
+        addicon.setBounds(62, 310, 60, 50);
         panel.add(addicon);
 
         editicon.setIcon(new ImageIcon("src/mainPackage/images/edit-55.png"));
-        editicon.setBounds(50, 420, 55, 55);
+        editicon.setBounds(65, 390, 55, 60);
         panel.add(editicon);
 
         deleteicon.setIcon(new ImageIcon("src/mainPackage/images/delete-48.png"));
-        deleteicon.setBounds(58, 520, 50, 60);
+        deleteicon.setBounds(70, 500, 50, 50);
         panel.add(deleteicon);
 
         your_label.setFont(new Font("High Tower Text", 1, 18));
         your_label.setForeground(new Color(255, 255, 255));
         your_label.setText("YOUR  ");
-        your_label.setBounds(100, 200, 70, 30);
+        your_label.setBounds(120, 190, 65, 22);
         panel.add(your_label);
 
         reservation_label.setFont(new Font("High Tower Text", 1, 18));
         reservation_label.setForeground(new Color(255, 255, 255));
         reservation_label.setText("RESERVATION");
-        reservation_label.setBounds(60, 230, 150, 30);
+        reservation_label.setBounds(80, 220, 144, 22);
         panel.add(reservation_label);
 
         options_label.setFont(new Font("High Tower Text", 1, 18));
         options_label.setForeground(new Color(255, 255, 255));
         options_label.setText("OPTIONS :");
-        options_label.setBounds(80, 260, 100, 30);
+        options_label.setBounds(100, 250, 100, 22);
         panel.add(options_label);
 
         jLabel14.setFont(new Font("Segoe Print", 1, 14));
         jLabel14.setForeground(new Color(255, 255, 255));
         jLabel14.setText("ADD NEW");
-        jLabel14.setBounds(120, 320, 90, 30);
+        jLabel14.setBounds(140, 310, 74, 26);
         panel.add(jLabel14);
 
         jLabel12.setFont(new Font("Segoe Print", 1, 14));
         jLabel12.setForeground(new Color(255, 255, 255));
         jLabel12.setText(" RESERVATION ");
-        jLabel12.setBounds(100, 340, 130, 30);
+        jLabel12.setBounds(120, 330, 117, 26);
         panel.add(jLabel12);
 
         jLabel7.setFont(new Font("Segoe Print", 1, 14));
         jLabel7.setForeground(new Color(255, 255, 255));
         jLabel7.setText("EDIT");
-        jLabel7.setBounds(130, 420, 50, 30);
+        jLabel7.setBounds(160, 400, 34, 26);
         panel.add(jLabel7);
 
         jLabel13.setFont(new Font("Segoe Print", 1, 14));
         jLabel13.setForeground(new Color(255, 255, 255));
         jLabel13.setText("RESERVATION ");
-        jLabel13.setBounds(100, 440, 120, 30);
+        jLabel13.setBounds(130, 420, 111, 26);
         panel.add(jLabel13);
 
         jLabel10.setFont(new Font("Segoe Print", 1, 14));
         jLabel10.setForeground(new Color(255, 255, 255));
         jLabel10.setText("DELETE");
-        jLabel10.setBounds(130, 530, 70, 30);
+        jLabel10.setBounds(150, 500, 59, 26);
         panel.add(jLabel10);
 
         jLabel1.setFont(new Font("Segoe Print", 1, 14));
         jLabel1.setForeground(new Color(255, 255, 255));
         jLabel1.setText(" RESERVATION ");
-        jLabel1.setBounds(100, 550, 120, 30);
+        jLabel1.setBounds(120, 520, 117, 26);
         panel.add(jLabel1);
 
-        //day_checkout.setBackground(new Color(109, 84, 70));
-        day_checkout.setBackground(new Color(255, 255, 255,0));
-        day_checkout.setForeground(new Color(255, 255, 255));
-        day_checkout.setModel(new DefaultComboBoxModel<>(new String[]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
-        day_checkout.setSelectedIndex(-1);
-        day_checkout.setBorder(null);
-        day_checkout.setRequestFocusEnabled(false);
-        day_checkout.setBounds(410, 560, 72, 20);
-        panel.add(day_checkout);
-
-        //month_checkout.setBackground(new Color(109, 84, 70));
-        month_checkout.setBackground(new Color(255, 255, 255,0));
-        month_checkout.setForeground(new Color(255, 255, 255));
-        month_checkout.setModel(new DefaultComboBoxModel<>(new String[]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
-        month_checkout.setSelectedIndex(-1);
-        month_checkout.setBorder(null);
-        month_checkout.setRequestFocusEnabled(false);
-        month_checkout.setBounds(500, 560, 72, 20);
-        panel.add(month_checkout);
-
-        //year_checkout.setBackground(new Color(109, 84, 70));
-        year_checkout.setBackground(new Color(255, 255, 255,0));
-        year_checkout.setForeground(new Color(255, 255, 255));
-        year_checkout.setModel(new DefaultComboBoxModel<>(new String[]{"2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
-        year_checkout.setSelectedIndex(-1);
-        year_checkout.setToolTipText("");
-        year_checkout.setBorder(null);
-        year_checkout.setRequestFocusEnabled(false);
-        year_checkout.setBounds(600, 560, 72, 20);
-        panel.add(year_checkout);
-
-
         day_checkin.setBackground(new Color(255, 255, 255,0));
+        day_checkin.setFont(new Font("Segoe Print", 0, 12));
         day_checkin.setForeground(new Color(255, 255, 255));
-        day_checkin.setModel(new DefaultComboBoxModel<>(new String[]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
-        day_checkin.setSelectedIndex(-1);
+        day_checkin.setHorizontalAlignment(JTextField.CENTER);
         day_checkin.setBorder(null);
-        day_checkin.setRequestFocusEnabled(false);
-        day_checkin.setBounds(410, 530, 72, 20);
+        day_checkin.setCaretColor(new Color(87, 47, 37));
+        day_checkin.setBounds(470, 537, 50, 22);
         panel.add(day_checkin);
 
 
         month_checkin.setBackground(new Color(255, 255, 255,0));
+        month_checkin.setFont(new java.awt.Font("Segoe Print", 0, 12));
         month_checkin.setForeground(new Color(255, 255, 255));
-        month_checkin.setModel(new DefaultComboBoxModel<>(new String[]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
-        month_checkin.setSelectedIndex(-1);
+        month_checkin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         month_checkin.setBorder(null);
-        month_checkin.setRequestFocusEnabled(false);
-        month_checkin.setBounds(500, 530, 72, 20);
+        month_checkin.setCaretColor(new java.awt.Color(87, 47, 37));
+        month_checkin.setBounds(570, 537, 50, 22);
         panel.add(month_checkin);
 
 
         year_checkin.setBackground(new Color(255, 255, 255,0));
         year_checkin.setForeground(new Color(255, 255, 255));
-        year_checkin.setModel(new DefaultComboBoxModel<>(new String[]{"2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
-        year_checkin.setSelectedIndex(-1);
+        year_checkin.setFont(new Font("Segoe Print", 0, 12));
+        year_checkin.setHorizontalAlignment(JTextField.CENTER);
         year_checkin.setBorder(null);
-        year_checkin.setRequestFocusEnabled(false);
-        year_checkin.setBounds(600, 530, 72, 20);
+        year_checkin.setCaretColor(new Color(87, 47, 37));
+        year_checkin.setBounds(650, 537, 60, 22);
         panel.add(year_checkin);
 
+        //day_checkout.setBackground(new Color(109, 84, 70));
+        day_checkout.setBackground(new Color(255, 255, 255,0));
+        day_checkout.setFont(new Font("Segoe Print", 0, 12));
+        day_checkout.setForeground(new Color(255, 255, 255));
+        day_checkout.setHorizontalAlignment(JTextField.CENTER);
+        day_checkout.setBorder(null);
+        day_checkout.setCaretColor(new Color(87, 47, 37));
+        day_checkout.setBounds(470, 563, 50, 22);
+        panel.add(day_checkout);
+
+        //month_checkout.setBackground(new Color(109, 84, 70));
+        month_checkout.setBackground(new Color(255, 255, 255,0));
+        month_checkout.setFont(new Font("Segoe Print", 0, 12));
+        month_checkout.setForeground(new Color(255, 255, 255));
+        month_checkout.setHorizontalAlignment(JTextField.CENTER);
+        month_checkout.setBorder(null);
+        month_checkout.setCaretColor(new Color(87, 47, 37));
+        month_checkout.setBounds(570, 563, 50, 22);
+        panel.add(month_checkout);
+
+        //year_checkout.setBackground(new Color(109, 84, 70));
+        year_checkout.setBackground(new Color(255, 255, 255,0));
+        year_checkout.setFont(new Font("Segoe Print", 0, 12));
+        year_checkout.setForeground(new Color(255, 255, 255));
+        year_checkout.setHorizontalAlignment(JTextField.CENTER);
+        year_checkout.setBorder(null);
+        year_checkout.setCaretColor(new Color(87, 47, 37));
+        year_checkout.setBounds(650, 563, 60, 22);
+        panel.add(year_checkout);
 
         type.setBackground(new Color(255, 255, 255,0));
         type.setForeground(new Color(147, 101, 70));
-        type.setModel(new DefaultComboBoxModel<>(new String[]{"single", "double", "triple", "quadruple"}));
+        type.setModel(new DefaultComboBoxModel<>(new String[]{"Single", "Double", "Triple", "Quadruple"}));
         type.setSelectedIndex(-1);
         type.setBorder(null);
         type.setRequestFocusEnabled(false);
-        type.setBounds(360, 620, 90, 20);
+        type.setBounds(440, 620, 95, 20);
         panel.add(type);
 
         //category.setBackground(new Color(109, 84, 70));
@@ -260,60 +257,18 @@ public class Principal_client extends JFrame {
         category.setSelectedIndex(-1);
         category.setBorder(null);
         category.setRequestFocusEnabled(false);
-        category.setBounds(480, 620, 90, 20);
+        category.setBounds(552, 620, 85, 20);
         panel.add(category);
 
         view.setBackground(new Color(109, 84, 70));
         view.setBackground(new Color(255, 255, 255,0));
         view.setForeground(new Color(147, 101, 70));
-        view.setModel(new DefaultComboBoxModel<>(new String[]{"sea", "forest", "city"}));
+        view.setModel(new DefaultComboBoxModel<>(new String[]{"Beach", "Mountain", "City"}));
         view.setSelectedIndex(-1);
         view.setBorder(null);
         view.setRequestFocusEnabled(false);
-        view.setBounds(580, 620, 65, 20);
+        view.setBounds(660, 620, 83, 20);
         panel.add(view);
-
-        deletebutton.setIcon(new ImageIcon("src/mainPackage/images/delete-32.png"));
-        deletebutton.setBackground(new Color(255, 255, 255,0));
-        deletebutton.setBorder(null);
-        deletebutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        deletebutton.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent evt) {
-                deletebuttonMousePressed(evt);
-            }
-
-            public void mouseReleased(MouseEvent evt) {
-                deletebuttonMouseReleased(evt);
-            }
-        });
-        deletebutton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                deletebuttonActionPerformed(evt);
-            }
-        });
-        deletebutton.setBounds(740, 600, 50, 50);
-        panel.add(deletebutton);
-
-        editbutton.setIcon(new ImageIcon("src/mainPackage/images/edit-40.png"));
-        editbutton.setBackground(new Color(255, 255, 255,0));
-        editbutton.setBorder(null);
-        editbutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        editbutton.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent evt) {
-                editbuttonMousePressed(evt);
-            }
-
-            public void mouseReleased(MouseEvent evt) {
-                editbuttonMouseReleased(evt);
-            }
-        });
-        editbutton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                editbuttonActionPerformed(evt);
-            }
-        });
-        editbutton.setBounds(740, 550, 50, 50);
-        panel.add(editbutton);
 
         addbutton.setIcon(new ImageIcon("src/mainPackage/images/add-37.png"));
         addbutton.setBackground(new Color(255, 255, 255,0));
@@ -333,58 +288,100 @@ public class Principal_client extends JFrame {
                 addbuttonActionPerformed(evt);
             }
         });
-        addbutton.setBounds(740, 500, 50, 50);
+        addbutton.setBounds(820, 500, 50, 50);
         panel.add(addbutton);
+
+        editbutton.setIcon(new ImageIcon("src/mainPackage/images/edit-40.png"));
+        editbutton.setBackground(new Color(255, 255, 255,0));
+        editbutton.setBorder(null);
+        editbutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        editbutton.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent evt) {
+                editbuttonMousePressed(evt);
+            }
+
+            public void mouseReleased(MouseEvent evt) {
+                editbuttonMouseReleased(evt);
+            }
+        });
+        editbutton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                editbuttonActionPerformed(evt);
+            }
+        });
+        editbutton.setBounds(820, 550, 50, 50);
+        panel.add(editbutton);
+
+        deletebutton.setIcon(new ImageIcon("src/mainPackage/images/delete-32.png"));
+        deletebutton.setBackground(new Color(255, 255, 255,0));
+        deletebutton.setBorder(null);
+        deletebutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        deletebutton.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent evt) {
+                deletebuttonMousePressed(evt);
+            }
+
+            public void mouseReleased(MouseEvent evt) {
+                deletebuttonMouseReleased(evt);
+            }
+        });
+        deletebutton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                deletebuttonActionPerformed(evt);
+            }
+        });
+        deletebutton.setBounds(820, 600, 50, 50);
+        panel.add(deletebutton);
 
         checkin.setFont(new Font("Segoe Print", 0, 14));
         checkin.setForeground(new Color(87, 47, 37));
         checkin.setText("Check-in");
-        checkin.setBounds(310, 530, 70, 20);
+        checkin.setBounds(350, 530, 63, 26);
         panel.add(checkin);
 
         checkout.setFont(new Font("Segoe Print", 0, 14));
         checkout.setForeground(new Color(87, 47, 37));
         checkout.setText("Check-out");
-        checkout.setBounds(310, 560, 75, 20);
+        checkout.setBounds(350, 560, 74, 26);
         panel.add(checkout);
 
         Type.setFont(new Font("Segoe Print", 0, 14));
         Type.setForeground(new Color(87, 47, 37));
         Type.setText("Type");
-        Type.setBounds(380, 590, 72, 20);
+        Type.setBounds(467, 590, 33, 26);
         panel.add(Type);
 
         Category.setFont(new Font("Segoe Print", 0, 14));
         Category.setForeground(new Color(87, 47, 37));
         Category.setText("Category");
-        Category.setBounds(480, 590, 72, 20);
+        Category.setBounds(560, 590, 63, 26);
         panel.add(Category);
 
         View.setFont(new Font("Segoe Print", 0, 14));
         View.setForeground(new Color(87, 47, 37));
         View.setText("View");
-        View.setBounds(590, 590, 72, 20);
+        View.setBounds(675, 590, 33, 26);
         panel.add(View);
 
         Daylabel.setFont(new Font("Segoe Print", 0, 14));
         Daylabel.setForeground(new Color(87, 47, 37));
         Daylabel.setText("Day");
-        Daylabel.setBounds(410, 500, 40, 20);
+        Daylabel.setBounds(480, 510, 27, 26);
         panel.add(Daylabel);
 
         Monthlabel.setFont(new Font("Segoe Print", 0, 14));
         Monthlabel.setForeground(new Color(87, 47, 37));
         Monthlabel.setText("Month");
-        Monthlabel.setBounds(510, 500, 60, 20);
+        Monthlabel.setBounds(570, 510, 46, 26);
         panel.add(Monthlabel);
 
         Yearlabel.setFont(new Font("Segoe Print", 0, 14));
         Yearlabel.setForeground(new Color(87, 47, 37));
         Yearlabel.setText("Year");
-        Yearlabel.setBounds(610, 500, 40, 20);
+        Yearlabel.setBounds(661, 510, 40, 26);
         panel.add(Yearlabel);
 
-        table.setBackground(new java.awt.Color(184, 153, 132));
+        table.setBackground(new Color(184, 153, 132));
         table.setModel(new DefaultTableModel(
                 new Object[][]{
 
@@ -401,10 +398,11 @@ public class Principal_client extends JFrame {
             }
         });
         //table.setColumnSelectionAllowed(true);
+        tablepane.setBackground(new Color(255, 255, 255,0));
         table.setFocusable(false);
         table.setSelectionBackground(new Color(87, 47, 37));
         table.setSelectionForeground(new Color(255, 255, 255));
-        table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         table.getTableHeader().setReorderingAllowed(false);
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -424,17 +422,15 @@ public class Principal_client extends JFrame {
             table.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        tablepane.setBounds(270, 210, 530, 236);
-        tablepane.setBackground(new Color(255, 255, 255,0));
+        tablepane.setBounds(310, 210, 580, 230);
         panel.add(tablepane);
 
-        jLabel15.setForeground(new Color(255, 255, 255));
-        jLabel15.setIcon(new ImageIcon("src/mainPackage/images/2.png"));
-        jLabel15.setBounds(0, 0, 900, 700);
-        panel.add(jLabel15);
+        Background.setIcon(new ImageIcon("src/mainPackage/images/9.png"));
+        Background.setBounds(0, 0, 1000, 700);
+        panel.add(Background);
 
         getContentPane().add(panel);
-        panel.setBounds(0, 0, 900, 700);
+        panel.setBounds(0, 0, 1000, 700);
 
         pack();
         setLocationRelativeTo(null);
@@ -457,13 +453,13 @@ public class Principal_client extends JFrame {
     }
 
     private void addbuttonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        if (day_checkin.getSelectedIndex() == -1 || month_checkin.getSelectedIndex() == -1 || year_checkin.getSelectedIndex() == -1 || month_checkout.getSelectedIndex() == -1 || day_checkout.getSelectedIndex() == -1 || year_checkout.getSelectedIndex() == -1 || type.getSelectedIndex() == -1 || category.getSelectedIndex() == -1 || view.getSelectedIndex() == -1) {
-            Warning1 d = new Warning1(this, true,"");
+        if(day_checkin.getText().isEmpty()||month_checkin.getText().isEmpty()||year_checkin.getText().isEmpty()||month_checkout.getText().isEmpty()||day_checkout.getText().isEmpty()||year_checkout.getText().isEmpty()||type.getSelectedIndex() == -1 || category.getSelectedIndex() == -1 || view.getSelectedIndex() == -1){
+            Warning1 d = new Warning1(this , true,"");
             d.setVisible(true);
-        } else {
-            String data[] = {(String) day_checkin.getSelectedItem() + "/" + (String) month_checkin.getSelectedItem() + "/" + (String) year_checkin.getSelectedItem(), (String) day_checkout.getSelectedItem() + "/" + (String) month_checkout.getSelectedItem() + "/" + (String) year_checkout.getSelectedItem(), (String) type.getSelectedItem(), (String) category.getSelectedItem(), (String) view.getSelectedItem(),"Pending"};
-            DefaultTableModel tab = (DefaultTableModel) table.getModel();
+        }
+        else{
+            String data[] ={(String) day_checkin.getText()+"/"+(String) month_checkin.getText()+"/"+(String) year_checkin.getText(),(String) day_checkout.getText()+"/"+(String) month_checkout.getText()+"/"+(String) year_checkout.getText(),(String) type.getSelectedItem(),(String) category.getSelectedItem(),(String) view.getSelectedItem(),"Pending"};
+            DefaultTableModel tab = (DefaultTableModel)table.getModel();
             tab.addRow(data);
         }
     }
@@ -513,20 +509,20 @@ public class Principal_client extends JFrame {
     }
 
     private void tableMouseClicked(MouseEvent evt) {
-        DefaultTableModel tab = (DefaultTableModel) table.getModel();
+        DefaultTableModel tab = (DefaultTableModel)table.getModel();
 
         String[] in = tab.getValueAt(table.getSelectedRow(), 0).toString().split("/");
         String[] out = tab.getValueAt(table.getSelectedRow(), 1).toString().split("/");
-        String t = tab.getValueAt(table.getSelectedRow(), 2).toString();
-        String c = tab.getValueAt(table.getSelectedRow(), 3).toString();
-        String v = tab.getValueAt(table.getSelectedRow(), 4).toString();
+        String t = tab.getValueAt(table.getSelectedRow(),2).toString();
+        String c = tab.getValueAt(table.getSelectedRow(),3).toString();
+        String v = tab.getValueAt(table.getSelectedRow(),4).toString();
 
-        day_checkin.setSelectedItem(in[1]);
-        month_checkin.setSelectedItem(in[0]);
-        year_checkin.setSelectedItem(in[2]);
-        day_checkout.setSelectedItem(in[1]);
-        month_checkout.setSelectedItem(in[0]);
-        year_checkout.setSelectedItem(in[2]);
+        day_checkin.getText();
+        month_checkin.getText();
+        year_checkin.getText();
+        day_checkout.getText();
+        month_checkout.getText();
+        year_checkout.getText();
         type.setSelectedItem(t);
         category.setSelectedItem(c);
         view.setSelectedItem(v);
@@ -534,20 +530,20 @@ public class Principal_client extends JFrame {
     }
 
     private void editbuttonActionPerformed(ActionEvent evt) {
-        DefaultTableModel tab = (DefaultTableModel) table.getModel();
-        if (table.getSelectedRowCount() == 1) {
+        DefaultTableModel tab = (DefaultTableModel)table.getModel();
+        if(table.getSelectedRowCount()==1){
 
-            String date_in = (String) day_checkin.getSelectedItem() + "/" + (String) month_checkin.getSelectedItem() + "/" + (String) year_checkin.getSelectedItem();
-            String date_out = (String) day_checkout.getSelectedItem() + "/" + (String) month_checkout.getSelectedItem() + "/" + (String) year_checkout.getSelectedItem();
+            String date_in = (String) day_checkin.getText()+"/"+(String) month_checkin.getText()+"/"+(String) year_checkin.getText();
+            String date_out = (String) day_checkout.getText()+"/"+(String) month_checkout.getText()+"/"+(String) year_checkout.getText();
             String t = (String) type.getSelectedItem();
             String c = (String) category.getSelectedItem();
             String v = (String) view.getSelectedItem();
 
-            tab.setValueAt(date_in, table.getSelectedRow(), 0);
-            tab.setValueAt(date_out, table.getSelectedRow(), 1);
-            tab.setValueAt(t, table.getSelectedRow(), 2);
-            tab.setValueAt(c, table.getSelectedRow(), 3);
-            tab.setValueAt(v, table.getSelectedRow(), 4);
+            tab.setValueAt(date_in,table.getSelectedRow(),0);
+            tab.setValueAt(date_out,table.getSelectedRow(),1);
+            tab.setValueAt(t,table.getSelectedRow(),2);
+            tab.setValueAt(c,table.getSelectedRow(),3);
+            tab.setValueAt(v,table.getSelectedRow(),4);
 
         } else {
             if (table.getRowCount() == 0) {

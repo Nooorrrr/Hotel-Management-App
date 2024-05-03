@@ -4,8 +4,10 @@ package mainPackage.interfaces_graphiques;
 import java.awt.*;
 import javax.swing.*;
 import mainPackage.*;
+import mainPackage.model.User;
 
 import java.awt.event.*;
+import static mainPackage.Controllers.Authentification.Authentification;
 
 public class Login extends JFrame {
 
@@ -287,7 +289,9 @@ public class Login extends JFrame {
         signup.setForeground(new Color(209, 174, 149));
     }
     private void loginActionPerformed(ActionEvent evt) {
-        authentification();
+        String Email = email.getText();
+        String Password = String.valueOf(psw.getPassword());
+        Authentification(this,Email,Password);
     }
     private void loginMousePressed(MouseEvent evt) {
         login.setForeground(new Color(209, 174, 149));
@@ -298,21 +302,5 @@ public class Login extends JFrame {
         login.setForeground(new Color(64, 34, 25));
     }
 
-    private void authentification() {
-        String Email = email.getText();
-        String password = String.valueOf(psw.getPassword());
 
-        if (Email.isEmpty() || password.isEmpty()){
-            Warning1 d = new Warning1(this , true, "please enter all fields");
-            d.setVisible(true);
-        }
-       /* else{
-            if(login (email.getText(),psw.getPassword()!=null);
-            {
-                dispose();
-
-            }
-
-        }*/
-    }
 }
