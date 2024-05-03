@@ -129,7 +129,7 @@ public class Principal_client extends JFrame {
         your_label.setFont(new Font("High Tower Text", 1, 18));
         your_label.setForeground(new Color(255, 255, 255));
         your_label.setText("YOUR  ");
-        your_label.setBounds(120, 190, 65, 22);
+        your_label.setBounds(120, 190, 70, 22);
         panel.add(your_label);
 
         reservation_label.setFont(new Font("High Tower Text", 1, 18));
@@ -141,7 +141,7 @@ public class Principal_client extends JFrame {
         options_label.setFont(new Font("High Tower Text", 1, 18));
         options_label.setForeground(new Color(255, 255, 255));
         options_label.setText("OPTIONS :");
-        options_label.setBounds(100, 250, 100, 22);
+        options_label.setBounds(100, 250, 105, 22);
         panel.add(options_label);
 
         jLabel14.setFont(new Font("Segoe Print", 1, 14));
@@ -159,7 +159,7 @@ public class Principal_client extends JFrame {
         jLabel7.setFont(new Font("Segoe Print", 1, 14));
         jLabel7.setForeground(new Color(255, 255, 255));
         jLabel7.setText("EDIT");
-        jLabel7.setBounds(160, 400, 34, 26);
+        jLabel7.setBounds(160, 400, 40, 26);
         panel.add(jLabel7);
 
         jLabel13.setFont(new Font("Segoe Print", 1, 14));
@@ -335,7 +335,7 @@ public class Principal_client extends JFrame {
         Type.setFont(new Font("Segoe Print", 0, 14));
         Type.setForeground(new Color(87, 47, 37));
         Type.setText("Type");
-        Type.setBounds(473, 590, 33, 26);
+        Type.setBounds(473, 590, 40, 26);
         panel.add(Type);
 
         Category.setFont(new Font("Segoe Print", 0, 14));
@@ -347,7 +347,7 @@ public class Principal_client extends JFrame {
         View.setFont(new Font("Segoe Print", 0, 14));
         View.setForeground(new Color(87, 47, 37));
         View.setText("View");
-        View.setBounds(680, 590, 33, 26);
+        View.setBounds(680, 590, 40, 26);
         panel.add(View);
 
         Daylabel.setFont(new Font("Segoe Print", 0, 14));
