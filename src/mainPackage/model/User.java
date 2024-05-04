@@ -16,7 +16,6 @@ public class User {
     this.telephone = telephone;
     this.password = password;
     id++;
-    
    }
 
 public static int getId() {
