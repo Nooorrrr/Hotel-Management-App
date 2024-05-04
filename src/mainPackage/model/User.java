@@ -3,28 +3,24 @@ package mainPackage.model;
 import java.util.TreeMap;
 
 public class User {
-    private static int id=0;
     private String fullName;
     private String email;
     private String telephone;
     private String password;
     private TreeMap reservations;
 
-   public User(String fullName, String email, String telephone, String Password) {
+   public User(String fullName, String email, String telephone, String password) {
     this.fullName = fullName;
     this.email = email;
     this.telephone = telephone;
     this.password = password;
+<<<<<<< HEAD
     id++;
+=======
+    
+>>>>>>> 73736770f6d31ba09880efdec5e2f334a9761d97
    }
 
-public static int getId() {
-    return id;
-}
-
-public static void setId(int id) {
-    User.id = id;
-}
 
 public String getFullName() {
     return fullName;

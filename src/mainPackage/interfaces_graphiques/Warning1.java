@@ -19,7 +19,7 @@ public class Warning1 extends JDialog {
         super(parent, modal);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new Dimension(270, 170));
+        setMinimumSize(new Dimension(300, 200));
         setUndecorated(true);
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseDragged(MouseEvent evt) {
@@ -35,7 +35,7 @@ public class Warning1 extends JDialog {
 
         panel.setBackground(new Color(87, 47, 37));
         panel.setLayout(null);
-        panel.setBounds(-50, 0, 270, 170);
+        panel.setBounds(-50, 0, 300, 200);
         getContentPane().add(panel);
 
         exit.setBackground(new Color(214, 178, 125));
@@ -43,7 +43,7 @@ public class Warning1 extends JDialog {
         exit.setForeground(new Color(214, 178, 125));
         exit.setText("X");
         exit.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        exit.setBounds(240, 0, 30, 30);
+        exit.setBounds(280, 0, 30, 30);
         exit.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 exitMouseClicked(evt);
@@ -82,7 +82,7 @@ public class Warning1 extends JDialog {
         message.setFont(new Font("SimSun", 0, 14));
         message.setForeground(new Color(184, 153, 132));
         message.setText(mess);
-        message.setBounds(90, 90, 180, 20);
+        message.setBounds(90, 90, 195, 20);
         panel.add(message);
 
         icon.setIcon(new ImageIcon("src/mainPackage/images/erreur-60.png"));
@@ -90,7 +90,7 @@ public class Warning1 extends JDialog {
         panel.add(icon);
 
         getContentPane().add(panel);
-        panel.setBounds(0, 0, 280, 180);
+        panel.setBounds(0, 0, 300, 200);
 
         pack();
         setLocationRelativeTo(null);

@@ -3,6 +3,9 @@ package mainPackage.interfaces_graphiques;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import static mainPackage.Controllers.Authentification.registerUser;
+
+
 
 public class Signup extends JFrame {
 
@@ -401,21 +404,8 @@ public class Signup extends JFrame {
         SignUp.setForeground(new Color(64, 34, 25));
     }
     private void SignUpActionPerformed(ActionEvent evt) {
-        registerUser();
+        registerUser(this,Name.getText(),phone.getText(),email.getText(),String.valueOf(psw.getPassword()));
     }
-    private void registerUser() {
-        String firstName = Name.getText();
-        String Phone = phone.getText();
-        String Email = email.getText();
-        String password = String.valueOf(psw.getPassword());
-
-        if (firstName.isEmpty() || Phone.isEmpty() || Email.isEmpty() || password.isEmpty()){
-            Warning1 d = new Warning1(this , true,"");
-            d.setVisible(true);
-        }
-       /* else{
-           addUser(firstName,Phone,Email,password);
-        }*/
-    }
+    
 
 }

@@ -24,21 +24,6 @@ public class Welcome extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
-        // Créer un Timer pour fermer la fenêtre après 4 secondes
-        Timer timer = new Timer(4000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose(); // Fermer la fenêtre
-                Choice c = new Choice(); // ouvrir la fenètre de login
-                c.setVisible(true);
-            }
-        });
-        timer.setRepeats(false); // Ne pas répéter le timer
-        timer.start(); // Démarrer le timer
-    }
-
-
-    public static void main(String args[]) {
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -51,12 +36,30 @@ public class Welcome extends JFrame {
             java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Welcome().setVisible(true);
+
+        // Créer un Timer pour fermer la fenêtre après 4 secondes
+        Timer timer = new Timer(4000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // Fermer la fenêtre
+                Choice c = new Choice(); // ouvrir la fenètre de login
+                c.setVisible(true);
             }
         });
+        timer.setRepeats(false); // Ne pas répéter le timer
+        timer.start(); // Démarrer le timer
+
+
     }
+
+    public static void main(String args[]) {
+
+        new Welcome().setVisible(true);
+
+
+    }
+
+   
 
 }
 
