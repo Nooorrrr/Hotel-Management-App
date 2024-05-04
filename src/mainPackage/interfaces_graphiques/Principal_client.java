@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import mainPackage.interfaces_graphiques.*;
 import mainPackage.model.User;
 
 
@@ -27,12 +28,12 @@ public class Principal_client extends JFrame {
     private JLabel jLabel13 = new JLabel();
     private JLabel jLabel10 = new JLabel();
     private JLabel jLabel1 = new JLabel();
-    private JTextField day_checkout = new JTextField();
-    private JTextField month_checkout = new JTextField();
-    private JTextField year_checkout = new JTextField();
-    private JTextField day_checkin = new JTextField();
-    private JTextField month_checkin = new JTextField();
-    private JTextField year_checkin = new JTextField();
+    private LimitedTextField day_checkin = new LimitedTextField(2);
+    private LimitedTextField month_checkin = new LimitedTextField(2);
+    private LimitedTextField year_checkin = new LimitedTextField(4);
+    private LimitedTextField day_checkout = new LimitedTextField(2);
+    private LimitedTextField month_checkout = new LimitedTextField(2);
+    private LimitedTextField year_checkout = new LimitedTextField(4);
     private JComboBox<String> type = new JComboBox<String>();
     private JComboBox<String> category = new JComboBox<String>();
     private JComboBox<String> view = new JComboBox<String>();
@@ -90,9 +91,6 @@ public class Principal_client extends JFrame {
                 exitMouseExited(evt);
             }
 
-            public void mousePressed(MouseEvent evt) {
-                exitMousePressed(evt);
-            }
         });
         exit.setBounds(970, 10, 18, 39);
         panel.add(exit);
@@ -132,7 +130,7 @@ public class Principal_client extends JFrame {
         your_label.setFont(new Font("High Tower Text", 1, 18));
         your_label.setForeground(new Color(255, 255, 255));
         your_label.setText("YOUR  ");
-        your_label.setBounds(120, 190, 65, 22);
+        your_label.setBounds(120, 190, 70, 22);
         panel.add(your_label);
 
         reservation_label.setFont(new Font("High Tower Text", 1, 18));
@@ -144,7 +142,7 @@ public class Principal_client extends JFrame {
         options_label.setFont(new Font("High Tower Text", 1, 18));
         options_label.setForeground(new Color(255, 255, 255));
         options_label.setText("OPTIONS :");
-        options_label.setBounds(100, 250, 100, 22);
+        options_label.setBounds(100, 250, 105, 22);
         panel.add(options_label);
 
         jLabel14.setFont(new Font("Segoe Print", 1, 14));
@@ -162,7 +160,7 @@ public class Principal_client extends JFrame {
         jLabel7.setFont(new Font("Segoe Print", 1, 14));
         jLabel7.setForeground(new Color(255, 255, 255));
         jLabel7.setText("EDIT");
-        jLabel7.setBounds(160, 400, 34, 26);
+        jLabel7.setBounds(160, 400, 40, 26);
         panel.add(jLabel7);
 
         jLabel13.setFont(new Font("Segoe Print", 1, 14));
@@ -184,62 +182,52 @@ public class Principal_client extends JFrame {
         panel.add(jLabel1);
 
         day_checkin.setBackground(new Color(255, 255, 255,0));
-        day_checkin.setFont(new Font("Segoe Print", 0, 12));
-        day_checkin.setForeground(new Color(255, 255, 255));
+        day_checkin.setFont(new Font("Segoe UI Historic", 0, 14));
         day_checkin.setHorizontalAlignment(JTextField.CENTER);
         day_checkin.setBorder(null);
         day_checkin.setCaretColor(new Color(87, 47, 37));
-        day_checkin.setBounds(470, 537, 50, 22);
+        day_checkin.setBounds(502, 531, 30, 27);
         panel.add(day_checkin);
 
-
         month_checkin.setBackground(new Color(255, 255, 255,0));
-        month_checkin.setFont(new java.awt.Font("Segoe Print", 0, 12));
-        month_checkin.setForeground(new Color(255, 255, 255));
-        month_checkin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        month_checkin.setFont(new Font("Segoe UI Historic", 0, 14));
+        month_checkin.setHorizontalAlignment(JTextField.CENTER);
         month_checkin.setBorder(null);
         month_checkin.setCaretColor(new java.awt.Color(87, 47, 37));
-        month_checkin.setBounds(570, 537, 50, 22);
+        month_checkin.setBounds(590, 531, 30, 27);
         panel.add(month_checkin);
 
 
         year_checkin.setBackground(new Color(255, 255, 255,0));
-        year_checkin.setForeground(new Color(255, 255, 255));
-        year_checkin.setFont(new Font("Segoe Print", 0, 12));
+        year_checkin.setFont(new Font("Segoe UI Historic", 0, 14));
         year_checkin.setHorizontalAlignment(JTextField.CENTER);
         year_checkin.setBorder(null);
         year_checkin.setCaretColor(new Color(87, 47, 37));
-        year_checkin.setBounds(650, 537, 60, 22);
+        year_checkin.setBounds(668, 531, 50, 27);
         panel.add(year_checkin);
 
-        //day_checkout.setBackground(new Color(109, 84, 70));
         day_checkout.setBackground(new Color(255, 255, 255,0));
-        day_checkout.setFont(new Font("Segoe Print", 0, 12));
-        day_checkout.setForeground(new Color(255, 255, 255));
+        day_checkout.setFont(new Font("Segoe UI Historic", 0, 14));
         day_checkout.setHorizontalAlignment(JTextField.CENTER);
         day_checkout.setBorder(null);
         day_checkout.setCaretColor(new Color(87, 47, 37));
-        day_checkout.setBounds(470, 563, 50, 22);
+        day_checkout.setBounds(502, 562, 30, 27);
         panel.add(day_checkout);
 
-        //month_checkout.setBackground(new Color(109, 84, 70));
         month_checkout.setBackground(new Color(255, 255, 255,0));
-        month_checkout.setFont(new Font("Segoe Print", 0, 12));
-        month_checkout.setForeground(new Color(255, 255, 255));
+        month_checkout.setFont(new Font("Segoe UI Historic", 0, 14));
         month_checkout.setHorizontalAlignment(JTextField.CENTER);
         month_checkout.setBorder(null);
         month_checkout.setCaretColor(new Color(87, 47, 37));
-        month_checkout.setBounds(570, 563, 50, 22);
+        month_checkout.setBounds(590, 562, 30, 27);
         panel.add(month_checkout);
 
-        //year_checkout.setBackground(new Color(109, 84, 70));
         year_checkout.setBackground(new Color(255, 255, 255,0));
-        year_checkout.setFont(new Font("Segoe Print", 0, 12));
-        year_checkout.setForeground(new Color(255, 255, 255));
+        year_checkout.setFont(new Font("Segoe UI Historic", 0, 14));
         year_checkout.setHorizontalAlignment(JTextField.CENTER);
         year_checkout.setBorder(null);
         year_checkout.setCaretColor(new Color(87, 47, 37));
-        year_checkout.setBounds(650, 563, 60, 22);
+        year_checkout.setBounds(668, 562, 50, 27);
         panel.add(year_checkout);
 
         type.setBackground(new Color(255, 255, 255,0));
@@ -248,17 +236,16 @@ public class Principal_client extends JFrame {
         type.setSelectedIndex(-1);
         type.setBorder(null);
         type.setRequestFocusEnabled(false);
-        type.setBounds(440, 620, 95, 20);
+        type.setBounds(450, 622, 91, 20);
         panel.add(type);
 
-        //category.setBackground(new Color(109, 84, 70));
         category.setBackground(new Color(255, 255, 255,0));
         category.setForeground(new Color(147, 101, 70));
         category.setModel(new DefaultComboBoxModel<>(new String[]{"Standard", "Premium", "Executive", "Family"}));
         category.setSelectedIndex(-1);
         category.setBorder(null);
         category.setRequestFocusEnabled(false);
-        category.setBounds(552, 620, 85, 20);
+        category.setBounds(559, 622, 85, 20);
         panel.add(category);
 
         view.setBackground(new Color(109, 84, 70));
@@ -268,7 +255,7 @@ public class Principal_client extends JFrame {
         view.setSelectedIndex(-1);
         view.setBorder(null);
         view.setRequestFocusEnabled(false);
-        view.setBounds(660, 620, 83, 20);
+        view.setBounds(664, 622, 83, 20);
         panel.add(view);
 
         addbutton.setIcon(new ImageIcon("src/mainPackage/images/add-37.png"));
@@ -337,49 +324,49 @@ public class Principal_client extends JFrame {
         checkin.setFont(new Font("Segoe Print", 0, 14));
         checkin.setForeground(new Color(87, 47, 37));
         checkin.setText("Check-in");
-        checkin.setBounds(350, 530, 63, 26);
+        checkin.setBounds(392, 532, 63, 26);
         panel.add(checkin);
 
         checkout.setFont(new Font("Segoe Print", 0, 14));
         checkout.setForeground(new Color(87, 47, 37));
         checkout.setText("Check-out");
-        checkout.setBounds(350, 560, 74, 26);
+        checkout.setBounds(390, 562, 74, 26);
         panel.add(checkout);
 
         Type.setFont(new Font("Segoe Print", 0, 14));
         Type.setForeground(new Color(87, 47, 37));
         Type.setText("Type");
-        Type.setBounds(467, 590, 33, 26);
+        Type.setBounds(473, 590, 40, 26);
         panel.add(Type);
 
         Category.setFont(new Font("Segoe Print", 0, 14));
         Category.setForeground(new Color(87, 47, 37));
         Category.setText("Category");
-        Category.setBounds(560, 590, 63, 26);
+        Category.setBounds(564, 590, 63, 26);
         panel.add(Category);
 
         View.setFont(new Font("Segoe Print", 0, 14));
         View.setForeground(new Color(87, 47, 37));
         View.setText("View");
-        View.setBounds(675, 590, 33, 26);
+        View.setBounds(680, 590, 40, 26);
         panel.add(View);
 
         Daylabel.setFont(new Font("Segoe Print", 0, 14));
         Daylabel.setForeground(new Color(87, 47, 37));
         Daylabel.setText("Day");
-        Daylabel.setBounds(480, 510, 27, 26);
+        Daylabel.setBounds(502, 500, 27, 26);
         panel.add(Daylabel);
 
         Monthlabel.setFont(new Font("Segoe Print", 0, 14));
         Monthlabel.setForeground(new Color(87, 47, 37));
         Monthlabel.setText("Month");
-        Monthlabel.setBounds(570, 510, 46, 26);
+        Monthlabel.setBounds(580, 500, 46, 26);
         panel.add(Monthlabel);
 
         Yearlabel.setFont(new Font("Segoe Print", 0, 14));
         Yearlabel.setForeground(new Color(87, 47, 37));
         Yearlabel.setText("Year");
-        Yearlabel.setBounds(661, 510, 40, 26);
+        Yearlabel.setBounds(672, 500, 40, 26);
         panel.add(Yearlabel);
 
         table.setBackground(new Color(184, 153, 132));
@@ -426,7 +413,7 @@ public class Principal_client extends JFrame {
         tablepane.setBounds(310, 210, 580, 230);
         panel.add(tablepane);
 
-        Background.setIcon(new ImageIcon("src/mainPackage/images/9.png"));
+        Background.setIcon(new ImageIcon("src/mainPackage/images/3.png"));
         Background.setBounds(0, 0, 1000, 700);
         panel.add(Background);
 
@@ -437,23 +424,32 @@ public class Principal_client extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void exitMouseClicked(java.awt.event.MouseEvent evt) {
+    private void exitMouseClicked(MouseEvent evt) {
         System.exit(0);
     }
 
-    private void exitMouseEntered(java.awt.event.MouseEvent evt) {
+    private void exitMouseEntered(MouseEvent evt) {
         exit.setForeground(new Color(207, 174, 149));
     }
 
-    private void exitMouseExited(java.awt.event.MouseEvent evt) {
+    private void exitMouseExited(MouseEvent evt) {
         exit.setForeground(new Color(87, 47, 37));
     }
 
-    private void exitMousePressed(java.awt.event.MouseEvent evt) {
-        exit.setForeground(new Color(207, 174, 149));
+    private void formMousePressed(MouseEvent evt) {
+        posX = evt.getX();
+        posY = evt.getY();
+        table.clearSelection();
     }
 
-    private void addbuttonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void formMouseDragged(MouseEvent evt) {
+        int newX = getLocation().x + evt.getX() - posX;
+        int newY = getLocation().y + evt.getY() - posY;
+        // Set the new position of the frame
+        setLocation(newX, newY);
+    }
+
+    private void addbuttonActionPerformed(ActionEvent evt) {
         if(day_checkin.getText().isEmpty()||month_checkin.getText().isEmpty()||year_checkin.getText().isEmpty()||month_checkout.getText().isEmpty()||day_checkout.getText().isEmpty()||year_checkout.getText().isEmpty()||type.getSelectedIndex() == -1 || category.getSelectedIndex() == -1 || view.getSelectedIndex() == -1){
             Warning1 d = new Warning1(this , true,"");
             d.setVisible(true);
@@ -465,48 +461,11 @@ public class Principal_client extends JFrame {
         }
     }
 
-    private void addbuttonMouseReleased(MouseEvent evt) {
-        addbutton.setIcon(new ImageIcon("src/mainPackage/images/add-37.png"));
-    }
-
     private void addbuttonMousePressed(MouseEvent evt) {
         addbutton.setIcon(new ImageIcon("src/mainPackage/images/ajouter-37.png"));
     }
-
-    private void editbuttonMousePressed(MouseEvent evt) {
-        editbutton.setIcon(new ImageIcon("src/mainPackage/images/modify-40.png"));
-
-    }
-
-    private void editbuttonMouseReleased(MouseEvent evt) {
-        editbutton.setIcon(new ImageIcon("src/mainPackage/images/edit-40.png"));
-
-    }
-
-    private void deletebuttonMousePressed(MouseEvent evt) {
-        deletebutton.setIcon(new ImageIcon("src/mainPackage/images/supprimer-32.png"));
-
-    }
-
-    private void deletebuttonMouseReleased(MouseEvent evt) {
-        deletebutton.setIcon(new ImageIcon("src/mainPackage/images/delete-32.png"));
-
-    }
-
-    private void deletebuttonActionPerformed(ActionEvent evt) {
-        DefaultTableModel tab = (DefaultTableModel) table.getModel();
-        if (table.getSelectedRowCount() == 1) {
-            tab.removeRow(table.getSelectedRow());
-        } else {
-            if (table.getRowCount() == 0) {
-                Warning1 d = new Warning1(this, true,"");
-                d.setVisible(true);
-            } else {
-                Warning1 d = new Warning1(this, true,"");
-                d.setVisible(true);
-            }
-        }
-
+    private void addbuttonMouseReleased(MouseEvent evt) {
+        addbutton.setIcon(new ImageIcon("src/mainPackage/images/add-37.png"));
     }
 
     private void tableMouseClicked(MouseEvent evt) {
@@ -518,12 +477,12 @@ public class Principal_client extends JFrame {
         String c = tab.getValueAt(table.getSelectedRow(),3).toString();
         String v = tab.getValueAt(table.getSelectedRow(),4).toString();
 
-        day_checkin.getText();
-        month_checkin.getText();
-        year_checkin.getText();
-        day_checkout.getText();
-        month_checkout.getText();
-        year_checkout.getText();
+        day_checkin.setText(in[0]);
+        month_checkin.setText(in[1]);
+        year_checkin.setText(in[2]);
+        day_checkout.setText(out[0]);
+        month_checkout.setText(out[1]);
+        year_checkout.setText(out[2]);
         type.setSelectedItem(t);
         category.setSelectedItem(c);
         view.setSelectedItem(v);
@@ -557,19 +516,41 @@ public class Principal_client extends JFrame {
         }
     }
 
-    private void formMousePressed(MouseEvent evt) {
-        posX = evt.getX();
-        posY = evt.getY();
-        table.clearSelection();
+    private void editbuttonMousePressed(MouseEvent evt) {
+        editbutton.setIcon(new ImageIcon("src/mainPackage/images/modify-40.png"));
+
     }
 
-    private void formMouseDragged(MouseEvent evt) {
-        int newX = getLocation().x + evt.getX() - posX;
-        int newY = getLocation().y + evt.getY() - posY;
-        // Set the new position of the frame
-        setLocation(newX, newY);
+    private void editbuttonMouseReleased(MouseEvent evt) {
+        editbutton.setIcon(new ImageIcon("src/mainPackage/images/edit-40.png"));
+
     }
 
+    private void deletebuttonActionPerformed(ActionEvent evt) {
+        DefaultTableModel tab = (DefaultTableModel) table.getModel();
+        if (table.getSelectedRowCount() == 1) {
+            tab.removeRow(table.getSelectedRow());
+        } else {
+            if (table.getRowCount() == 0) {
+                Warning1 d = new Warning1(this, true,"");
+                d.setVisible(true);
+            } else {
+                Warning1 d = new Warning1(this, true,"");
+                d.setVisible(true);
+            }
+        }
+
+    }
+
+    private void deletebuttonMousePressed(MouseEvent evt) {
+        deletebutton.setIcon(new ImageIcon("src/mainPackage/images/supprimer-32.png"));
+
+    }
+
+    private void deletebuttonMouseReleased(MouseEvent evt) {
+        deletebutton.setIcon(new ImageIcon("src/mainPackage/images/delete-32.png"));
+
+    }
 
     public static void main(String args[]) {
 
