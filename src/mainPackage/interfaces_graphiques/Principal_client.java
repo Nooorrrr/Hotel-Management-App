@@ -148,37 +148,37 @@ public class Principal_client extends JFrame {
         jLabel14.setFont(new Font("Segoe Print", 1, 14));
         jLabel14.setForeground(new Color(255, 255, 255));
         jLabel14.setText("ADD NEW");
-        jLabel14.setBounds(140, 310, 74, 26);
+        jLabel14.setBounds(140, 310, 80, 26);
         panel.add(jLabel14);
 
         jLabel12.setFont(new Font("Segoe Print", 1, 14));
         jLabel12.setForeground(new Color(255, 255, 255));
         jLabel12.setText(" RESERVATION ");
-        jLabel12.setBounds(120, 330, 117, 26);
+        jLabel12.setBounds(120, 330, 120, 26);
         panel.add(jLabel12);
 
         jLabel7.setFont(new Font("Segoe Print", 1, 14));
         jLabel7.setForeground(new Color(255, 255, 255));
         jLabel7.setText("EDIT");
-        jLabel7.setBounds(160, 400, 40, 26);
+        jLabel7.setBounds(160, 400, 45, 26);
         panel.add(jLabel7);
 
         jLabel13.setFont(new Font("Segoe Print", 1, 14));
         jLabel13.setForeground(new Color(255, 255, 255));
         jLabel13.setText("RESERVATION ");
-        jLabel13.setBounds(130, 420, 111, 26);
+        jLabel13.setBounds(130, 420, 115, 26);
         panel.add(jLabel13);
 
         jLabel10.setFont(new Font("Segoe Print", 1, 14));
         jLabel10.setForeground(new Color(255, 255, 255));
         jLabel10.setText("DELETE");
-        jLabel10.setBounds(150, 500, 59, 26);
+        jLabel10.setBounds(150, 500, 60, 26);
         panel.add(jLabel10);
 
         jLabel1.setFont(new Font("Segoe Print", 1, 14));
         jLabel1.setForeground(new Color(255, 255, 255));
         jLabel1.setText(" RESERVATION ");
-        jLabel1.setBounds(120, 520, 117, 26);
+        jLabel1.setBounds(120, 520, 120, 26);
         panel.add(jLabel1);
 
         day_checkin.setBackground(new Color(255, 255, 255,0));
@@ -324,13 +324,13 @@ public class Principal_client extends JFrame {
         checkin.setFont(new Font("Segoe Print", 0, 14));
         checkin.setForeground(new Color(87, 47, 37));
         checkin.setText("Check-in");
-        checkin.setBounds(392, 532, 63, 26);
+        checkin.setBounds(392, 532, 70, 26);
         panel.add(checkin);
 
         checkout.setFont(new Font("Segoe Print", 0, 14));
         checkout.setForeground(new Color(87, 47, 37));
         checkout.setText("Check-out");
-        checkout.setBounds(390, 562, 74, 26);
+        checkout.setBounds(390, 562, 80, 26);
         panel.add(checkout);
 
         Type.setFont(new Font("Segoe Print", 0, 14));
@@ -342,7 +342,7 @@ public class Principal_client extends JFrame {
         Category.setFont(new Font("Segoe Print", 0, 14));
         Category.setForeground(new Color(87, 47, 37));
         Category.setText("Category");
-        Category.setBounds(564, 590, 63, 26);
+        Category.setBounds(564, 590, 75, 26);
         panel.add(Category);
 
         View.setFont(new Font("Segoe Print", 0, 14));
@@ -354,7 +354,7 @@ public class Principal_client extends JFrame {
         Daylabel.setFont(new Font("Segoe Print", 0, 14));
         Daylabel.setForeground(new Color(87, 47, 37));
         Daylabel.setText("Day");
-        Daylabel.setBounds(502, 500, 27, 26);
+        Daylabel.setBounds(502, 500, 33, 26);
         panel.add(Daylabel);
 
         Monthlabel.setFont(new Font("Segoe Print", 0, 14));
