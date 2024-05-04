@@ -1,6 +1,7 @@
 package mainPackage.Controllers;
 
 import mainPackage.interfaces_graphiques.Login;
+import mainPackage.interfaces_graphiques.Signup;
 import mainPackage.interfaces_graphiques.Warning1;
 import mainPackage.interfaces_graphiques.Principal_client;
 import mainPackage.model.*;
@@ -51,11 +52,29 @@ public class Authentification {
             }
        }*/
     }
+
+    public static void registerUser(Signup s,String firstName, String Phone, String Email, String password) {
+        if (firstName.isEmpty() || Phone.isEmpty() || Email.isEmpty() || password.isEmpty()){
+            Warning1 d = new Warning1(s , true,"Enter all fields");
+            d.setVisible(true);
+        }
+       else{
+           try {
+               User user = Authentification.createUser(Hotel.users,firstName, password, Email, Phone);
+               s.dispose();
+               Principal_client p = new Principal_client(user);
+               p.setVisible(true);
+           } catch (Exception e) {
+               Warning1 d = new Warning1(s, true, e.getMessage());
+               d.setVisible(true);
+           }
+       }
+    }
     
      // crreation te3 user
-     public User createUser(HashMap users,String fullName, String Password, String email, String telephone) throws Exception {
+     public static User createUser(HashMap users,String fullName, String Password, String email, String telephone) throws Exception {
         if (users.containsKey(email)) {
-            throw new Exception("User with this email already exists.");
+            throw new Exception("this email already exists.");
         } else {
             User newUser = new User(fullName,Password, email,telephone);
             users.put(email, newUser);

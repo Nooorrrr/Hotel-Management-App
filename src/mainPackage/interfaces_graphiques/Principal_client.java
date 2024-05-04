@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
-import mainPackage.interfaces_graphiques.*;
+import mainPackage.interfaces_graphiques.Welcome;
 import mainPackage.model.User;
 
 
@@ -19,6 +19,7 @@ public class Principal_client extends JFrame {
     private JLabel deleteicon = new JLabel();
     private JLabel editicon = new JLabel();
     private JLabel person = new JLabel();
+    private JButton logout = new JButton();
     private JLabel your_label = new JLabel();
     private JLabel reservation_label = new JLabel();
     private JLabel options_label = new JLabel();
@@ -108,6 +109,16 @@ public class Principal_client extends JFrame {
         name.setText(user.getFullName());
         name.setBounds(160, 70, 170, 40);
         panel.add(name);
+
+        logout.setIcon(new ImageIcon("src/mainPackage/images/door.png"));
+        logout.setBounds(270, 70, 40, 40);
+        logout.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        logout.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                logoutMouseReleased(evt);
+            }
+        });
+        panel.add(logout);
 
         title.setFont(new Font("High Tower Text", 1, 20));
         title.setForeground(new Color(255, 255, 255));
@@ -422,6 +433,13 @@ public class Principal_client extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
+    }
+
+    private void logoutMouseReleased(ActionEvent evt) {
+        System.exit(0);
+        Welcome w = new Welcome();
+        w.setVisible(true);
+       
     }
 
     private void exitMouseClicked(MouseEvent evt) {

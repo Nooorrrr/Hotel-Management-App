@@ -3,9 +3,7 @@ package mainPackage.interfaces_graphiques;
 
 import java.awt.*;
 import javax.swing.*;
-import mainPackage.*;
 import mainPackage.model.User;
-import mainPackage.model.Admin;
 import mainPackage.model.Hotel;
 import java.util.HashMap;
 
