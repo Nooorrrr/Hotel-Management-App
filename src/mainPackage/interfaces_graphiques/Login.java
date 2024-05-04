@@ -5,9 +5,12 @@ import java.awt.*;
 import javax.swing.*;
 import mainPackage.*;
 import mainPackage.model.User;
+import mainPackage.model.Admin;
+import mainPackage.model.Hotel;
+import java.util.HashMap;
 
 import java.awt.event.*;
-import static mainPackage.Controllers.Authentification.Authentification;
+import static mainPackage.Controllers.Authentification.AuthentificationClient;
 
 public class Login extends JFrame {
 
@@ -289,9 +292,12 @@ public class Login extends JFrame {
         signup.setForeground(new Color(209, 174, 149));
     }
     private void loginActionPerformed(ActionEvent evt) {
+        Hotel hotel = new Hotel();
+        HashMap <String, User> users = new HashMap<>();
+        users = hotel.users;
         String Email = email.getText();
         String Password = String.valueOf(psw.getPassword());
-        Authentification(this,Email,Password);
+        AuthentificationClient(users,this,Email,Password);
     }
     private void loginMousePressed(MouseEvent evt) {
         login.setForeground(new Color(209, 174, 149));

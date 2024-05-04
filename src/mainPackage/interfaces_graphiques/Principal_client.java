@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import mainPackage.model.User;
 
 
 public class Principal_client extends JFrame {
@@ -50,7 +51,7 @@ public class Principal_client extends JFrame {
     private JTable table = new JTable();
     private JLabel Background = new JLabel();
 
-    public Principal_client() {
+    public Principal_client(User user) {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 700));
@@ -106,7 +107,7 @@ public class Principal_client extends JFrame {
         //name.setCaretColor(new Color(184, 153, 132));
         name.setFocusable(false);
         name.setBackground(new Color(255, 255, 255,0));
-        name.setText("yasmine maroua behih ");
+        name.setText(user.getFullName());
         name.setBounds(160, 70, 170, 40);
         panel.add(name);
 
@@ -582,7 +583,7 @@ public class Principal_client extends JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-                new Principal_client().setVisible(true);
+               // new Principal_client(user).setVisible(true);
 
     }
 }
