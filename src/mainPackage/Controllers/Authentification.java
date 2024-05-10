@@ -19,7 +19,7 @@ public class Authentification {
     public static void AuthentificationPassword(Login_Admin l,String pswd){
         if (!pswd.equals(getAdPassword()) ){
             Warning1 d = new Warning1(null, true, "Wrong Password");
-            System.out.println("The password uve entered is wrong and it was : "+ pswd);
+            //System.out.println("The password uve entered is wrong and it was : "+ pswd); for testing purposes
             d.setVisible(true);
         }else{
             l.dispose();
@@ -43,7 +43,7 @@ public class Authentification {
 
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                Warning1 d = new Warning1(l, true, "Acount does not exist.");
+                Warning1 d = new Warning1(l, true, e.getMessage());
                 d.setVisible(true);
             }
         }
