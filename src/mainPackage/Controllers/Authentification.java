@@ -30,7 +30,6 @@ public class Authentification {
     }
     
     public static void AuthentificationClient(HashMap users,Login l, String Email , String Password ) {
-       
         if (Email.isEmpty() || Password.isEmpty()) {
             Warning1 d = new Warning1(l, true, "Please enter all fields");
             d.setVisible(true);
@@ -46,6 +45,20 @@ public class Authentification {
                 Warning1 d = new Warning1(l, true, e.getMessage());
                 d.setVisible(true);
             }
+        }
+    }
+
+    public static User login(HashMap users,String email, String password) throws Exception {
+        if (users.containsKey(email)) {
+            System.out.println("User found");
+            User user = (User) users.get(email);
+            if (user.getPassword().equals(password)) {
+                return user;
+            } else {
+                throw new Exception("Incorrect password.");
+            }
+        } else {
+            throw new Exception("Account does not exist");
         }
     }
 
@@ -66,7 +79,6 @@ public class Authentification {
            }
        }
     }
-    
      // crreation te3 user
      public static User createUser(HashMap users,String fullName, String Password, String email, String telephone) throws Exception {
         if (users.containsKey(email)) {
@@ -77,20 +89,6 @@ public class Authentification {
             return newUser;
         }
     }
-
     // log in te3 user
-    public static User login(HashMap users,String email, String password) throws Exception {
-        if (users.containsKey(email)) {
-            System.out.println("User found");
-            User user = (User) users.get(email);
-            if (user.getPassword().equals(password)) {
-                return user;
-            } else {
-                throw new Exception("Incorrect password.");
-            }
-        } else {
-            throw new Exception("Account does not excist");
-        }
-    }
 
 }

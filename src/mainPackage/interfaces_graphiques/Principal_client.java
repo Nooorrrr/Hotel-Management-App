@@ -107,15 +107,16 @@ public class Principal_client extends JFrame {
         name.setFocusable(false);
         name.setBackground(new Color(255, 255, 255,0));
         name.setText(user.getFullName());
-        name.setBounds(160, 70, 170, 40);
+        name.setBounds(160, 70, 100, 40);
         panel.add(name);
 
         logout.setIcon(new ImageIcon("src/mainPackage/images/door.png"));
+        logout.setBackground(new Color(255, 255, 255,0));
         logout.setBounds(270, 70, 40, 40);
         logout.setCursor(new Cursor(Cursor.HAND_CURSOR));
         logout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                logoutMouseReleased(evt);
+                logoutActionPerformed(evt);
             }
         });
         panel.add(logout);
@@ -433,13 +434,23 @@ public class Principal_client extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
+
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
     }
 
-    private void logoutMouseReleased(ActionEvent evt) {
-        System.exit(0);
-        Welcome w = new Welcome();
-        w.setVisible(true);
-       
+    private void logoutActionPerformed(ActionEvent evt) {
+        dispose();
+        Choice c = new Choice();
+        c.setVisible(true);
     }
 
     private void exitMouseClicked(MouseEvent evt) {
@@ -469,7 +480,7 @@ public class Principal_client extends JFrame {
 
     private void addbuttonActionPerformed(ActionEvent evt) {
         if(day_checkin.getText().isEmpty()||month_checkin.getText().isEmpty()||year_checkin.getText().isEmpty()||month_checkout.getText().isEmpty()||day_checkout.getText().isEmpty()||year_checkout.getText().isEmpty()||type.getSelectedIndex() == -1 || category.getSelectedIndex() == -1 || view.getSelectedIndex() == -1){
-            Warning1 d = new Warning1(this , true,"");
+            Warning1 d = new Warning1(this , true,"Enter all fields");
             d.setVisible(true);
         }
         else{
@@ -525,7 +536,7 @@ public class Principal_client extends JFrame {
 
         } else {
             if (table.getRowCount() == 0) {
-                Warning1 d = new Warning1(this, true,"");
+                Warning1 d = new Warning1(this, true,"Select a row to edit");
                 d.setVisible(true);
             } else {
                 Warning1 d = new Warning1(this, true,"");
@@ -562,29 +573,12 @@ public class Principal_client extends JFrame {
 
     private void deletebuttonMousePressed(MouseEvent evt) {
         deletebutton.setIcon(new ImageIcon("src/mainPackage/images/supprimer-32.png"));
-
     }
 
     private void deletebuttonMouseReleased(MouseEvent evt) {
         deletebutton.setIcon(new ImageIcon("src/mainPackage/images/delete-32.png"));
-
     }
 
-    public static void main(String args[]) {
-
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-               // new Principal_client(user).setVisible(true);
-
-    }
 }
 
 
