@@ -69,7 +69,7 @@ public class Authentification {
         }
        else{
            try {
-               User user = Authentification.createUser(Hotel.users,firstName, password, Email, Phone);
+               User user = Authentification.createUser(new Hotel().users,firstName, password, Email, Phone);
                s.dispose();
                Principal_client p = new Principal_client(user);
                p.setVisible(true);
@@ -79,7 +79,7 @@ public class Authentification {
            }
        }
     }
-     // crreation te3 user
+     // creation te3 user
      public static User createUser(HashMap users,String fullName, String Password, String email, String telephone) throws Exception {
         if (users.containsKey(email)) {
             throw new Exception("this email already exists.");

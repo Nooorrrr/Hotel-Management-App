@@ -13,7 +13,7 @@ public class Principal_client extends JFrame {
     private int posX, posY;
     private JPanel panel = new JPanel();
     private JLabel exit = new JLabel();
-    private JTextField name = new JTextField();
+    private JLabel name = new JLabel();
     private JLabel title = new JLabel();
     private JLabel addicon = new JLabel();
     private JLabel deleteicon = new JLabel();
@@ -103,16 +103,15 @@ public class Principal_client extends JFrame {
         name.setFont(new Font("Segoe Print", 0, 14));
         name.setForeground(new Color(87, 47, 37));
         name.setBorder(null);
-        //name.setCaretColor(new Color(184, 153, 132));
         name.setFocusable(false);
         name.setBackground(new Color(255, 255, 255,0));
         name.setText(user.getFullName());
-        name.setBounds(160, 70, 100, 40);
+        name.setBounds(160, 70, 150, 40);
         panel.add(name);
 
         logout.setIcon(new ImageIcon("src/mainPackage/images/door.png"));
         logout.setBackground(new Color(255, 255, 255,0));
-        logout.setBounds(270, 70, 40, 40);
+        logout.setBounds(300, 70, 40, 40);
         logout.setCursor(new Cursor(Cursor.HAND_CURSOR));
         logout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
