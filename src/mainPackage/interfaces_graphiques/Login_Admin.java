@@ -223,7 +223,7 @@ public class Login_Admin extends JFrame {
         String password = String.valueOf(psw.getPassword());
 
         if (password.isEmpty()){
-            Warning1 d = new Warning1(this , true,"Please enter password");
+            Warning d = new Warning(this , true,"Please enter password");
             d.setVisible(true);
         }else{
             AuthentificationPassword(this,password);

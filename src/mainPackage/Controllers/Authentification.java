@@ -2,7 +2,7 @@ package mainPackage.Controllers;
 
 import mainPackage.interfaces_graphiques.Login;
 import mainPackage.interfaces_graphiques.Signup;
-import mainPackage.interfaces_graphiques.Warning1;
+import mainPackage.interfaces_graphiques.Warning;
 import mainPackage.interfaces_graphiques.Principal_client;
 import mainPackage.interfaces_graphiques.Principal_Admin;
 import mainPackage.interfaces_graphiques.Login_Admin;
@@ -18,7 +18,7 @@ public class Authentification {
 
     public static void AuthentificationPassword(Login_Admin l,String pswd){
         if (!pswd.equals(getAdPassword()) ){
-            Warning1 d = new Warning1(null, true, "Wrong Password");
+            Warning d = new Warning(null, true, "Wrong Password");
             //System.out.println("The password uve entered is wrong and it was : "+ pswd); for testing purposes
             d.setVisible(true);
         }else{
@@ -31,7 +31,7 @@ public class Authentification {
     
     public static void AuthentificationClient(HashMap users,Login l, String Email , String Password ) {
         if (Email.isEmpty() || Password.isEmpty()) {
-            Warning1 d = new Warning1(l, true, "Please enter all fields");
+            Warning d = new Warning(l, true, "Please enter all fields");
             d.setVisible(true);
         } else {
             try {
@@ -42,7 +42,7 @@ public class Authentification {
 
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                Warning1 d = new Warning1(l, true, e.getMessage());
+                Warning d = new Warning(l, true, e.getMessage());
                 d.setVisible(true);
             }
         }
@@ -64,7 +64,7 @@ public class Authentification {
 
     public static void registerUser(Signup s,String firstName, String Phone, String Email, String password) {
         if (firstName.isEmpty() || Phone.isEmpty() || Email.isEmpty() || password.isEmpty()){
-            Warning1 d = new Warning1(s , true,"Enter all fields");
+            Warning d = new Warning(s , true,"Enter all fields");
             d.setVisible(true);
         }
        else{
@@ -74,7 +74,7 @@ public class Authentification {
                Principal_client p = new Principal_client(user);
                p.setVisible(true);
            } catch (Exception e) {
-               Warning1 d = new Warning1(s, true, e.getMessage());
+               Warning d = new Warning(s, true, e.getMessage());
                d.setVisible(true);
            }
        }
@@ -84,7 +84,7 @@ public class Authentification {
         if (users.containsKey(email)) {
             throw new Exception("this email already exists.");
         } else {
-            User newUser = new User(fullName,Password, email,telephone);
+            User newUser = new User(fullName,telephone, email,Password);
             users.put(email, newUser);
             return newUser;
         }

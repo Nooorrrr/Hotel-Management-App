@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Warning1 extends JDialog {
+public class Warning extends JDialog {
 
     private int posX, posY;
     private JButton ok = new JButton();
@@ -15,7 +15,7 @@ public class Warning1 extends JDialog {
     private JLabel icon = new JLabel();
     private JPanel panel = new JPanel();
 
-    public Warning1(Frame parent, boolean modal,String mess) {
+    public Warning(Frame parent, boolean modal, String mess) {
         super(parent, modal);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -82,7 +82,7 @@ public class Warning1 extends JDialog {
         message.setFont(new Font("SimSun", 0, 14));
         message.setForeground(new Color(184, 153, 132));
         message.setText(mess);
-        message.setBounds(90, 90, 195, 20);
+        message.setBounds(90, 90, 200, 20);
         panel.add(message);
 
         icon.setIcon(new ImageIcon("src/mainPackage/images/erreur-60.png"));

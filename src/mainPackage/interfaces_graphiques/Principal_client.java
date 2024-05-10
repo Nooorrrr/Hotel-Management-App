@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
-import mainPackage.interfaces_graphiques.Welcome;
+
 import mainPackage.model.User;
 
 
@@ -480,7 +480,7 @@ public class Principal_client extends JFrame {
 
     private void addbuttonActionPerformed(ActionEvent evt) {
         if(day_checkin.getText().isEmpty()||month_checkin.getText().isEmpty()||year_checkin.getText().isEmpty()||month_checkout.getText().isEmpty()||day_checkout.getText().isEmpty()||year_checkout.getText().isEmpty()||type.getSelectedIndex() == -1 || category.getSelectedIndex() == -1 || view.getSelectedIndex() == -1){
-            Warning1 d = new Warning1(this , true,"Enter all fields");
+            Warning d = new Warning(this , true,"Enter all fields");
             d.setVisible(true);
         }
         else{
@@ -536,10 +536,10 @@ public class Principal_client extends JFrame {
 
         } else {
             if (table.getRowCount() == 0) {
-                Warning1 d = new Warning1(this, true,"Select a row to edit");
+                Warning d = new Warning(this, true,"Select a row to edit");
                 d.setVisible(true);
             } else {
-                Warning1 d = new Warning1(this, true,"");
+                Warning d = new Warning(this, true,"");
                 d.setVisible(true);
             }
         }
@@ -561,10 +561,10 @@ public class Principal_client extends JFrame {
             tab.removeRow(table.getSelectedRow());
         } else {
             if (table.getRowCount() == 0) {
-                Warning1 d = new Warning1(this, true,"Select a row to delete");
+                Warning d = new Warning(this, true,"Select a row to delete");
                 d.setVisible(true);
             } else {
-                Warning1 d = new Warning1(this, true,"");
+                Warning d = new Warning(this, true,"");
                 d.setVisible(true);
             }
         }
