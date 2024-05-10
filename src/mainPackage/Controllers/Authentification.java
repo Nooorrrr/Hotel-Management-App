@@ -4,10 +4,30 @@ import mainPackage.interfaces_graphiques.Login;
 import mainPackage.interfaces_graphiques.Signup;
 import mainPackage.interfaces_graphiques.Warning1;
 import mainPackage.interfaces_graphiques.Principal_client;
+import mainPackage.interfaces_graphiques.Principal_Admin;
+import mainPackage.interfaces_graphiques.Login_Admin;
 import mainPackage.model.*;
 import java.util.HashMap;
 
 public class Authentification {
+    
+    public static String getAdPassword(){
+        Admin admin = new Admin();
+        return admin.getAdminPassword();
+    }
+
+    public static void AuthentificationPassword(Login_Admin l,String pswd){
+        if (!pswd.equals(getAdPassword()) ){
+            Warning1 d = new Warning1(null, true, "Wrong Password");
+            System.out.println("The password uve entered is wrong and it was : "+ pswd);
+            d.setVisible(true);
+        }else{
+            l.dispose();
+            Principal_Admin p = new Principal_Admin();
+            p.setVisible(true);
+
+        }
+    }
     
     public static void AuthentificationClient(HashMap users,Login l, String Email , String Password ) {
        
@@ -27,30 +47,6 @@ public class Authentification {
                 d.setVisible(true);
             }
         }
-       /*else{
-
-           hna diri haka
-           lazem tkoun kayna methode li teba3tilha l email w tretournilek l user li 3andou hadak l mail
-           (bien sur ida kan y existi sinon tretounilek null)
-
-           User user = new User();
-           user = email_exist(Email);
-           if (user != null){
-                if (user.password.equals(Password)){
-                    l.dispose();
-                    Principal_client p = new Principal_client(user);
-                    p.setVisible(true);
-                }
-                else{
-                         Warning1 d = new Warning1(l, true, "Wrong Password");
-                         d.setVisible(true);
-                }
-           }
-           else{
-                Warning1 d = new Warning1(l, true, "Create an account ");
-                d.setVisible(true);
-            }
-       }*/
     }
 
     public static void registerUser(Signup s,String firstName, String Phone, String Email, String password) {

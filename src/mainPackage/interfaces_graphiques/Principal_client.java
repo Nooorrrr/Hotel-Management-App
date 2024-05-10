@@ -550,7 +550,7 @@ public class Principal_client extends JFrame {
             tab.removeRow(table.getSelectedRow());
         } else {
             if (table.getRowCount() == 0) {
-                Warning1 d = new Warning1(this, true,"");
+                Warning1 d = new Warning1(this, true,"Select a row to delete");
                 d.setVisible(true);
             } else {
                 Warning1 d = new Warning1(this, true,"");

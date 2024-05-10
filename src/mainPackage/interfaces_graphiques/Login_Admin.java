@@ -3,6 +3,7 @@ package mainPackage.interfaces_graphiques;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import static mainPackage.Controllers.Authentification.AuthentificationPassword;
 
 public class Login_Admin extends JFrame {
     private int posX, posY;
@@ -222,8 +223,10 @@ public class Login_Admin extends JFrame {
         String password = String.valueOf(psw.getPassword());
 
         if (password.isEmpty()){
-            Warning1 d = new Warning1(this , true,"");
+            Warning1 d = new Warning1(this , true,"Please enter password");
             d.setVisible(true);
+        }else{
+            AuthentificationPassword(this,password);
         }
     }
 }

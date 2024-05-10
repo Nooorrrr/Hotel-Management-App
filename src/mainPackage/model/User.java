@@ -14,11 +14,7 @@ public class User {
     this.email = email;
     this.telephone = telephone;
     this.password = password;
-<<<<<<< HEAD
-    id++;
-=======
     
->>>>>>> 73736770f6d31ba09880efdec5e2f334a9761d97
    }
 
 

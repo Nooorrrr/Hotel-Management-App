@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Admin {
 
-    private String adminPassword="admin1234";
+    private String adminPassword="admin";
     private Map <Integer,Reservation> reservationsRequest;
     private Map <Integer, Room> rooms;
     private HashMap <String, User> users;
