@@ -8,6 +8,7 @@ import javax.swing.*;
 public class Choice extends JFrame {
 
     private int posX, posY;
+    private JLabel exit = new JLabel();
     private JPanel panel = new JPanel();
     private JButton guestButton = new JButton();
     private JButton adminButton = new JButton();
@@ -35,6 +36,27 @@ public class Choice extends JFrame {
 
         panel.setBackground(new Color(58, 25, 17));
         panel.setLayout(null);
+
+        exit.setFont(new Font("Segoe Script", 0, 24));
+        exit.setForeground(new Color(255, 255, 255));
+        exit.setText("X");
+        exit.setCursor(new Cursor(HAND_CURSOR));
+        exit.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+            public void mouseEntered(MouseEvent evt) {
+                exitMouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                exitMouseExited(evt);
+            }
+            public void mousePressed(MouseEvent evt) {
+                exitMousePressed(evt);
+            }
+        });
+        exit.setBounds(770, 0, 30, 50);
+        panel.add(exit);
 
         label1.setFont(new Font("Constantia", 0, 40));
         label1.setForeground(new Color(214, 178, 125));
@@ -136,7 +158,18 @@ public class Choice extends JFrame {
         int newY = getLocation().y + evt.getY() - posY;
         setLocation(newX, newY);
     }
-
+    private void exitMouseClicked(MouseEvent evt) {
+        System.exit(0);
+    }
+    private void exitMouseEntered(MouseEvent evt) {
+        exit.setForeground(new Color(209, 174, 149));
+    }
+    private void exitMouseExited(MouseEvent evt) {
+        exit.setForeground(new Color(255, 255, 255));
+    }
+    private void exitMousePressed(MouseEvent evt) {
+        exit.setForeground(new Color(209, 174, 149));
+    }
     private void adminMousePressed(MouseEvent evt) {
         adminButton.setForeground(new Color(209, 174, 149));
         adminButton.setBackground(new Color(64, 34, 25));
