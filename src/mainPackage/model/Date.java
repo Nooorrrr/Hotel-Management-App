@@ -62,9 +62,13 @@ public class Date {
         return isBefore(today);
     }
 
-    public Date fromString(String date) {
+    public static Date fromString(String date) {
         String[] parts = date.split("/");
-        return new Date(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+        try {
+            return new Date(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+        }catch (NumberFormatException e){
+            throw e;
+        }
     }
 
     public String toString() {

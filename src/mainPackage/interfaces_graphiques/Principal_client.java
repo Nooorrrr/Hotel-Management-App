@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 
+import mainPackage.model.Date;
 import mainPackage.model.User;
 
 
@@ -477,15 +478,41 @@ public class Principal_client extends JFrame {
         setLocation(newX, newY);
     }
 
-    private void addbuttonActionPerformed(ActionEvent evt) {
+    private String [] addbuttonActionPerformed(ActionEvent evt) {
         if(day_checkin.getText().isEmpty()||month_checkin.getText().isEmpty()||year_checkin.getText().isEmpty()||month_checkout.getText().isEmpty()||day_checkout.getText().isEmpty()||year_checkout.getText().isEmpty()||type.getSelectedIndex() == -1 || category.getSelectedIndex() == -1 || view.getSelectedIndex() == -1){
             Warning d = new Warning(this , true,"Enter all fields");
             d.setVisible(true);
+            return null;
         }
         else{
             String data[] ={(String) day_checkin.getText()+"/"+(String) month_checkin.getText()+"/"+(String) year_checkin.getText(),(String) day_checkout.getText()+"/"+(String) month_checkout.getText()+"/"+(String) year_checkout.getText(),(String) type.getSelectedItem(),(String) category.getSelectedItem(),(String) view.getSelectedItem(),"Pending"};
-            DefaultTableModel tab = (DefaultTableModel)table.getModel();
-            tab.addRow(data);
+            try {
+                if (Date.fromString(data[0]).checkDateCase() != null) {
+                    Warning d = new Warning(this, true,  "invalide checkin date ");
+                    d.setVisible(true);
+                    return null;
+                } else if (Date.fromString(data[1]).checkDateCase() != null) {
+                    Warning d = new Warning(this, true, "invalide checkout date");
+                    d.setVisible(true);
+                    return null;
+                } else if (Date.fromString(data[0]).isBeforeToday()){
+                    Warning d = new Warning(this, true,  "invalide checkin date ");
+                    d.setVisible(true);
+                    return null;
+                }else if (Date.fromString(data[1]).isBefore(Date.fromString(data[0]))){
+                    Warning d = new Warning(this, true,  "invalide checkout date ");
+                    d.setVisible(true);
+                    return null;
+                } else {
+                    DefaultTableModel tab = (DefaultTableModel) table.getModel();
+                    tab.addRow(data);
+                    return data;
+                }
+            }catch (NumberFormatException e){
+                Warning d = new Warning(this, true, "invalid date  ");
+                d.setVisible(true);
+                return null;
+            }
         }
     }
 
@@ -523,15 +550,40 @@ public class Principal_client extends JFrame {
 
             String date_in = (String) day_checkin.getText()+"/"+(String) month_checkin.getText()+"/"+(String) year_checkin.getText();
             String date_out = (String) day_checkout.getText()+"/"+(String) month_checkout.getText()+"/"+(String) year_checkout.getText();
-            String t = (String) type.getSelectedItem();
-            String c = (String) category.getSelectedItem();
-            String v = (String) view.getSelectedItem();
+            try {
+                if (Date.fromString(date_in).checkDateCase() != null) {
+                    Warning d = new Warning(this, true,  Date.fromString(date_in).checkDateCase().getMessage()+ "(check in)");
+                    d.setVisible(true);
+                    //return null;
+                } else if (Date.fromString(date_out).checkDateCase() != null) {
+                    Warning d = new Warning(this, true,   Date.fromString(date_out).checkDateCase().getMessage()+"(check out)");
+                    d.setVisible(true);
+                    //return null;
+                }else if (Date.fromString(date_in).isBeforeToday()){
+                    Warning d = new Warning(this, true,  "invalide checkin date ");
+                    d.setVisible(true);
+                    //return null;
+                }else if (Date.fromString(date_out).isBefore(Date.fromString(date_in))){
+                    Warning d = new Warning(this, true,  "invalide checkout date ");
+                    d.setVisible(true);
+                    //return null;
+                }
+                else{
+                    String t = (String) type.getSelectedItem();
+                    String c = (String) category.getSelectedItem();
+                    String v = (String) view.getSelectedItem();
 
-            tab.setValueAt(date_in,table.getSelectedRow(),0);
-            tab.setValueAt(date_out,table.getSelectedRow(),1);
-            tab.setValueAt(t,table.getSelectedRow(),2);
-            tab.setValueAt(c,table.getSelectedRow(),3);
-            tab.setValueAt(v,table.getSelectedRow(),4);
+                    tab.setValueAt(date_in,table.getSelectedRow(),0);
+                    tab.setValueAt(date_out,table.getSelectedRow(),1);
+                    tab.setValueAt(t,table.getSelectedRow(),2);
+                    tab.setValueAt(c,table.getSelectedRow(),3);
+                    tab.setValueAt(v,table.getSelectedRow(),4);
+                }
+            }catch (NumberFormatException e){
+                Warning d = new Warning(this, true, "invalid date  ");
+                d.setVisible(true);
+                //return null;
+            }
 
         } else {
             if (table.getRowCount() == 0) {
