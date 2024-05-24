@@ -15,10 +15,10 @@ public class Admin {
         rooms = new HashMap<>();
     }
 
-    public void addRoom(RoomType typeChambre, Vue vue, Category category){
+   /*public void addRoom(RoomType typeChambre, Vue vue, Category category){
         Room newRoom = new Room(typeChambre, vue, category);
         rooms.put(newRoom.getNumeroChambre(), newRoom);
-    }
+    }*/
 
     public void removeRoom(int numeroChambre){
         rooms.remove(numeroChambre);

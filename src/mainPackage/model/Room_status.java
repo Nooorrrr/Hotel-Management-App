@@ -1,2 +1,7 @@
-package mainPackage.model;public enum Room_Status {
+package mainPackage.model;
+
+public enum Room_status {
+
+        Available,
+        Reserved
 }

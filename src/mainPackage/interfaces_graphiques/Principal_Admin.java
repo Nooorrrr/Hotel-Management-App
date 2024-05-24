@@ -1,11 +1,19 @@
 package mainPackage.interfaces_graphiques;
 
-import mainPackage.model.Date;
+import mainPackage.model.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static mainPackage.model.Hotel.users;
+import static mainPackage.model.Hotel.rooms;
+
 
 public class Principal_Admin extends JFrame{
     private int posX, posY;
@@ -34,7 +42,7 @@ public class Principal_Admin extends JFrame{
 
     public Principal_Admin() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1000, 700));
+        setMinimumSize(new Dimension(1000, 700));
         setAutoRequestFocus(false);
         setFocusable(false);
         setUndecorated(true);
@@ -74,7 +82,7 @@ public class Principal_Admin extends JFrame{
         exit.setBounds(970, 10, 18, 39);
         panel.add(exit);
 
-        logoutadmin.setIcon(new ImageIcon("src/mainPackage/images/door.png"));
+        logoutadmin.setIcon(new ImageIcon("src/mainPackage/images/logout2-40.png"));
         logoutadmin.setBackground(new Color(255, 255, 255,0));
         logoutadmin.setBounds(800, 70, 40, 40);
         logoutadmin.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -105,7 +113,7 @@ public class Principal_Admin extends JFrame{
 
         //table_client.setAutoCreateRowSorter(true);
         table_client.setBackground(new Color(184, 153, 132));
-        table_client.setModel(new javax.swing.table.DefaultTableModel(
+        table_client.setModel(new DefaultTableModel(
                 new Object [][] {
 
                 },
@@ -122,15 +130,22 @@ public class Principal_Admin extends JFrame{
             }
         });
 
+        this.fillTableWithUsers(table_client, users);
         tablepane1.setBackground(new Color(255, 255, 255,0));
         table_client.setFocusable(false);
         table_client.setSelectionBackground(new Color(87, 47, 37));
         table_client.setSelectionForeground(new Color(255, 255, 255));
-        table_client.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        table_client.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table_client.getTableHeader().setReorderingAllowed(false);
         tablepane1.setViewportView(table_client);
         table_client.getColumnModel().getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         if (table_client.getColumnModel().getColumnCount() > 0) {
+            table_client.getColumnModel().getColumn(0).setMinWidth(175);
+            table_client.getColumnModel().getColumn(0).setPreferredWidth(175);
+            table_client.getColumnModel().getColumn(1).setMinWidth(125);
+            table_client.getColumnModel().getColumn(1).setPreferredWidth(125);
+            table_client.getColumnModel().getColumn(2).setMinWidth(220);
+            table_client.getColumnModel().getColumn(2).setPreferredWidth(220);
             table_client.getColumnModel().getColumn(0).setResizable(false);
             table_client.getColumnModel().getColumn(1).setResizable(false);
             table_client.getColumnModel().getColumn(2).setResizable(false);
@@ -140,7 +155,7 @@ public class Principal_Admin extends JFrame{
         panel.add(tablepane1);
 
         table_reservation.setBackground(new Color(184, 153, 132));
-        table_reservation.setModel(new javax.swing.table.DefaultTableModel(
+        table_reservation.setModel(new DefaultTableModel(
                 new Object [][] {
 
                 },
@@ -161,11 +176,11 @@ public class Principal_Admin extends JFrame{
         table_reservation.setFocusable(false);
         table_reservation.setSelectionBackground(new Color(87, 47, 37));
         table_reservation.setSelectionForeground(new Color(255, 255, 255));
-        table_reservation.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        table_reservation.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table_reservation.getTableHeader().setReorderingAllowed(false);
         tablepane2.setViewportView(table_reservation);
-        table_reservation.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        table_reservation.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 table_reservation_MouseClicked(evt);
             }
         });
@@ -181,7 +196,7 @@ public class Principal_Admin extends JFrame{
 
 
         table_rooms.setBackground(new Color(184, 153, 132));
-        table_rooms.setModel(new javax.swing.table.DefaultTableModel(
+        table_rooms.setModel(new DefaultTableModel(
                 new Object [][] {
 
                 },
@@ -198,15 +213,16 @@ public class Principal_Admin extends JFrame{
             }
 
         });
+        this.fillTableWithRooms(table_rooms, Hotel.rooms);
         tablepane3.setBackground(new Color(255, 255, 255,0));
         table_rooms.setFocusable(false);
         table_rooms.setSelectionBackground(new Color(87, 47, 37));
         table_rooms.setSelectionForeground(new Color(255, 255, 255));
-        table_rooms.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        table_rooms.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table_rooms.getTableHeader().setReorderingAllowed(false);
         tablepane3.setViewportView(table_rooms);
-        table_rooms.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        table_rooms.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 table_rooms_MouseClicked(evt);
             }
         });
@@ -392,7 +408,7 @@ public class Principal_Admin extends JFrame{
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -485,6 +501,17 @@ public class Principal_Admin extends JFrame{
 
     private void table_rooms_MouseClicked(MouseEvent evt) {
         DefaultTableModel tab = (DefaultTableModel)table_rooms.getModel();
+
+            int id  = Integer.parseInt(tab.getValueAt(table_rooms.getSelectedRow(), 0).toString());
+            String t = tab.getValueAt(table_rooms.getSelectedRow(),2).toString();
+            String c = tab.getValueAt(table_rooms.getSelectedRow(),3).toString();
+            String v = tab.getValueAt(table_rooms.getSelectedRow(),4).toString();
+
+
+            type.setSelectedItem(t);
+            category.setSelectedItem(c);
+            view.setSelectedItem(v);
+
     }
 
     private void table_reservation_MouseClicked (MouseEvent evt) {
@@ -505,14 +532,47 @@ public class Principal_Admin extends JFrame{
     }
 
     private void deletebuttonActionPerformed(ActionEvent evt) {
+        DefaultTableModel tab = (DefaultTableModel) table_rooms.getModel();
+        if (table_rooms.getSelectedRowCount() == 1) {
+            if(table_rooms.getValueAt(table_rooms.getSelectedRow(), 4)== Room_status.Available){
+            tab.removeRow(table_rooms.getSelectedRow());
+            }
+            else{
+                Warning d = new Warning(this, true,"You can't delete");
+                d.setVisible(true);
+            }
+        } else {
+            if (table_rooms.getRowCount() == 0) {
+                Warning d = new Warning(this, true,"Select a row to delete");
+                d.setVisible(true);
+            } else {
+                Warning d = new Warning(this, true,"");
+                d.setVisible(true);
+            }
+        }
     }
-
     private void deletebuttonMousePressed(MouseEvent evt) {
         deletebutton.setIcon(new ImageIcon("src/mainPackage/images/supprimer-32.png"));
     }
-
     private void deletebuttonMouseReleased(MouseEvent evt) {
         deletebutton.setIcon(new ImageIcon("src/mainPackage/images/delete-32.png"));
     }
+    public void fillTableWithUsers(JTable table_client, HashMap<String, User> users) {
+        DefaultTableModel model = (DefaultTableModel) table_client.getModel();
+        //model.setRowCount(0);
 
+        for (Map.Entry<String, User> entry : users.entrySet()) {
+            User user = entry.getValue();
+            model.addRow(new Object[]{user.getFullName(), user.getTelephone(), user.getEmail()});
+        }
+    }
+    public void fillTableWithRooms(JTable table_rooms, HashMap<Integer, Room> rooms){
+        DefaultTableModel model = (DefaultTableModel) table_rooms.getModel();
+        //model.setRowCount(0);
+
+        for (Map.Entry<Integer, Room> entry : rooms.entrySet()) {
+            Room room= entry.getValue();
+            model.addRow(new Object[]{room.getID_Room(), room.getTypeChambre(), room.getCategory(),room.getVue(),room.getStatus()});
+        }
+    }
 }

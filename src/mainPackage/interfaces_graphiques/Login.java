@@ -303,6 +303,4 @@ public class Login extends JFrame {
         login.setBackground(new Color(209, 174, 149));
         login.setForeground(new Color(64, 34, 25));
     }
-
-
 }

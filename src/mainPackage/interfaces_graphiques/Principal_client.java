@@ -101,7 +101,7 @@ public class Principal_client extends JFrame {
         person.setBounds(90, 60, 60, 60);
         panel.add(person);
 
-        name.setFont(new Font("Segoe Print", 0, 14));
+        name.setFont(new Font("Constantia", 0, 16));
         name.setForeground(new Color(87, 47, 37));
         name.setBorder(null);
         name.setFocusable(false);
@@ -110,9 +110,9 @@ public class Principal_client extends JFrame {
         name.setBounds(160, 70, 150, 40);
         panel.add(name);
 
-        logout.setIcon(new ImageIcon("src/mainPackage/images/door.png"));
+        logout.setIcon(new ImageIcon("src/mainPackage/images/logout1-40.png"));
         logout.setBackground(new Color(255, 255, 255,0));
-        logout.setBounds(300, 70, 40, 40);
+        logout.setBounds(800, 70, 40, 40);
         logout.setCursor(new Cursor(Cursor.HAND_CURSOR));
         logout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
