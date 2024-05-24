@@ -27,6 +27,7 @@ public class Principal_Admin extends JFrame{
     private JButton deletebutton = new JButton();
     private JButton editbutton = new JButton();
     private JButton addbutton = new JButton();
+    private JButton logoutadmin = new JButton();
     private JComboBox<String> type = new JComboBox<String>();
     private JComboBox<String> category = new JComboBox<String>();
     private JComboBox<String> view = new JComboBox<String>();
@@ -72,6 +73,17 @@ public class Principal_Admin extends JFrame{
         });
         exit.setBounds(970, 10, 18, 39);
         panel.add(exit);
+
+        logoutadmin.setIcon(new ImageIcon("src/mainPackage/images/door.png"));
+        logoutadmin.setBackground(new Color(255, 255, 255,0));
+        logoutadmin.setBounds(800, 70, 40, 40);
+        logoutadmin.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        logoutadmin.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+               logoutActionPerformed(evt);
+            }
+        });
+        panel.add(logoutadmin);
 
         reservations.setFont(new Font("Georgia", 2, 32));
         reservations.setForeground(new Color(255, 255, 255));
@@ -382,6 +394,12 @@ public class Principal_Admin extends JFrame{
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+    }
+
+    private void logoutActionPerformed(ActionEvent evt) {
+        dispose();
+        Choice c = new Choice();
+        c.setVisible(true);
     }
 
     private void exitMouseClicked(MouseEvent evt) {

@@ -29,7 +29,7 @@ public class Authentification {
         }
     }
     
-    public static void AuthentificationClient(HashMap users,Login l, String Email , String Password ) {
+    public static void AuthentificationClient(HashMap<String, User> users,Login l, String Email , String Password ) {
         if (Email.isEmpty() || Password.isEmpty()) {
             Warning d = new Warning(l, true, "Please enter all fields");
             d.setVisible(true);
@@ -48,7 +48,7 @@ public class Authentification {
         }
     }
 
-    public static User login(HashMap users,String email, String password) throws Exception {
+    public static User login(HashMap<String, User> users,String email, String password) throws Exception {
         if (users.containsKey(email)) {
             System.out.println("User found");
             User user = (User) users.get(email);
@@ -80,11 +80,11 @@ public class Authentification {
        }
     }
      // creation te3 user
-     public static User createUser(HashMap users,String fullName, String Password, String email, String telephone) throws Exception {
+    public static User createUser(HashMap<String, User> users, String fullName, String Password, String email, String telephone) throws Exception {
         if (users.containsKey(email)) {
             throw new Exception("this email already exists.");
         } else {
-            User newUser = new User(fullName,telephone, email,Password);
+            User newUser = new User(fullName, telephone, email, Password);
             users.put(email, newUser);
             return newUser;
         }
