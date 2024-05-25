@@ -4,8 +4,9 @@ import java.util.Map;
 import java.util.HashMap;
 
 
+
 public class Hotel {
-    public static Map <Integer,Reservation> reservationsRequest = new HashMap<>();
+    public static Map <Integer,ReservationRequest>reservationsRequestWaitlist = new HashMap<>();
     public static HashMap <Integer, Room> rooms = new HashMap<>();
     public static HashMap <String, User> users = new HashMap<>();
     User user1 = new User("fullName", "email", "telephone", "password");
@@ -40,6 +41,8 @@ public class Hotel {
     Room room28 = new Room(RoomType.Quadruple, Vue.Beach, Category.Family, Room_status.Reserved);
     Room room29 = new Room(RoomType.Single, Vue.Mountain, Category.Standard, Room_status.Available);
     Room room30 = new Room(RoomType.Double, Vue.City, Category.Premium, Room_status.Reserved);
+
+       
 
 
 
@@ -100,6 +103,20 @@ public class Hotel {
         rooms.put(room28.getID_Room(), room28);
         rooms.put(room29.getID_Room(), room29);
         rooms.put(room30.getID_Room(), room30);
+
+          //reservation requests 
+          User user1 = users.get("john.doe@example.com");
+          User user2 = users.get("jane.smith@example.com");
+          User user3 = users.get("melissa.yang@example.com");
+  
+          // Create some reservation requests
+          ReservationRequest reservation1 = new ReservationRequest(user1, new Date(2024, 6, 1), new Date(2024, 6, 10), Vue.Mountain, Category.Standard, RoomType.Single);
+          ReservationRequest reservation2 = new ReservationRequest(user2, new Date(2024, 6, 15), new Date(2024, 6, 20), Vue.Beach, Category.Premium, RoomType.Double);
+            ReservationRequest reservation3 = new ReservationRequest(user3, new Date(2024, 6, 25), new Date(2024, 6, 30), Vue.City, Category.Executive, RoomType.Triple);
+          // Add reservations to the map
+          reservationsRequestWaitlist.put(reservation1.getIdReservationRequest(), reservation1);
+          reservationsRequestWaitlist.put(reservation2.getIdReservationRequest(), reservation2);
+          reservationsRequestWaitlist.put(reservation3.getIdReservationRequest(), reservation3);
 
     }
 

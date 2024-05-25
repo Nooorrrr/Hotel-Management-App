@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mainPackage.model.*;
 
-import static mainPackage.model.Hotel.users;
-import static mainPackage.model.Hotel.rooms;
+
 
 
 public class Principal_Admin extends JFrame{
@@ -324,6 +324,7 @@ public class Principal_Admin extends JFrame{
         panel.add(rooms_button);
         rooms_button.setBounds(120, 510, 110, 90);
 
+    //    this.fillTableWithReservationRequests(table_reservation, hotel.reservationsRequestWaitlist);
         reservations_button.setIcon(new ImageIcon("src/mainPackage/images/calendar-70.png"));
         reservations_button.setBackground(new Color(255,255,255,0));
         reservations_button.setBorder(null);
@@ -545,6 +546,17 @@ public class Principal_Admin extends JFrame{
             view.setSelectedItem(v);
     }
 
+    private void fillTableWithReservationRequests(JTable table_reservation, HashMap<String, ReservationRequest> reservationRequests) {
+        DefaultTableModel model = (DefaultTableModel) table_reservation.getModel();
+        //model.setRowCount(0);
+/* 
+        for (Map.Entry<String, ReservationRequest> entry : reservationRequests.entrySet()) {
+            ReservationRequest reservationRequest = entry.getValue();
+            model.addRow(new Object[]{reservationRequest.getUser().getEmail(), reservationRequest.getRoom().getID_Room(), reservationRequest.getCheckInDate(), reservationRequest.getCheckOutDate(), reservationRequest.getStatus()});}
+*/
+        
+    }
+
     private void table_reservation_MouseClicked (MouseEvent evt) {
         DefaultTableModel tab = (DefaultTableModel)table_rooms.getModel();
     }
@@ -595,7 +607,7 @@ public class Principal_Admin extends JFrame{
             tab.removeRow(table_rooms.getSelectedRow());
             }
             else{
-                Warning d = new Warning(this, true,"You can't delete");
+                Warning d = new Warning(this, true,"You can't delete room reserved");
                 d.setVisible(true);
             }
         } else {

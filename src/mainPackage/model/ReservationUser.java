@@ -1,35 +1,24 @@
 package mainPackage.model;
-enum Status{
-    ACCEPTED,
-    RUFUSED,
-    PENDING
-}
 
-public class Reservation {
+
+public class ReservationUser extends ReservationRequest {
     private static int id = 0;
     private int idReservation;
-    private Room chambre;
+    //private Room chambre;
     private User user;
     private Status status;
 
-    public Reservation(Room chambre, User user) {
+    public ReservationUser( User user, Date checkinDate, Date checkoutDate, Vue vue, Category category, RoomType roomType) {
+        super(user, checkinDate, checkoutDate, vue, category, roomType);
         id++;
         this.idReservation = id;
-        this.chambre = chambre;
+        
         this.user = user;
         this.status = Status.PENDING;
     }
 
     public int getIdReservation() {
         return idReservation;
-    }
-
-    public Room getChambre() {
-        return chambre;
-    }
-
-    public void setChambre(Room chambre) {
-        this.chambre = chambre;
     }
 
     public User getUser() {
@@ -48,5 +37,4 @@ public class Reservation {
         this.status = status;
     }
 
-  public void modifyReservation()  {}
 }

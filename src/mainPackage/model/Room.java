@@ -1,17 +1,7 @@
 package mainPackage.model;
 
 import mainPackage.interfaces_graphiques.Warning;
-enum RoomType {
 
-    Single, Double, Triple, Quadruple
-
-}
-enum Category {
-    Standard, Premium, Executive, Family
-}
-enum Vue {
-    Beach, Mountain, City
-}
 
 
 public class Room {
