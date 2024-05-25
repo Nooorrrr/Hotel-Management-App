@@ -16,5 +16,7 @@ public class AdminController {
     public static void updateReservationRequest(HashMap<Integer, ReservationRequest> reservationRequests, ReservationRequest reservationRequest) {
         reservationRequests.put(reservationRequest.getIdReservationRequest(), reservationRequest);
     }
-     
+    
+
+    
 }
