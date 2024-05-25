@@ -1,12 +1,11 @@
 package mainPackage.interfaces_graphiques;
 
 import mainPackage.model.Hotel;
+import mainPackage.Controllers.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
+import java.awt.event.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +19,7 @@ public class RequestHandle extends JDialog{
     private JLabel message = new JLabel();
     private JPanel panel = new JPanel();
 
-    public RequestHandle(/*Frame parent, boolean modal*/) {
+    public RequestHandle(Frame parent, boolean modal,int roomid,Hotel hotel) {
         //super(parent, modal);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -75,11 +74,13 @@ public class RequestHandle extends JDialog{
         Accept.setFocusable(false);
         Accept.setBounds(150, 130, 90, 30);
         Accept.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                AcceptMouseClicked(evt);
-            }
-            public void mousePressed(MouseEvent evt) {
+            public void AcceptMousePressed(MouseEvent evt) {
                 AcceptMousePressed(evt);
+            }
+        });
+        Accept.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                AcceptActionPerformed(evt,hotel,roomid,parent);
             }
         });
         panel.add(Accept);
@@ -91,11 +92,13 @@ public class RequestHandle extends JDialog{
         Refuse.setFocusable(false);
         Refuse.setBounds(30, 130, 90, 30);
         Refuse.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                RefuseMouseClicked(evt);
-            }
-            public void mousePressed(MouseEvent evt) {
+            public void RefusemousePressed(MouseEvent evt) {
                 RefuseMousePressed(evt);
+            }
+        });
+        Refuse.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                RefuseActionPerformed(evt);
             }
         });
         panel.add(Refuse);
@@ -123,15 +126,20 @@ public class RequestHandle extends JDialog{
         dispose();
     }
 
-    private void AcceptMouseClicked(MouseEvent evt) {
-        dispose();
+    private void AcceptActionPerformed(ActionEvent evt,Hotel hotel,int roomid,Frame r) {
+        if(roomid==-1){
+            Warning w = new Warning(r,true,"you can't");
+            dispose();
+        }else{
+            dispose();
+        }
     }
 
     private void AcceptMousePressed(MouseEvent evt) {
         Accept.setBackground(new Color(217, 153, 88));
     }
 
-    private void RefuseMouseClicked(MouseEvent evt) {
+    private void RefuseActionPerformed(ActionEvent evt) {
         dispose();
     }
 
@@ -159,7 +167,4 @@ public class RequestHandle extends JDialog{
         exit.setForeground(new Color(214, 178, 125));
     }
 
-    public static void main(String[] args) {
-        new RequestHandle().setVisible(true);
-    }
 }

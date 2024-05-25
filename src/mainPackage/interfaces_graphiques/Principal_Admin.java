@@ -1,5 +1,6 @@
 package mainPackage.interfaces_graphiques;
 
+import mainPackage.Controllers.AdminController;
 import mainPackage.model.*;
 
 import javax.swing.*;
@@ -163,7 +164,7 @@ public class Principal_Admin extends JFrame{
 
                 },
                 new String [] {
-                        "Email Client", "Room ID", "Check in", "Check out", "Status"
+                        "Email Client", "ID Request", "Check in", "Check out", "Status"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -184,13 +185,24 @@ public class Principal_Admin extends JFrame{
         tablepane2.setViewportView(table_reservation);
         table_reservation.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                table_reservation_MouseClicked(evt);
+                table_reservation_MouseClicked(evt,hotel);
             }
         });
         if (table_reservation.getColumnModel().getColumnCount() > 0) {
+            table_reservation.getColumnModel().getColumn(0).setMinWidth(170);
+            table_reservation.getColumnModel().getColumn(0).setPreferredWidth(170);
+            table_reservation.getColumnModel().getColumn(1).setMinWidth(80);
+            table_reservation.getColumnModel().getColumn(1).setPreferredWidth(80);
+            table_reservation.getColumnModel().getColumn(2).setMinWidth(90);
+            table_reservation.getColumnModel().getColumn(2).setPreferredWidth(90);
+            table_reservation.getColumnModel().getColumn(3).setMinWidth(90);
+            table_reservation.getColumnModel().getColumn(3).setPreferredWidth(90);
+            table_reservation.getColumnModel().getColumn(4).setMinWidth(90);
+            table_reservation.getColumnModel().getColumn(4).setPreferredWidth(90);
             table_reservation.getColumnModel().getColumn(0).setResizable(false);
             table_reservation.getColumnModel().getColumn(1).setResizable(false);
             table_reservation.getColumnModel().getColumn(2).setResizable(false);
+            table_reservation.getColumnModel().getColumn(3).setResizable(false);
             table_reservation.getColumnModel().getColumn(4).setResizable(false);
         }
 
@@ -553,13 +565,26 @@ public class Principal_Admin extends JFrame{
  
         for (Map.Entry<Integer, ReservationRequest> entry : reservationRequests.entrySet()) {
             ReservationRequest reservationRequest = entry.getValue();
-            model.addRow(new Object[]{reservationRequest.getUser().getEmail(),"NULL", reservationRequest.getCheckinDate(), reservationRequest.getCheckoutDate(), reservationRequest.getStatus()});}
-        
-        
+            model.addRow(new Object[]{reservationRequest.getUser().getEmail(),reservationRequest.getIdReservationRequest(), reservationRequest.getCheckinDate(), reservationRequest.getCheckoutDate(), reservationRequest.getStatus()});}
     }
 
-    private void table_reservation_MouseClicked (MouseEvent evt) {
-        DefaultTableModel tab = (DefaultTableModel)table_rooms.getModel();
+    private void table_reservation_MouseClicked (MouseEvent evt,Hotel hotel) {
+        DefaultTableModel tab = (DefaultTableModel)table_reservation.getModel();
+        int id  = Integer.parseInt(tab.getValueAt(table_reservation.getSelectedRow(), 1).toString());
+        String user = tab.getValueAt(table_reservation.getSelectedRow(),0).toString();
+        String checkin = tab.getValueAt(table_reservation.getSelectedRow(),1).toString();
+        String checkout = tab.getValueAt(table_reservation.getSelectedRow(),2).toString();
+        String status = tab.getValueAt(table_reservation.getSelectedRow(),3).toString();
+
+       int roomid = AdminController.checKIfRoomExcist(hotel.rooms,hotel.reservationsRequestWaitlist.get(id).getRoomType(),hotel.reservationsRequestWaitlist.get(id).getCategory(),hotel.reservationsRequestWaitlist.get(id).getVue());
+        System.out.println(roomid);
+       if (roomid!=-1){
+           RequestHandle r = new RequestHandle(this , true,roomid,hotel);
+           r.setVisible(true);
+       }else{
+           Warning war = new Warning(this, true, "This room does not exist");
+           war.setVisible(true);
+       }
     }
 
     private void editbuttonActionPerformed(ActionEvent evt,Hotel hotel) {
@@ -605,7 +630,7 @@ public class Principal_Admin extends JFrame{
         if (table_rooms.getSelectedRowCount() == 1) {
             if(table_rooms.getValueAt(table_rooms.getSelectedRow(), 4) == Room_status.Available){
                 hotel.rooms.remove(Integer.parseInt(table_rooms.getValueAt(table_rooms.getSelectedRow(), 0).toString()));
-            tab.removeRow(table_rooms.getSelectedRow());
+                tab.removeRow(table_rooms.getSelectedRow());
             }
             else{
                 Warning d = new Warning(this, true,"You can't delete room reserved");
