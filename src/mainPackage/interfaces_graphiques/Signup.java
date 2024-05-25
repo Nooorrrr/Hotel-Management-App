@@ -4,6 +4,9 @@ import mainPackage.model.Hotel;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.swing.*;
 import static mainPackage.Controllers.Authentification.registerUser;
 
@@ -406,6 +409,17 @@ public class Signup extends JFrame {
         SignUp.setForeground(new Color(64, 34, 25));
     }
     private void SignUpActionPerformed(ActionEvent evt,Hotel hotel) {
+    if (isEmailValid(email.getText())){
         registerUser(this,Name.getText(),phone.getText(),email.getText(),String.valueOf(psw.getPassword()),hotel);
+    
+    }else{ Warning w = new Warning(this,true,"email invalide");
+        w.setVisible(true);}
+   
+        }
+    private static boolean isEmailValid(String email) {
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }
