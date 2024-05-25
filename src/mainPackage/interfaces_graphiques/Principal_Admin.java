@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import mainPackage.model.*;
+import mainPackage.model.ReservationRequest;
 
 
 
@@ -303,6 +303,7 @@ public class Principal_Admin extends JFrame{
         deletebutton.setBounds(820, 595, 50, 50);
         panel.add(deletebutton);
 
+        
         rooms_button.setIcon(new ImageIcon("src/mainPackage/images/bed-75.png"));
         rooms_button.setBackground(new Color(255,255,255,0));
         rooms_button.setBorder(null);
@@ -322,13 +323,13 @@ public class Principal_Admin extends JFrame{
             }
         });
         panel.add(rooms_button);
-        rooms_button.setBounds(120, 510, 110, 90);
+        rooms_button.setBounds(120,510,110,90);
 
-    //    this.fillTableWithReservationRequests(table_reservation, hotel.reservationsRequestWaitlist);
+
+
+        this.fillTableWithReservationRequests(table_reservation, (HashMap<Integer, ReservationRequest>) hotel.reservationsRequestWaitlist);
         reservations_button.setIcon(new ImageIcon("src/mainPackage/images/calendar-70.png"));
         reservations_button.setBackground(new Color(255,255,255,0));
-        reservations_button.setBorder(null);
-        reservations_button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         reservations_button.setFocusable(false);
         reservations_button.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent evt) {
@@ -546,14 +547,14 @@ public class Principal_Admin extends JFrame{
             view.setSelectedItem(v);
     }
 
-    private void fillTableWithReservationRequests(JTable table_reservation, HashMap<String, ReservationRequest> reservationRequests) {
+    private void fillTableWithReservationRequests(JTable table_reservation, HashMap<Integer, ReservationRequest> reservationRequests) {
         DefaultTableModel model = (DefaultTableModel) table_reservation.getModel();
         //model.setRowCount(0);
-/* 
-        for (Map.Entry<String, ReservationRequest> entry : reservationRequests.entrySet()) {
+ 
+        for (Map.Entry<Integer, ReservationRequest> entry : reservationRequests.entrySet()) {
             ReservationRequest reservationRequest = entry.getValue();
-            model.addRow(new Object[]{reservationRequest.getUser().getEmail(), reservationRequest.getRoom().getID_Room(), reservationRequest.getCheckInDate(), reservationRequest.getCheckOutDate(), reservationRequest.getStatus()});}
-*/
+            model.addRow(new Object[]{reservationRequest.getUser().getEmail(),"NULL", reservationRequest.getCheckinDate(), reservationRequest.getCheckoutDate(), reservationRequest.getStatus()});}
+        
         
     }
 

@@ -491,7 +491,7 @@ public class Principal_client extends JFrame {
     private void addbuttonActionPerformed(ActionEvent evt, User user, Hotel hotel) {
         if (day_checkin.getText().isEmpty() || month_checkin.getText().isEmpty() || year_checkin.getText().isEmpty() ||
             day_checkout.getText().isEmpty() || month_checkout.getText().isEmpty() || year_checkout.getText().isEmpty() ||
-            type.getSelectedIndex() == 0 || categ.getSelectedIndex() == 0 || view.getSelectedIndex() == 0) {
+            type.getSelectedIndex() == -1 || categ.getSelectedIndex() == -1 || view.getSelectedIndex() == -1) {
             
             Warning d = new Warning(this, true, "Enter all fields");
             d.setVisible(true);
@@ -527,6 +527,7 @@ public class Principal_client extends JFrame {
                     
                     ReservationRequest reservationRequest = new ReservationRequest(user, checkinDate, checkoutDate, vue, category, roomType);
                     addReservationRequest((HashMap<Integer, ReservationRequest>)hotel.reservationsRequestWaitlist,reservationRequest);
+                   // System.out.println(hotel.reservationsRequestWaitlist);
     
                     // Add the new reservation request table to the table
                     String[] rowData = {checkinDateStr, checkoutDateStr, roomTypeStr, categoryStr, viewStr, "Pending"};
@@ -586,11 +587,11 @@ public class Principal_client extends JFrame {
                 }else if (Date.fromString(date_in).isBeforeToday()){
                     Warning d = new Warning(this, true,  "invalide checkin date ");
                     d.setVisible(true);
-                    //return null;
+                  //  return null;
                 }else if (Date.fromString(date_out).isBefore(Date.fromString(date_in))){
                     Warning d = new Warning(this, true,  "invalide checkout date ");
                     d.setVisible(true);
-                    //return null;
+                   // return null;
                 }
                 else{
                     String t = (String) type.getSelectedItem();
