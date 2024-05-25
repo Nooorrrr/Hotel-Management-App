@@ -5,13 +5,13 @@ import java.util.HashMap;
 public class Admin {
 
     private String adminPassword="admin";
-    private Map <Integer,Reservation> reservationsRequest;
+   // private Map <Integer,Reservation> reservationsRequest;
     private Map <Integer, Room> rooms;
     private HashMap <String, User> users;
 
     public Admin() {
         users = new HashMap<>();
-        reservationsRequest = new HashMap<>();
+       // reservationsRequest = new HashMap<>();
         rooms = new HashMap<>();
     }
 
@@ -32,9 +32,6 @@ public class Admin {
         return rooms.get(numeroChambre);
     }
 
-    public Map<Integer, Reservation> getReservationsRequest() {
-        return reservationsRequest;
-    }
 
     public Map<Integer, Room> getRooms() {
         return rooms;
@@ -44,13 +41,7 @@ public class Admin {
         return users;
     }
 
-    public void handleReservationRequest(Reservation reservation, Status status){
-        reservation.setStatus(status);
-        if (status == Status.ACCEPTED){
-            reservation.getChambre().setAvailability(false);
-        }
-    }
-
+    
 
     
 
