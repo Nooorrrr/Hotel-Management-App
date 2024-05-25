@@ -10,7 +10,7 @@ public class Hotel {
     public static HashMap <Integer, Room> rooms = new HashMap<>();
     public static HashMap <String, User> users = new HashMap<>();
 
-    User user1 = new User("fullName", "email", "telephone", "password");
+  
 
     Room room1 = new Room(RoomType.Single, Vue.Mountain, Category.Standard, Room_status.Available);
     Room room2 = new Room(RoomType.Double, Vue.Beach, Category.Premium, Room_status.Reserved);
@@ -49,7 +49,7 @@ public class Hotel {
 
 
     public Hotel(){
-        users.put(user1.getEmail(), user1);
+    
         users.put("john.doe@example.com", new User("John Doe", "john.doe@example.com", "0556811642", "password123"));
         users.put("jane.smith@example.com", new User("Jane Smith", "jane.smith@example.com", "0787654321", "password456"));
         users.put("robert.johnson@example.com", new User("Robert Johnson", "robert.johnson@example.com", "9876543210", "password789"));
