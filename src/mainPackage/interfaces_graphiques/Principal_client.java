@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import mainPackage.model.Date;
+import mainPackage.model.Hotel;
 import mainPackage.model.User;
 
 
@@ -54,7 +55,7 @@ public class Principal_client extends JFrame {
     private JTable table = new JTable();
     private JLabel Background = new JLabel();
 
-    public Principal_client(User user) {
+    public Principal_client(User user,Hotel hotel) {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 700));
@@ -110,13 +111,13 @@ public class Principal_client extends JFrame {
         name.setBounds(160, 70, 150, 40);
         panel.add(name);
 
-        logout.setIcon(new ImageIcon("src/mainPackage/images/logout1-40.png"));
+        logout.setIcon(new ImageIcon("src/mainPackage/images/logout2-40.png"));
         logout.setBackground(new Color(255, 255, 255,0));
-        logout.setBounds(800, 70, 40, 40);
+        logout.setBounds(850, 70, 40, 40);
         logout.setCursor(new Cursor(Cursor.HAND_CURSOR));
         logout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                logoutActionPerformed(evt);
+                logoutActionPerformed(evt,hotel);
             }
         });
         panel.add(logout);
@@ -447,9 +448,9 @@ public class Principal_client extends JFrame {
         }
     }
 
-    private void logoutActionPerformed(ActionEvent evt) {
+    private void logoutActionPerformed(ActionEvent evt, Hotel hotel) {
         dispose();
-        Choice c = new Choice();
+        Choice c = new Choice(hotel);
         c.setVisible(true);
     }
 

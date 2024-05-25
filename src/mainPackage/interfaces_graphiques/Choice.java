@@ -1,6 +1,8 @@
 package mainPackage.interfaces_graphiques;
 
 
+import mainPackage.model.Hotel;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -16,7 +18,7 @@ public class Choice extends JFrame {
     private JLabel logo = new JLabel();
     private JLabel label2 = new JLabel();
     private JLabel right = new JLabel();
-    public Choice()  {
+    public Choice(Hotel hotel)  {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(800,450));
@@ -95,7 +97,7 @@ public class Choice extends JFrame {
         });
         guestButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                guestActionPerformed(evt);
+                guestActionPerformed(evt,hotel);
             }
         });
         panel.add(guestButton);
@@ -119,7 +121,7 @@ public class Choice extends JFrame {
         });
         adminButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                adminActionPerformed(evt);
+                adminActionPerformed(evt,hotel);
             }
         });
         panel.add(adminButton);
@@ -180,25 +182,25 @@ public class Choice extends JFrame {
         adminButton.setForeground(new Color(64, 34, 25));
     }
 
-    private void adminActionPerformed(ActionEvent evt) {
+    private void adminActionPerformed(ActionEvent evt,Hotel hotel) {
         dispose(); // Fermer la fenêtre
-        Login_Admin l = new Login_Admin(); // ouvrir la fenètre de login_admin
+        Login_Admin l = new Login_Admin(hotel); // ouvrir la fenètre de login_admin
         l.setVisible(true);
     }
 
-    private void guestMousePressed(java.awt.event.MouseEvent evt) {
+    private void guestMousePressed(MouseEvent evt) {
         guestButton.setForeground(new Color(209, 174, 149));
         guestButton.setBackground(new Color(64, 34, 25));
     }
 
-    private void guestMouseReleased(java.awt.event.MouseEvent evt) {
+    private void guestMouseReleased(MouseEvent evt) {
         guestButton.setBackground(new Color(209, 174, 149));
         guestButton.setForeground(new Color(64, 34, 25));
     }
 
-    private void guestActionPerformed(java.awt.event.ActionEvent evt) {
+    private void guestActionPerformed(ActionEvent evt,Hotel hotel) {
         dispose(); // Fermer la fenêtre
-        Login l = new Login(); // ouvrir la fenètre de login
+        Login l = new Login(hotel); // ouvrir la fenètre de login
         l.setVisible(true);
     }
 }

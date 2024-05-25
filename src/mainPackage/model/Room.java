@@ -1,17 +1,16 @@
 package mainPackage.model;
 
-enum RoomType{
+import mainPackage.interfaces_graphiques.Warning;
+enum RoomType {
+
     Single, Double, Triple, Quadruple
+
 }
-
-
-
-enum Vue{
-    Beach, Mountain, City
-}
-
-enum Category{
+enum Category {
     Standard, Premium, Executive, Family
+}
+enum Vue {
+    Beach, Mountain, City
 }
 
 
@@ -34,6 +33,16 @@ public class Room {
         this.category = category;
         this.status=status;
     }
+
+    public Room(int id ,RoomType typeChambre, Category category,Vue vue) {
+        this.ID_Room=id;
+        this.typeChambre = typeChambre;
+        this.isAvailablle = true;
+        this.vue = vue;
+        this.category = category;
+        this.status=Room_status.Available;
+    }
+
 
     public int getNumeroChambre() {
         return NumChambre;
@@ -69,6 +78,47 @@ public class Room {
 
     public void setCategory(Category category){
         this.category = category;
+    }
+
+    public static RoomType getroomtype(String type) {
+        switch (type) {
+            case "Single":
+                return RoomType.Single;
+            case "Double":
+                return RoomType.Double;
+            case "Triple":
+                return RoomType.Triple;
+            case "Quadruple":
+                return RoomType.Quadruple;
+            default:
+                return RoomType.Quadruple;
+        }
+    }
+    public static Category getroomcategory(String category) {
+        switch (category) {
+            case "Premium":
+                return Category.Premium;
+            case "Standard":
+                return Category.Standard;
+            case "Family":
+                return Category.Family;
+            case "Executive":
+                return Category.Executive;
+            default:
+                return Category.Standard;
+        }
+    }
+    public static Vue getroomview(String view) {
+        switch (view) {
+            case "Beach":
+                return Vue.Beach;
+            case "City":
+                return Vue.City;
+            case "Mountain":
+                return Vue.Mountain;
+            default:
+                return Vue.City;
+        }
     }
 
 }

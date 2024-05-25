@@ -33,7 +33,7 @@ public class Login extends JFrame {
     private JLabel left = new JLabel();
 
 
-    public Login() {
+    public Login(Hotel hotel) {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(800,450));
         setUndecorated(true);
@@ -76,7 +76,7 @@ public class Login extends JFrame {
         Return.setCursor(new Cursor(HAND_CURSOR));
         Return.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                ReturnMouseClicked(evt);
+                ReturnMouseClicked(evt,hotel);
             }
             public void mouseEntered(MouseEvent evt) {
                 ReturnMouseEntered(evt);
@@ -143,7 +143,7 @@ public class Login extends JFrame {
         signup.setCursor(new Cursor(HAND_CURSOR));
         signup.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                signupMouseClicked(evt);
+                signupMouseClicked(evt,hotel);
             }
             public void mouseEntered(MouseEvent evt) {
                 signupMouseEntered(evt);
@@ -191,7 +191,7 @@ public class Login extends JFrame {
         });
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                loginActionPerformed(evt);
+                loginActionPerformed(evt,hotel);
             }
         });
         login.setBounds(530, 340, 140, 40);
@@ -256,9 +256,9 @@ public class Login extends JFrame {
     private void exitMousePressed(MouseEvent evt) {
         exit.setForeground(new Color(64, 34, 25));
     }
-    private void ReturnMouseClicked(MouseEvent evt) {
+    private void ReturnMouseClicked(MouseEvent evt,Hotel hotel) {
         dispose();
-        Choice c = new Choice ();
+        Choice c = new Choice (hotel);
         c.setVisible(true);
     }
     private void ReturnMouseEntered(MouseEvent evt) {
@@ -271,9 +271,10 @@ public class Login extends JFrame {
         Return.setIcon(new ImageIcon("src/mainPackage/images/flèche-32-1.png"));
     }
 
-    private void signupMouseClicked(MouseEvent evt) {
-        this.setVisible(false);
-        Signup s = new Signup();
+    private void signupMouseClicked(MouseEvent evt,Hotel hotel) {
+        //this.setVisible(false);
+        dispose();
+        Signup s = new Signup(hotel);
         s.setVisible(true);
     }
     private void signupMousePressed(MouseEvent evt) {
@@ -289,11 +290,11 @@ public class Login extends JFrame {
     private void signupMouseExited(MouseEvent evt) {
         signup.setForeground(new Color(209, 174, 149));
     }
-    private void loginActionPerformed(ActionEvent evt) {
+    private void loginActionPerformed(ActionEvent evt,Hotel hotel) {
         /*Hotel hotel = new Hotel();
         HashMap <String, User> users = new HashMap<>();
         users = hotel.users;*/
-        AuthentificationClient(new Hotel().users,this,email.getText(),String.valueOf(psw.getPassword()));
+        AuthentificationClient(hotel.users,this,email.getText(),String.valueOf(psw.getPassword()),hotel);
     }
     private void loginMousePressed(MouseEvent evt) {
         login.setForeground(new Color(209, 174, 149));
