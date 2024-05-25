@@ -5,6 +5,7 @@ import mainPackage.model.*;
 public class ReservationRequest {
     private static int id = 0;
     private int idReservation;
+    private int idroom;
     private Date checkinDate;
     private Date checkoutDate;
     private Vue vue;
@@ -23,6 +24,7 @@ public class ReservationRequest {
         this.roomType = roomType;
         this.user = user;
         this.status = Status.PENDING;
+        this.idroom = 0;
     }
 
     public int getIdReservationRequest() {

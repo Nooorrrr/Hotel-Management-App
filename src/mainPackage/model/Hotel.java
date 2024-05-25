@@ -112,11 +112,15 @@ public class Hotel {
           // Create some reservation requests
           ReservationRequest reservation1 = new ReservationRequest(user1, new Date(2024, 6, 1), new Date(2024, 6, 10), Vue.Mountain, Category.Standard, RoomType.Single);
           ReservationRequest reservation2 = new ReservationRequest(user2, new Date(2024, 6, 15), new Date(2024, 6, 20), Vue.Beach, Category.Premium, RoomType.Double);
-            ReservationRequest reservation3 = new ReservationRequest(user3, new Date(2024, 6, 25), new Date(2024, 6, 30), Vue.City, Category.Executive, RoomType.Triple);
+          ReservationRequest reservation3 = new ReservationRequest(user3, new Date(2024, 6, 25), new Date(2024, 6, 30), Vue.City, Category.Executive, RoomType.Triple);
           // Add reservations to the map
           reservationsRequestWaitlist.put(reservation1.getIdReservationRequest(), reservation1);
           reservationsRequestWaitlist.put(reservation2.getIdReservationRequest(), reservation2);
           reservationsRequestWaitlist.put(reservation3.getIdReservationRequest(), reservation3);
+
+          user1.getReservations().put(reservation1.getIdReservationRequest(),reservation1);
+          user2.getReservations().put(reservation2.getIdReservationRequest(),reservation2);
+          user3.getReservations().put(reservation3.getIdReservationRequest(),reservation3);
 
     }
 

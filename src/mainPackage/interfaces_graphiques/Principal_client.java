@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
+import java.util.Map;
 
 import mainPackage.model.Date;
 import mainPackage.model.Hotel;
@@ -408,6 +409,8 @@ public class Principal_client extends JFrame {
             }
         });
         //table.setColumnSelectionAllowed(true);
+
+        this.fillTableWithUsers(table,user.getReservations());
         tablepane.setBackground(new Color(255, 255, 255,0));
         table.setFocusable(false);
         table.setSelectionBackground(new Color(87, 47, 37));
@@ -528,6 +531,8 @@ public class Principal_client extends JFrame {
                     ReservationRequest reservationRequest = new ReservationRequest(user, checkinDate, checkoutDate, vue, category, roomType);
                     addReservationRequest((HashMap<Integer, ReservationRequest>)hotel.reservationsRequestWaitlist,reservationRequest);
                    // System.out.println(hotel.reservationsRequestWaitlist);
+
+                   user.getReservations().put(reservationRequest.getIdReservationRequest(), reservationRequest);
     
                     // Add the new reservation request table to the table
                     String[] rowData = {checkinDateStr, checkoutDateStr, roomTypeStr, categoryStr, viewStr, "Pending"};
@@ -655,6 +660,16 @@ public class Principal_client extends JFrame {
 
     private void deletebuttonMouseReleased(MouseEvent evt) {
         deletebutton.setIcon(new ImageIcon("src/mainPackage/images/delete-32.png"));
+    }
+
+     public void fillTableWithUsers(JTable tableUser, HashMap<Integer, ReservationRequest> reservations) {
+        DefaultTableModel model = (DefaultTableModel) tableUser.getModel();
+        //model.setRowCount(0);
+
+        for (Map.Entry<Integer, ReservationRequest> entry : reservations.entrySet()) {
+             ReservationRequest rsv = entry.getValue();
+            model.addRow(new Object[]{rsv.getCheckinDate(), rsv.getCheckoutDate(), rsv.getRoomType(),rsv.getCategory(),rsv.getVue(),rsv.getStatus()});
+        }
     }
 
 }
