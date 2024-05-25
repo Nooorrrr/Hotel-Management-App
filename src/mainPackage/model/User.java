@@ -7,24 +7,18 @@ public class User {
     private String email;
     private String telephone;
     private String password;
-    private TreeMap reservations;
+    private TreeMap<String, Object> reservations;
 
-   public User(String fullName, String email, String telephone, String password) {
-    this.fullName = fullName;
-    this.email = email;
-    this.telephone = telephone;
-    this.password = password;
-<<<<<<< HEAD
-    id++;
-=======
-    
->>>>>>> 73736770f6d31ba09880efdec5e2f334a9761d97
-   }
+    public User(String fullName, String email, String telephone, String password) {
+        this.fullName = fullName;
+        this.email = email;
+        this.telephone = telephone;
+        this.password = password;
+    }
 
-
-public String getFullName() {
-    return fullName;
-}
+    public String getFullName() {
+        return fullName;
+    }
 
 public void setFullName(String fullName) {
     this.fullName = fullName;

@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Admin {
 
-    private String adminPassword="admin1234";
+    private String adminPassword="admin";
     private Map <Integer,Reservation> reservationsRequest;
     private Map <Integer, Room> rooms;
     private HashMap <String, User> users;
@@ -15,10 +15,10 @@ public class Admin {
         rooms = new HashMap<>();
     }
 
-    public void addRoom(RoomType typeChambre, Vue vue, Category category){
+   /*public void addRoom(RoomType typeChambre, Vue vue, Category category){
         Room newRoom = new Room(typeChambre, vue, category);
         rooms.put(newRoom.getNumeroChambre(), newRoom);
-    }
+    }*/
 
     public void removeRoom(int numeroChambre){
         rooms.remove(numeroChambre);

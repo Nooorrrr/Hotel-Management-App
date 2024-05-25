@@ -1,4 +1,9 @@
 package mainPackage.model;
+enum Status{
+    ACCEPTED,
+    RUFUSED,
+    PENDING
+}
 
 public class Reservation {
     private static int id = 0;

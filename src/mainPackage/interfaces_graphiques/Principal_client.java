@@ -4,7 +4,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
-import mainPackage.interfaces_graphiques.Welcome;
+
+import mainPackage.model.Date;
 import mainPackage.model.User;
 
 
@@ -13,7 +14,7 @@ public class Principal_client extends JFrame {
     private int posX, posY;
     private JPanel panel = new JPanel();
     private JLabel exit = new JLabel();
-    private JTextField name = new JTextField();
+    private JLabel name = new JLabel();
     private JLabel title = new JLabel();
     private JLabel addicon = new JLabel();
     private JLabel deleteicon = new JLabel();
@@ -100,22 +101,22 @@ public class Principal_client extends JFrame {
         person.setBounds(90, 60, 60, 60);
         panel.add(person);
 
-        name.setFont(new Font("Segoe Print", 0, 14));
+        name.setFont(new Font("Constantia", 0, 16));
         name.setForeground(new Color(87, 47, 37));
         name.setBorder(null);
-        //name.setCaretColor(new Color(184, 153, 132));
         name.setFocusable(false);
         name.setBackground(new Color(255, 255, 255,0));
         name.setText(user.getFullName());
-        name.setBounds(160, 70, 170, 40);
+        name.setBounds(160, 70, 150, 40);
         panel.add(name);
 
-        logout.setIcon(new ImageIcon("src/mainPackage/images/door.png"));
-        logout.setBounds(270, 70, 40, 40);
+        logout.setIcon(new ImageIcon("src/mainPackage/images/logout1-40.png"));
+        logout.setBackground(new Color(255, 255, 255,0));
+        logout.setBounds(800, 70, 40, 40);
         logout.setCursor(new Cursor(Cursor.HAND_CURSOR));
         logout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                logoutMouseReleased(evt);
+                logoutActionPerformed(evt);
             }
         });
         panel.add(logout);
@@ -433,13 +434,23 @@ public class Principal_client extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
+
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
     }
 
-    private void logoutMouseReleased(ActionEvent evt) {
-        System.exit(0);
-        Welcome w = new Welcome();
-        w.setVisible(true);
-       
+    private void logoutActionPerformed(ActionEvent evt) {
+        dispose();
+        Choice c = new Choice();
+        c.setVisible(true);
     }
 
     private void exitMouseClicked(MouseEvent evt) {
@@ -467,15 +478,41 @@ public class Principal_client extends JFrame {
         setLocation(newX, newY);
     }
 
-    private void addbuttonActionPerformed(ActionEvent evt) {
+    private String [] addbuttonActionPerformed(ActionEvent evt) {
         if(day_checkin.getText().isEmpty()||month_checkin.getText().isEmpty()||year_checkin.getText().isEmpty()||month_checkout.getText().isEmpty()||day_checkout.getText().isEmpty()||year_checkout.getText().isEmpty()||type.getSelectedIndex() == -1 || category.getSelectedIndex() == -1 || view.getSelectedIndex() == -1){
-            Warning1 d = new Warning1(this , true,"");
+            Warning d = new Warning(this , true,"Enter all fields");
             d.setVisible(true);
+            return null;
         }
         else{
             String data[] ={(String) day_checkin.getText()+"/"+(String) month_checkin.getText()+"/"+(String) year_checkin.getText(),(String) day_checkout.getText()+"/"+(String) month_checkout.getText()+"/"+(String) year_checkout.getText(),(String) type.getSelectedItem(),(String) category.getSelectedItem(),(String) view.getSelectedItem(),"Pending"};
-            DefaultTableModel tab = (DefaultTableModel)table.getModel();
-            tab.addRow(data);
+            try {
+                if (Date.fromString(data[0]).checkDateCase() != null) {
+                    Warning d = new Warning(this, true,  "invalide checkin date ");
+                    d.setVisible(true);
+                    return null;
+                } else if (Date.fromString(data[1]).checkDateCase() != null) {
+                    Warning d = new Warning(this, true, "invalide checkout date");
+                    d.setVisible(true);
+                    return null;
+                } else if (Date.fromString(data[0]).isBeforeToday()){
+                    Warning d = new Warning(this, true,  "invalide checkin date ");
+                    d.setVisible(true);
+                    return null;
+                }else if (Date.fromString(data[1]).isBefore(Date.fromString(data[0]))){
+                    Warning d = new Warning(this, true,  "invalide checkout date ");
+                    d.setVisible(true);
+                    return null;
+                } else {
+                    DefaultTableModel tab = (DefaultTableModel) table.getModel();
+                    tab.addRow(data);
+                    return data;
+                }
+            }catch (NumberFormatException e){
+                Warning d = new Warning(this, true, "invalid date  ");
+                d.setVisible(true);
+                return null;
+            }
         }
     }
 
@@ -513,22 +550,47 @@ public class Principal_client extends JFrame {
 
             String date_in = (String) day_checkin.getText()+"/"+(String) month_checkin.getText()+"/"+(String) year_checkin.getText();
             String date_out = (String) day_checkout.getText()+"/"+(String) month_checkout.getText()+"/"+(String) year_checkout.getText();
-            String t = (String) type.getSelectedItem();
-            String c = (String) category.getSelectedItem();
-            String v = (String) view.getSelectedItem();
+            try {
+                if (Date.fromString(date_in).checkDateCase() != null) {
+                    Warning d = new Warning(this, true,  Date.fromString(date_in).checkDateCase().getMessage()+ "(check in)");
+                    d.setVisible(true);
+                    //return null;
+                } else if (Date.fromString(date_out).checkDateCase() != null) {
+                    Warning d = new Warning(this, true,   Date.fromString(date_out).checkDateCase().getMessage()+"(check out)");
+                    d.setVisible(true);
+                    //return null;
+                }else if (Date.fromString(date_in).isBeforeToday()){
+                    Warning d = new Warning(this, true,  "invalide checkin date ");
+                    d.setVisible(true);
+                    //return null;
+                }else if (Date.fromString(date_out).isBefore(Date.fromString(date_in))){
+                    Warning d = new Warning(this, true,  "invalide checkout date ");
+                    d.setVisible(true);
+                    //return null;
+                }
+                else{
+                    String t = (String) type.getSelectedItem();
+                    String c = (String) category.getSelectedItem();
+                    String v = (String) view.getSelectedItem();
 
-            tab.setValueAt(date_in,table.getSelectedRow(),0);
-            tab.setValueAt(date_out,table.getSelectedRow(),1);
-            tab.setValueAt(t,table.getSelectedRow(),2);
-            tab.setValueAt(c,table.getSelectedRow(),3);
-            tab.setValueAt(v,table.getSelectedRow(),4);
+                    tab.setValueAt(date_in,table.getSelectedRow(),0);
+                    tab.setValueAt(date_out,table.getSelectedRow(),1);
+                    tab.setValueAt(t,table.getSelectedRow(),2);
+                    tab.setValueAt(c,table.getSelectedRow(),3);
+                    tab.setValueAt(v,table.getSelectedRow(),4);
+                }
+            }catch (NumberFormatException e){
+                Warning d = new Warning(this, true, "invalid date  ");
+                d.setVisible(true);
+                //return null;
+            }
 
         } else {
             if (table.getRowCount() == 0) {
-                Warning1 d = new Warning1(this, true,"");
+                Warning d = new Warning(this, true,"Select a row to edit");
                 d.setVisible(true);
             } else {
-                Warning1 d = new Warning1(this, true,"");
+                Warning d = new Warning(this, true,"");
                 d.setVisible(true);
             }
         }
@@ -550,10 +612,10 @@ public class Principal_client extends JFrame {
             tab.removeRow(table.getSelectedRow());
         } else {
             if (table.getRowCount() == 0) {
-                Warning1 d = new Warning1(this, true,"");
+                Warning d = new Warning(this, true,"Select a row to delete");
                 d.setVisible(true);
             } else {
-                Warning1 d = new Warning1(this, true,"");
+                Warning d = new Warning(this, true,"");
                 d.setVisible(true);
             }
         }
@@ -562,29 +624,12 @@ public class Principal_client extends JFrame {
 
     private void deletebuttonMousePressed(MouseEvent evt) {
         deletebutton.setIcon(new ImageIcon("src/mainPackage/images/supprimer-32.png"));
-
     }
 
     private void deletebuttonMouseReleased(MouseEvent evt) {
         deletebutton.setIcon(new ImageIcon("src/mainPackage/images/delete-32.png"));
-
     }
 
-    public static void main(String args[]) {
-
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-               // new Principal_client(user).setVisible(true);
-
-    }
 }
 
 

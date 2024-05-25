@@ -406,6 +406,4 @@ public class Signup extends JFrame {
     private void SignUpActionPerformed(ActionEvent evt) {
         registerUser(this,Name.getText(),phone.getText(),email.getText(),String.valueOf(psw.getPassword()));
     }
-    
-
 }

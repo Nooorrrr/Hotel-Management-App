@@ -290,12 +290,10 @@ public class Login extends JFrame {
         signup.setForeground(new Color(209, 174, 149));
     }
     private void loginActionPerformed(ActionEvent evt) {
-        Hotel hotel = new Hotel();
+        /*Hotel hotel = new Hotel();
         HashMap <String, User> users = new HashMap<>();
-        users = hotel.users;
-        String Email = email.getText();
-        String Password = String.valueOf(psw.getPassword());
-        AuthentificationClient(users,this,Email,Password);
+        users = hotel.users;*/
+        AuthentificationClient(new Hotel().users,this,email.getText(),String.valueOf(psw.getPassword()));
     }
     private void loginMousePressed(MouseEvent evt) {
         login.setForeground(new Color(209, 174, 149));
@@ -305,6 +303,4 @@ public class Login extends JFrame {
         login.setBackground(new Color(209, 174, 149));
         login.setForeground(new Color(64, 34, 25));
     }
-
-
 }

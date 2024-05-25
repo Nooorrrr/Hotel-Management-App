@@ -2,17 +2,36 @@ package mainPackage.Controllers;
 
 import mainPackage.interfaces_graphiques.Login;
 import mainPackage.interfaces_graphiques.Signup;
-import mainPackage.interfaces_graphiques.Warning1;
+import mainPackage.interfaces_graphiques.Warning;
 import mainPackage.interfaces_graphiques.Principal_client;
+import mainPackage.interfaces_graphiques.Principal_Admin;
+import mainPackage.interfaces_graphiques.Login_Admin;
 import mainPackage.model.*;
 import java.util.HashMap;
 
 public class Authentification {
     
-    public static void AuthentificationClient(HashMap users,Login l, String Email , String Password ) {
-       
+    public static String getAdPassword(){
+        Admin admin = new Admin();
+        return admin.getAdminPassword();
+    }
+
+    public static void AuthentificationPassword(Login_Admin l,String pswd){
+        if (!pswd.equals(getAdPassword()) ){
+            Warning d = new Warning(null, true, "Wrong Password");
+            //System.out.println("The password uve entered is wrong and it was : "+ pswd); for testing purposes
+            d.setVisible(true);
+        }else{
+            l.dispose();
+            Principal_Admin p = new Principal_Admin();
+            p.setVisible(true);
+
+        }
+    }
+    
+    public static void AuthentificationClient(HashMap<String, User> users,Login l, String Email , String Password ) {
         if (Email.isEmpty() || Password.isEmpty()) {
-            Warning1 d = new Warning1(l, true, "Please enter all fields");
+            Warning d = new Warning(l, true, "Please enter all fields");
             d.setVisible(true);
         } else {
             try {
@@ -23,67 +42,13 @@ public class Authentification {
 
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                Warning1 d = new Warning1(l, true, "Acount does not exist.");
+                Warning d = new Warning(l, true, e.getMessage());
                 d.setVisible(true);
             }
         }
-       /*else{
-
-           hna diri haka
-           lazem tkoun kayna methode li teba3tilha l email w tretournilek l user li 3andou hadak l mail
-           (bien sur ida kan y existi sinon tretounilek null)
-
-           User user = new User();
-           user = email_exist(Email);
-           if (user != null){
-                if (user.password.equals(Password)){
-                    l.dispose();
-                    Principal_client p = new Principal_client(user);
-                    p.setVisible(true);
-                }
-                else{
-                         Warning1 d = new Warning1(l, true, "Wrong Password");
-                         d.setVisible(true);
-                }
-           }
-           else{
-                Warning1 d = new Warning1(l, true, "Create an account ");
-                d.setVisible(true);
-            }
-       }*/
     }
 
-    public static void registerUser(Signup s,String firstName, String Phone, String Email, String password) {
-        if (firstName.isEmpty() || Phone.isEmpty() || Email.isEmpty() || password.isEmpty()){
-            Warning1 d = new Warning1(s , true,"Enter all fields");
-            d.setVisible(true);
-        }
-       else{
-           try {
-               User user = Authentification.createUser(Hotel.users,firstName, password, Email, Phone);
-               s.dispose();
-               Principal_client p = new Principal_client(user);
-               p.setVisible(true);
-           } catch (Exception e) {
-               Warning1 d = new Warning1(s, true, e.getMessage());
-               d.setVisible(true);
-           }
-       }
-    }
-    
-     // crreation te3 user
-     public static User createUser(HashMap users,String fullName, String Password, String email, String telephone) throws Exception {
-        if (users.containsKey(email)) {
-            throw new Exception("this email already exists.");
-        } else {
-            User newUser = new User(fullName,Password, email,telephone);
-            users.put(email, newUser);
-            return newUser;
-        }
-    }
-
-    // log in te3 user
-    public static User login(HashMap users,String email, String password) throws Exception {
+    public static User login(HashMap<String, User> users,String email, String password) throws Exception {
         if (users.containsKey(email)) {
             System.out.println("User found");
             User user = (User) users.get(email);
@@ -93,8 +58,37 @@ public class Authentification {
                 throw new Exception("Incorrect password.");
             }
         } else {
-            throw new Exception("Account does not excist");
+            throw new Exception("Account does not exist");
         }
     }
+
+    public static void registerUser(Signup s,String firstName, String Phone, String Email, String password) {
+        if (firstName.isEmpty() || Phone.isEmpty() || Email.isEmpty() || password.isEmpty()){
+            Warning d = new Warning(s , true,"Enter all fields");
+            d.setVisible(true);
+        }
+       else{
+           try {
+               User user = Authentification.createUser(new Hotel().users,firstName, password, Email, Phone);
+               s.dispose();
+               Principal_client p = new Principal_client(user);
+               p.setVisible(true);
+           } catch (Exception e) {
+               Warning d = new Warning(s, true, e.getMessage());
+               d.setVisible(true);
+           }
+       }
+    }
+     // creation te3 user
+    public static User createUser(HashMap<String, User> users, String fullName, String Password, String email, String telephone) throws Exception {
+        if (users.containsKey(email)) {
+            throw new Exception("this email already exists.");
+        } else {
+            User newUser = new User(fullName, telephone, email, Password);
+            users.put(email, newUser);
+            return newUser;
+        }
+    }
+    // log in te3 user
 
 }
