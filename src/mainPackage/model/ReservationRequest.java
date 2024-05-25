@@ -71,6 +71,10 @@ public class ReservationRequest {
         return vue;
     }
 
+    public void setIdroom(int idroom) {
+        this.idroom = idroom;
+    }
+
     public void setVue(Vue vue) {
         this.vue = vue;
     }

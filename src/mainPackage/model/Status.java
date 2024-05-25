@@ -1,6 +1,6 @@
 package mainPackage.model;
 
-enum Status{
+public enum Status{
     ACCEPTED,
     RUFUSED,
     PENDING

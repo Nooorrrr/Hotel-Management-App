@@ -29,9 +29,31 @@ public class AdminController {
 
     }
 
-    //public static void AcceptUser(int idRequest, User user, int roomNum, HashMap<Integer, Room>){
+    public static void AcceptUser(int idRequest,String email, int roomNum,Hotel hotel){
+       Room r = hotel.rooms.get(roomNum);
+       r.setStatus(Room_status.Reserved);
+       hotel.rooms.replace(roomNum,r);
 
- //   }
+       ReservationRequest rsv = hotel.reservationsRequestWaitlist.get(idRequest);
+       rsv.setIdroom(roomNum);
+       rsv.setStatus(Status.ACCEPTED);
+       hotel.reservationsRequestWaitlist.replace(idRequest,rsv);
+
+       hotel.users.get(email).getReservations().replace(idRequest,rsv);
+
+
+    }
+
+    public static void RefuseUser(int idRequest,String email, int roomNum,Hotel hotel){
+
+        ReservationRequest rsv = hotel.reservationsRequestWaitlist.get(idRequest);
+        rsv.setIdroom(roomNum);
+        rsv.setStatus(Status.RUFUSED);
+        hotel.reservationsRequestWaitlist.replace(idRequest,rsv);
+
+        hotel.users.get(email).getReservations().replace(idRequest,rsv);
+
+    }
 
     
 }

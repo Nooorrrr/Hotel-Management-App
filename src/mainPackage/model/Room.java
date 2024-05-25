@@ -12,6 +12,11 @@ public class Room {
     private boolean isAvailablle;
     private Vue vue;
     private Category category;
+
+    public void setStatus(Room_status status) {
+        this.status = status;
+    }
+
     private Room_status status;
 
     public Room(RoomType typeChambre, Vue vue, Category category,Room_status status) {

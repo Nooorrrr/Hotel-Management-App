@@ -9,6 +9,7 @@ public class Hotel {
     public static Map <Integer,ReservationRequest>reservationsRequestWaitlist = new HashMap<>();
     public static HashMap <Integer, Room> rooms = new HashMap<>();
     public static HashMap <String, User> users = new HashMap<>();
+
     User user1 = new User("fullName", "email", "telephone", "password");
 
     Room room1 = new Room(RoomType.Single, Vue.Mountain, Category.Standard, Room_status.Available);

@@ -577,9 +577,8 @@ public class Principal_Admin extends JFrame{
         String status = tab.getValueAt(table_reservation.getSelectedRow(),3).toString();
 
        int roomid = AdminController.checKIfRoomExcist(hotel.rooms,hotel.reservationsRequestWaitlist.get(id).getRoomType(),hotel.reservationsRequestWaitlist.get(id).getCategory(),hotel.reservationsRequestWaitlist.get(id).getVue());
-        System.out.println(roomid);
        if (roomid!=-1){
-           RequestHandle r = new RequestHandle(this , true,roomid,hotel);
+           RequestHandle r = new RequestHandle(id,user,this , true,roomid,hotel);
            r.setVisible(true);
        }else{
            Warning war = new Warning(this, true, "This room does not exist");
