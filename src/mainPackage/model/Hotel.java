@@ -4,8 +4,9 @@ import java.util.Map;
 import java.util.HashMap;
 
 
+
 public class Hotel {
-    public static Map <Integer,Reservation> reservationsRequest = new HashMap<>();
+    public static Map <Integer,ReservationRequest>reservationsRequestWaitlist = new HashMap<>();
     public static HashMap <Integer, Room> rooms = new HashMap<>();
     public static HashMap <String, User> users = new HashMap<>();
     User user1 = new User("fullName", "email", "telephone", "password");
@@ -41,34 +42,36 @@ public class Hotel {
     Room room29 = new Room(RoomType.Single, Vue.Mountain, Category.Standard, Room_status.Available);
     Room room30 = new Room(RoomType.Double, Vue.City, Category.Premium, Room_status.Reserved);
 
+       
+
 
 
 
     public Hotel(){
         users.put(user1.getEmail(), user1);
-        users.put("john.doe@example.com", new User("John Doe", "john.doe@example.com", "1234567890", "password123"));
-        users.put("jane.smith@example.com", new User("Jane Smith", "jane.smith@example.com", "0987654321", "password456"));
+        users.put("john.doe@example.com", new User("John Doe", "john.doe@example.com", "0556811642", "password123"));
+        users.put("jane.smith@example.com", new User("Jane Smith", "jane.smith@example.com", "0787654321", "password456"));
         users.put("robert.johnson@example.com", new User("Robert Johnson", "robert.johnson@example.com", "9876543210", "password789"));
-        users.put("lisa.wong@example.com", new User("Lisa Wong", "lisa.wong@example.com", "0123456789", "passwordabc"));
-        users.put("michael.brown@example.com", new User("Michael Brown", "michael.brown@example.com", "5555555555", "passworddef"));
-        users.put("maria.garcia@example.com", new User("Maria Garcia", "maria.garcia@example.com", "6666666666", "passwordghi"));
-        users.put("david.wilson@example.com", new User("David Wilson", "david.wilson@example.com", "7777777777", "passwordjkl"));
-        users.put("emily.martinez@example.com", new User("Emily Martinez", "emily.martinez@example.com", "8888888888", "passwordmno"));
-        users.put("james.taylor@example.com", new User("James Taylor", "james.taylor@example.com", "9999999999", "passwordpqr"));
-        users.put("sarah.anderson@example.com", new User("Sarah Anderson", "sarah.anderson@example.com", "1111111111", "passwordstu"));
-        users.put("daniel.thomas@example.com", new User("Daniel Thomas", "daniel.thomas@example.com", "2222222222", "passwordvwx"));
-        users.put("jennifer.hernandez@example.com", new User("Jennifer Hernandez", "jennifer.hernandez@example.com", "3333333333", "passwordyz1"));
-        users.put("matthew.martinez@example.com", new User("Matthew Martinez", "matthew.martinez@example.com", "4444444444", "password234"));
-        users.put("ashley.johnson@example.com", new User("Ashley Johnson", "ashley.johnson@example.com", "5555555555", "password567"));
-        users.put("christopher.smith@example.com", new User("Christopher Smith", "christopher.smith@example.com", "6666666666", "password890"));
-        users.put("amanda.martin@example.com", new User("Amanda Martin", "amanda.martin@example.com", "7777777777", "password901"));
-        users.put("jessica.rodriguez@example.com", new User("Jessica Rodriguez", "jessica.rodrz@example.com", "8888888888", "password234"));
-        users.put("ryan.lee@example.com", new User("Ryan Lee", "ryan.lee@example.com", "9999999999", "password567"));
-        users.put("michelle.chavez@example.com", new User("Michelle Chavez", "michelle.chavez@example.com", "1111111111", "password890"));
-        users.put("justin.wright@example.com", new User("Justin Wright", "justin.wright@example.com", "2222222222", "password123"));
-        users.put("tiffany.nguyen@example.com", new User("Tiffany Nguyen", "tiffany.nguyen@example.com", "3333333333", "password456"));
-        users.put("juan.gonzalez@example.com", new User("Juan Gonzalez", "juan.gonzalez@example.com", "4444444444", "password789"));
-        users.put("melissa.yang@example.com", new User("Melissa Yang", "melissa.yang@example.com", "5555555555", "passwordabc"));
+        users.put("lisa.wong@example.com", new User("Lisa Wong", "lisa.wong@example.com", "0623416709", "passwordabc"));
+        users.put("michael.brown@example.com", new User("Michael Brown", "michael.brown@example.com", "0598746310", "passworddef"));
+        users.put("maria.garcia@example.com", new User("Maria Garcia", "maria.garcia@example.com", "0789631470", "passwordghi"));
+        users.put("david.wilson@example.com", new User("David Wilson", "david.wilson@example.com", "0698532147", "passwordjkl"));
+        users.put("emily.martinez@example.com", new User("Emily Martinez", "emily.martinez@example.com", "0697648532", "passwordmno"));
+        users.put("james.taylor@example.com", new User("James Taylor", "james.taylor@example.com", "0596489632", "passwordpqr"));
+        users.put("sarah.anderson@example.com", new User("Sarah Anderson", "sarah.anderson@example.com", "0759687435", "passwordstu"));
+        users.put("daniel.thomas@example.com", new User("Daniel Thomas", "daniel.thomas@example.com", "0698563258", "passwordvwx"));
+        users.put("jennifer.hernandez@example.com", new User("Jennifer Hernandez", "jennifer.hernandez@example.com", "0765239874", "passwordyz1"));
+        users.put("matthew.martinez@example.com", new User("Matthew Martinez", "matthew.martinez@example.com", "0778763259", "password234"));
+        users.put("ashley.johnson@example.com", new User("Ashley Johnson", "ashley.johnson@example.com", "0556325987", "password567"));
+        users.put("christopher.smith@example.com", new User("Christopher Smith", "christopher.smith@example.com", "0596326985", "password890"));
+        users.put("amanda.martin@example.com", new User("Amanda Martin", "amanda.martin@example.com", "0698532659", "password901"));
+        users.put("jessica.rodriguez@example.com", new User("Jessica Rodriguez", "jessica.rodrz@example.com", "0798654123", "password234"));
+        users.put("ryan.lee@example.com", new User("Ryan Lee", "ryan.lee@example.com", "0556987432", "password567"));
+        users.put("michelle.chavez@example.com", new User("Michelle Chavez", "michelle.chavez@example.com", "0669758412", "password890"));
+        users.put("justin.wright@example.com", new User("Justin Wright", "justin.wright@example.com", "05569876593", "password123"));
+        users.put("tiffany.nguyen@example.com", new User("Tiffany Nguyen", "tiffany.nguyen@example.com", "0769856932", "password456"));
+        users.put("juan.gonzalez@example.com", new User("Juan Gonzalez", "juan.gonzalez@example.com", "0798563259", "password789"));
+        users.put("melissa.yang@example.com", new User("Melissa Yang", "melissa.yang@example.com", "0698745231", "passwordabc"));
 
         rooms.put(room1.getID_Room(), room1);
         rooms.put(room2.getID_Room(), room2);
@@ -100,6 +103,24 @@ public class Hotel {
         rooms.put(room28.getID_Room(), room28);
         rooms.put(room29.getID_Room(), room29);
         rooms.put(room30.getID_Room(), room30);
+
+          //reservation requests 
+          User user1 = users.get("john.doe@example.com");
+          User user2 = users.get("jane.smith@example.com");
+          User user3 = users.get("melissa.yang@example.com");
+  
+          // Create some reservation requests
+          ReservationRequest reservation1 = new ReservationRequest(user1, new Date(2024, 6, 1), new Date(2024, 6, 10), Vue.Mountain, Category.Standard, RoomType.Single);
+          ReservationRequest reservation2 = new ReservationRequest(user2, new Date(2024, 6, 15), new Date(2024, 6, 20), Vue.Beach, Category.Premium, RoomType.Double);
+          ReservationRequest reservation3 = new ReservationRequest(user3, new Date(2024, 6, 25), new Date(2024, 6, 30), Vue.City, Category.Executive, RoomType.Triple);
+          // Add reservations to the map
+          reservationsRequestWaitlist.put(reservation1.getIdReservationRequest(), reservation1);
+          reservationsRequestWaitlist.put(reservation2.getIdReservationRequest(), reservation2);
+          reservationsRequestWaitlist.put(reservation3.getIdReservationRequest(), reservation3);
+
+          user1.getReservations().put(reservation1.getIdReservationRequest(),reservation1);
+          user2.getReservations().put(reservation2.getIdReservationRequest(),reservation2);
+          user3.getReservations().put(reservation3.getIdReservationRequest(),reservation3);
 
     }
 

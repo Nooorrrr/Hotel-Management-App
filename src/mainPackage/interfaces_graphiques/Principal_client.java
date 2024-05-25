@@ -4,9 +4,20 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import mainPackage.model.Date;
+import mainPackage.model.Hotel;
 import mainPackage.model.User;
+import mainPackage.model.ReservationRequest;    
+import mainPackage.model.RoomType;
+import mainPackage.model.Category;
+import mainPackage.model.Vue;
+import static mainPackage.Controllers.AdminController.*;
+import static mainPackage.Controllers.AdminController.addReservationRequest;
+import static mainPackage.Controllers.AdminController.updateReservationRequest;
+import static mainPackage.Controllers.AdminController.removeReservationRequest;
 
 
 public class Principal_client extends JFrame {
@@ -37,7 +48,7 @@ public class Principal_client extends JFrame {
     private LimitedTextField month_checkout = new LimitedTextField(2);
     private LimitedTextField year_checkout = new LimitedTextField(4);
     private JComboBox<String> type = new JComboBox<String>();
-    private JComboBox<String> category = new JComboBox<String>();
+    private JComboBox<String> categ = new JComboBox<String>();
     private JComboBox<String> view = new JComboBox<String>();
     private JButton deletebutton = new JButton();
     private JButton editbutton = new JButton();
@@ -45,7 +56,7 @@ public class Principal_client extends JFrame {
     private JLabel checkin = new JLabel();
     private JLabel checkout = new JLabel();
     private JLabel Type = new JLabel();
-    private JLabel Category = new JLabel();
+    private JLabel Categ = new JLabel();
     private JLabel View = new JLabel();
     private JLabel Daylabel = new JLabel();
     private JLabel Monthlabel = new JLabel();
@@ -54,7 +65,7 @@ public class Principal_client extends JFrame {
     private JTable table = new JTable();
     private JLabel Background = new JLabel();
 
-    public Principal_client(User user) {
+    public Principal_client(User user,Hotel hotel) {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 700));
@@ -110,13 +121,13 @@ public class Principal_client extends JFrame {
         name.setBounds(160, 70, 150, 40);
         panel.add(name);
 
-        logout.setIcon(new ImageIcon("src/mainPackage/images/logout1-40.png"));
+        logout.setIcon(new ImageIcon("src/mainPackage/images/logout2-40.png"));
         logout.setBackground(new Color(255, 255, 255,0));
-        logout.setBounds(800, 70, 40, 40);
+        logout.setBounds(850, 70, 40, 40);
         logout.setCursor(new Cursor(Cursor.HAND_CURSOR));
         logout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                logoutActionPerformed(evt);
+                logoutActionPerformed(evt,hotel);
             }
         });
         panel.add(logout);
@@ -251,14 +262,14 @@ public class Principal_client extends JFrame {
         type.setBounds(450, 622, 91, 20);
         panel.add(type);
 
-        category.setBackground(new Color(255, 255, 255,0));
-        category.setForeground(new Color(147, 101, 70));
-        category.setModel(new DefaultComboBoxModel<>(new String[]{"Standard", "Premium", "Executive", "Family"}));
-        category.setSelectedIndex(-1);
-        category.setBorder(null);
-        category.setRequestFocusEnabled(false);
-        category.setBounds(559, 622, 85, 20);
-        panel.add(category);
+        categ.setBackground(new Color(255, 255, 255,0));
+        categ.setForeground(new Color(147, 101, 70));
+        categ.setModel(new DefaultComboBoxModel<>(new String[]{"Standard", "Premium", "Executive", "Family"}));
+        categ.setSelectedIndex(-1);
+        categ.setBorder(null);
+        categ.setRequestFocusEnabled(false);
+        categ.setBounds(559, 622, 85, 20);
+        panel.add(categ);
 
         view.setBackground(new Color(109, 84, 70));
         view.setBackground(new Color(255, 255, 255,0));
@@ -285,7 +296,7 @@ public class Principal_client extends JFrame {
         });
         addbutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                addbuttonActionPerformed(evt);
+                addbuttonActionPerformed(evt,user,hotel);
             }
         });
         addbutton.setBounds(820, 500, 50, 50);
@@ -306,7 +317,7 @@ public class Principal_client extends JFrame {
         });
         editbutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                editbuttonActionPerformed(evt);
+                editbuttonActionPerformed(evt,user,hotel);
             }
         });
         editbutton.setBounds(820, 550, 50, 50);
@@ -327,7 +338,7 @@ public class Principal_client extends JFrame {
         });
         deletebutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                deletebuttonActionPerformed(evt);
+                deletebuttonActionPerformed(evt,user,hotel);
             }
         });
         deletebutton.setBounds(820, 600, 50, 50);
@@ -351,11 +362,11 @@ public class Principal_client extends JFrame {
         Type.setBounds(473, 590, 40, 26);
         panel.add(Type);
 
-        Category.setFont(new Font("Segoe Print", 0, 14));
-        Category.setForeground(new Color(87, 47, 37));
-        Category.setText("Category");
-        Category.setBounds(564, 590, 75, 26);
-        panel.add(Category);
+        Categ.setFont(new Font("Segoe Print", 0, 14));
+        Categ.setForeground(new Color(87, 47, 37));
+        Categ.setText("Category");
+        Categ.setBounds(564, 590, 75, 26);
+        panel.add(Categ);
 
         View.setFont(new Font("Segoe Print", 0, 14));
         View.setForeground(new Color(87, 47, 37));
@@ -398,6 +409,8 @@ public class Principal_client extends JFrame {
             }
         });
         //table.setColumnSelectionAllowed(true);
+
+        this.fillTableWithUsers(table,user.getReservations());
         tablepane.setBackground(new Color(255, 255, 255,0));
         table.setFocusable(false);
         table.setSelectionBackground(new Color(87, 47, 37));
@@ -447,9 +460,9 @@ public class Principal_client extends JFrame {
         }
     }
 
-    private void logoutActionPerformed(ActionEvent evt) {
+    private void logoutActionPerformed(ActionEvent evt, Hotel hotel) {
         dispose();
-        Choice c = new Choice();
+        Choice c = new Choice(hotel);
         c.setVisible(true);
     }
 
@@ -478,44 +491,61 @@ public class Principal_client extends JFrame {
         setLocation(newX, newY);
     }
 
-    private String [] addbuttonActionPerformed(ActionEvent evt) {
-        if(day_checkin.getText().isEmpty()||month_checkin.getText().isEmpty()||year_checkin.getText().isEmpty()||month_checkout.getText().isEmpty()||day_checkout.getText().isEmpty()||year_checkout.getText().isEmpty()||type.getSelectedIndex() == -1 || category.getSelectedIndex() == -1 || view.getSelectedIndex() == -1){
-            Warning d = new Warning(this , true,"Enter all fields");
+    private void addbuttonActionPerformed(ActionEvent evt, User user, Hotel hotel) {
+        if (day_checkin.getText().isEmpty() || month_checkin.getText().isEmpty() || year_checkin.getText().isEmpty() ||
+            day_checkout.getText().isEmpty() || month_checkout.getText().isEmpty() || year_checkout.getText().isEmpty() ||
+            type.getSelectedIndex() == -1 || categ.getSelectedIndex() == -1 || view.getSelectedIndex() == -1) {
+            
+            Warning d = new Warning(this, true, "Enter all fields");
             d.setVisible(true);
-            return null;
-        }
-        else{
-            String data[] ={(String) day_checkin.getText()+"/"+(String) month_checkin.getText()+"/"+(String) year_checkin.getText(),(String) day_checkout.getText()+"/"+(String) month_checkout.getText()+"/"+(String) year_checkout.getText(),(String) type.getSelectedItem(),(String) category.getSelectedItem(),(String) view.getSelectedItem(),"Pending"};
+        } else {
+            String checkinDateStr = day_checkin.getText() + "/" + month_checkin.getText() + "/" + year_checkin.getText();
+            String checkoutDateStr = day_checkout.getText() + "/" + month_checkout.getText() + "/" + year_checkout.getText();
+            String roomTypeStr = (String) type.getSelectedItem();
+            String categoryStr = (String) categ.getSelectedItem();
+            String viewStr = (String) view.getSelectedItem();
+            
             try {
-                if (Date.fromString(data[0]).checkDateCase() != null) {
-                    Warning d = new Warning(this, true,  "invalide checkin date ");
+                Date checkinDate = Date.fromString(checkinDateStr);
+                Date checkoutDate = Date.fromString(checkoutDateStr);
+    
+                if (checkinDate.checkDateCase() != null) {
+                    Warning d = new Warning(this, true, "Invalid check-in date");
                     d.setVisible(true);
-                    return null;
-                } else if (Date.fromString(data[1]).checkDateCase() != null) {
-                    Warning d = new Warning(this, true, "invalide checkout date");
+                } else if (checkoutDate.checkDateCase() != null) {
+                    Warning d = new Warning(this, true, "Invalid check-out date");
                     d.setVisible(true);
-                    return null;
-                } else if (Date.fromString(data[0]).isBeforeToday()){
-                    Warning d = new Warning(this, true,  "invalide checkin date ");
+                } else if (checkinDate.isBeforeToday()) {
+                    Warning d = new Warning(this, true, "Check-in date is before today");
                     d.setVisible(true);
-                    return null;
-                }else if (Date.fromString(data[1]).isBefore(Date.fromString(data[0]))){
-                    Warning d = new Warning(this, true,  "invalide checkout date ");
+                } else if (checkoutDate.isBefore(checkinDate)) {
+                    Warning d = new Warning(this, true, "Check-out date is before check-in date");
                     d.setVisible(true);
-                    return null;
                 } else {
-                    DefaultTableModel tab = (DefaultTableModel) table.getModel();
-                    tab.addRow(data);
-                    return data;
+                    // Convert string values to corresponding enums
+                    RoomType roomType = RoomType.valueOf(roomTypeStr);
+                    Category category = Category.valueOf(categoryStr);
+                    Vue vue = Vue.valueOf(viewStr);
+    
+                    
+                    ReservationRequest reservationRequest = new ReservationRequest(user, checkinDate, checkoutDate, vue, category, roomType);
+                    addReservationRequest((HashMap<Integer, ReservationRequest>)hotel.reservationsRequestWaitlist,reservationRequest);
+                   // System.out.println(hotel.reservationsRequestWaitlist);
+
+                   user.getReservations().put(reservationRequest.getIdReservationRequest(), reservationRequest);
+    
+                    // Add the new reservation request table to the table
+                    String[] rowData = {checkinDateStr, checkoutDateStr, roomTypeStr, categoryStr, viewStr, "Pending"};
+                    DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+                    tableModel.addRow(rowData);
                 }
-            }catch (NumberFormatException e){
-                Warning d = new Warning(this, true, "invalid date  ");
+            } catch (NumberFormatException e) {
+                Warning d = new Warning(this, true, "Invalid date format");
                 d.setVisible(true);
-                return null;
             }
         }
     }
-
+    
     private void addbuttonMousePressed(MouseEvent evt) {
         addbutton.setIcon(new ImageIcon("src/mainPackage/images/ajouter-37.png"));
     }
@@ -539,12 +569,12 @@ public class Principal_client extends JFrame {
         month_checkout.setText(out[1]);
         year_checkout.setText(out[2]);
         type.setSelectedItem(t);
-        category.setSelectedItem(c);
+        categ.setSelectedItem(c);
         view.setSelectedItem(v);
 
     }
 
-    private void editbuttonActionPerformed(ActionEvent evt) {
+    private void editbuttonActionPerformed(ActionEvent evt, User user, Hotel hotel) {
         DefaultTableModel tab = (DefaultTableModel)table.getModel();
         if(table.getSelectedRowCount()==1){
 
@@ -562,15 +592,15 @@ public class Principal_client extends JFrame {
                 }else if (Date.fromString(date_in).isBeforeToday()){
                     Warning d = new Warning(this, true,  "invalide checkin date ");
                     d.setVisible(true);
-                    //return null;
+                  //  return null;
                 }else if (Date.fromString(date_out).isBefore(Date.fromString(date_in))){
                     Warning d = new Warning(this, true,  "invalide checkout date ");
                     d.setVisible(true);
-                    //return null;
+                   // return null;
                 }
                 else{
                     String t = (String) type.getSelectedItem();
-                    String c = (String) category.getSelectedItem();
+                    String c = (String) categ.getSelectedItem();
                     String v = (String) view.getSelectedItem();
 
                     tab.setValueAt(date_in,table.getSelectedRow(),0);
@@ -578,6 +608,8 @@ public class Principal_client extends JFrame {
                     tab.setValueAt(t,table.getSelectedRow(),2);
                     tab.setValueAt(c,table.getSelectedRow(),3);
                     tab.setValueAt(v,table.getSelectedRow(),4);
+
+                    //updateReservationRequest((HashMap<Integer, ReservationRequest>)hotel.reservationsRequestWaitlist,table.getSelectedRow(),user,Date.fromString(date_in),Date.fromString(date_out),Vue.valueOf(v),Category.valueOf(c),RoomType.valueOf(t));
                 }
             }catch (NumberFormatException e){
                 Warning d = new Warning(this, true, "invalid date  ");
@@ -606,7 +638,7 @@ public class Principal_client extends JFrame {
 
     }
 
-    private void deletebuttonActionPerformed(ActionEvent evt) {
+    private void deletebuttonActionPerformed(ActionEvent evt, User user, Hotel hotel) {
         DefaultTableModel tab = (DefaultTableModel) table.getModel();
         if (table.getSelectedRowCount() == 1) {
             tab.removeRow(table.getSelectedRow());
@@ -628,6 +660,16 @@ public class Principal_client extends JFrame {
 
     private void deletebuttonMouseReleased(MouseEvent evt) {
         deletebutton.setIcon(new ImageIcon("src/mainPackage/images/delete-32.png"));
+    }
+
+     public void fillTableWithUsers(JTable tableUser, HashMap<Integer, ReservationRequest> reservations) {
+        DefaultTableModel model = (DefaultTableModel) tableUser.getModel();
+        //model.setRowCount(0);
+
+        for (Map.Entry<Integer, ReservationRequest> entry : reservations.entrySet()) {
+             ReservationRequest rsv = entry.getValue();
+            model.addRow(new Object[]{rsv.getCheckinDate(), rsv.getCheckoutDate(), rsv.getRoomType(),rsv.getCategory(),rsv.getVue(),rsv.getStatus()});
+        }
     }
 
 }

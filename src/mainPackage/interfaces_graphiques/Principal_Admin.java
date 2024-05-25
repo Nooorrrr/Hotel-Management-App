@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mainPackage.model.ReservationRequest;
 
-import static mainPackage.model.Hotel.users;
-import static mainPackage.model.Hotel.rooms;
+
 
 
 public class Principal_Admin extends JFrame{
@@ -39,8 +39,11 @@ public class Principal_Admin extends JFrame{
     private JComboBox<String> type = new JComboBox<String>();
     private JComboBox<String> category = new JComboBox<String>();
     private JComboBox<String> view = new JComboBox<String>();
+    private JLabel Type = new JLabel();
+    private JLabel Category = new JLabel();
+    private JLabel View = new JLabel();
 
-    public Principal_Admin() {
+    public Principal_Admin(Hotel hotel) {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(1000, 700));
         setAutoRequestFocus(false);
@@ -88,7 +91,7 @@ public class Principal_Admin extends JFrame{
         logoutadmin.setCursor(new Cursor(Cursor.HAND_CURSOR));
         logoutadmin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-               logoutActionPerformed(evt);
+               logoutActionPerformed(evt,hotel);
             }
         });
         panel.add(logoutadmin);
@@ -130,7 +133,7 @@ public class Principal_Admin extends JFrame{
             }
         });
 
-        this.fillTableWithUsers(table_client, users);
+        this.fillTableWithUsers(table_client, hotel.users);
         tablepane1.setBackground(new Color(255, 255, 255,0));
         table_client.setFocusable(false);
         table_client.setSelectionBackground(new Color(87, 47, 37));
@@ -205,7 +208,7 @@ public class Principal_Admin extends JFrame{
                 }
         ) {
             boolean[] canEdit = new boolean [] {
-                    false, false, false, true, false
+                    false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -213,7 +216,7 @@ public class Principal_Admin extends JFrame{
             }
 
         });
-        this.fillTableWithRooms(table_rooms, Hotel.rooms);
+        this.fillTableWithRooms(table_rooms, hotel.rooms);
         tablepane3.setBackground(new Color(255, 255, 255,0));
         table_rooms.setFocusable(false);
         table_rooms.setSelectionBackground(new Color(87, 47, 37));
@@ -251,7 +254,7 @@ public class Principal_Admin extends JFrame{
         });
         addbutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                addbuttonActionPerformed(evt);
+                addbuttonActionPerformed(evt,hotel);
             }
         });
         addbutton.setBounds(820, 500, 50, 50);
@@ -272,7 +275,7 @@ public class Principal_Admin extends JFrame{
         });
         editbutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                editbuttonActionPerformed(evt);
+                editbuttonActionPerformed(evt,hotel);
             }
         });
         editbutton.setBounds(820, 545, 50, 50);
@@ -293,13 +296,14 @@ public class Principal_Admin extends JFrame{
         });
         deletebutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                deletebuttonActionPerformed(evt);
+                deletebuttonActionPerformed(evt,hotel);
             }
         });
         deletebutton.setVisible(false);
         deletebutton.setBounds(820, 595, 50, 50);
         panel.add(deletebutton);
 
+        
         rooms_button.setIcon(new ImageIcon("src/mainPackage/images/bed-75.png"));
         rooms_button.setBackground(new Color(255,255,255,0));
         rooms_button.setBorder(null);
@@ -315,16 +319,17 @@ public class Principal_Admin extends JFrame{
         });
         rooms_button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                rooms_buttonActionPerformed(evt);
+                rooms_buttonActionPerformed(evt,hotel);
             }
         });
         panel.add(rooms_button);
-        rooms_button.setBounds(120, 510, 110, 90);
+        rooms_button.setBounds(120,510,110,90);
 
+
+
+        this.fillTableWithReservationRequests(table_reservation, (HashMap<Integer, ReservationRequest>) hotel.reservationsRequestWaitlist);
         reservations_button.setIcon(new ImageIcon("src/mainPackage/images/calendar-70.png"));
         reservations_button.setBackground(new Color(255,255,255,0));
-        reservations_button.setBorder(null);
-        reservations_button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         reservations_button.setFocusable(false);
         reservations_button.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent evt) {
@@ -357,7 +362,7 @@ public class Principal_Admin extends JFrame{
         });
         clients_button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                clients_buttonActionPerformed(evt);
+                clients_buttonActionPerformed(evt,hotel);
             }
         });
         panel.add(clients_button);
@@ -391,6 +396,24 @@ public class Principal_Admin extends JFrame{
         view.setBounds(703, 561, 83, 20);
         panel.add(view);
 
+        Type.setFont(new Font("Segoe Print", 0, 14));
+        Type.setForeground(new Color(87, 47, 37));
+        Type.setText("Type");
+        Type.setBounds(430, 530, 40, 26);
+        panel.add(Type);
+
+        Category.setFont(new Font("Segoe Print", 0, 14));
+        Category.setForeground(new Color(87, 47, 37));
+        Category.setText("Category");
+        Category.setBounds(564, 530, 75, 26);
+        panel.add(Category);
+
+        View.setFont(new Font("Segoe Print", 0, 14));
+        View.setForeground(new Color(87, 47, 37));
+        View.setText("View");
+        View.setBounds(725, 530, 40, 26);
+        panel.add(View);
+
         Background.setIcon(new ImageIcon("src/mainPackage/images/2.png"));
         Background.setBounds(0, 0, 1000, 700);
         panel.add(Background);
@@ -412,9 +435,9 @@ public class Principal_Admin extends JFrame{
         }
     }
 
-    private void logoutActionPerformed(ActionEvent evt) {
+    private void logoutActionPerformed(ActionEvent evt,Hotel hotel) {
         dispose();
-        Choice c = new Choice();
+        Choice c = new Choice(hotel);
         c.setVisible(true);
     }
 
@@ -467,11 +490,12 @@ public class Principal_Admin extends JFrame{
         rooms_button.setIcon(new ImageIcon("src/mainPackage/images/bed-75.png"));
     }
 
-    private void clients_buttonActionPerformed(ActionEvent evt) {
+    private void clients_buttonActionPerformed(ActionEvent evt,Hotel hotel) {
         tablepane1.setVisible(true);
         tablepane2.setVisible(false);
         tablepane3.setVisible(false);
         deletebutton.setVisible(false);
+        this.fillTableWithUsers(table_client,hotel.users);
     }
 
     private void reservations_buttonActionPerformed(ActionEvent evt) {
@@ -481,15 +505,27 @@ public class Principal_Admin extends JFrame{
         deletebutton.setVisible(false);
     }
 
-    private void rooms_buttonActionPerformed(ActionEvent evt) {
+    private void rooms_buttonActionPerformed(ActionEvent evt,Hotel hotel) {
         tablepane1.setVisible(false);
         tablepane2.setVisible(false);
         tablepane3.setVisible(true);
         deletebutton.setVisible(true);
+        this.fillTableWithRooms(table_rooms,hotel.rooms);
     }
 
-    private String [] addbuttonActionPerformed(ActionEvent evt) {
-        return null;
+    private void addbuttonActionPerformed(ActionEvent evt,Hotel hotel) {
+        if(type.getSelectedIndex() == -1 || category.getSelectedIndex() == -1 || view.getSelectedIndex() == -1){
+            Warning d = new Warning(this , true,"Enter all fields");
+            d.setVisible(true);
+        }
+        else{
+            Room r = new Room(Room.getroomtype(type.getSelectedItem().toString()), Room.getroomview(view.getSelectedItem().toString()),Room.getroomcategory(category.getSelectedItem().toString()),Room_status.Available);
+            hotel.rooms.put(r.getID_Room(),r);
+            String data[] ={Integer.toString(r.getID_Room()),(String) type.getSelectedItem(),(String) category.getSelectedItem(),(String) view.getSelectedItem(),"Available"};
+                    DefaultTableModel tab = (DefaultTableModel) table_rooms.getModel();
+                    tab.addRow(data);
+
+        }
     }
 
     private void addbuttonMousePressed(MouseEvent evt) {
@@ -503,22 +539,55 @@ public class Principal_Admin extends JFrame{
         DefaultTableModel tab = (DefaultTableModel)table_rooms.getModel();
 
             int id  = Integer.parseInt(tab.getValueAt(table_rooms.getSelectedRow(), 0).toString());
-            String t = tab.getValueAt(table_rooms.getSelectedRow(),2).toString();
-            String c = tab.getValueAt(table_rooms.getSelectedRow(),3).toString();
-            String v = tab.getValueAt(table_rooms.getSelectedRow(),4).toString();
-
-
+            String t = tab.getValueAt(table_rooms.getSelectedRow(),1).toString();
+            String c = tab.getValueAt(table_rooms.getSelectedRow(),2).toString();
+            String v = tab.getValueAt(table_rooms.getSelectedRow(),3).toString();
             type.setSelectedItem(t);
             category.setSelectedItem(c);
             view.setSelectedItem(v);
+    }
 
+    private void fillTableWithReservationRequests(JTable table_reservation, HashMap<Integer, ReservationRequest> reservationRequests) {
+        DefaultTableModel model = (DefaultTableModel) table_reservation.getModel();
+        //model.setRowCount(0);
+ 
+        for (Map.Entry<Integer, ReservationRequest> entry : reservationRequests.entrySet()) {
+            ReservationRequest reservationRequest = entry.getValue();
+            model.addRow(new Object[]{reservationRequest.getUser().getEmail(),"NULL", reservationRequest.getCheckinDate(), reservationRequest.getCheckoutDate(), reservationRequest.getStatus()});}
+        
+        
     }
 
     private void table_reservation_MouseClicked (MouseEvent evt) {
         DefaultTableModel tab = (DefaultTableModel)table_rooms.getModel();
     }
 
-    private void editbuttonActionPerformed(ActionEvent evt) {
+    private void editbuttonActionPerformed(ActionEvent evt,Hotel hotel) {
+        DefaultTableModel tab = (DefaultTableModel)table_rooms.getModel();
+        if(table_rooms.getSelectedRowCount()==1){
+            if(table_rooms.getValueAt(table_rooms.getSelectedRow(), 4) == Room_status.Available) {
+                String t = (String) type.getSelectedItem();
+                String c = (String) category.getSelectedItem();
+                String v = (String) view.getSelectedItem();
+
+                tab.setValueAt(t, table_rooms.getSelectedRow(), 1);
+                tab.setValueAt(c, table_rooms.getSelectedRow(), 2);
+                tab.setValueAt(v, table_rooms.getSelectedRow(), 3);
+                Room r = new Room(Integer.parseInt(tab.getValueAt(table_rooms.getSelectedRow(), 0).toString()),Room.getroomtype(tab.getValueAt(table_rooms.getSelectedRow(),1).toString()), Room.getroomcategory(tab.getValueAt(table_rooms.getSelectedRow(),2).toString()), Room.getroomview(tab.getValueAt(table_rooms.getSelectedRow(),3).toString()));
+                hotel.rooms.replace(Integer.parseInt(tab.getValueAt(table_rooms.getSelectedRow(), 0).toString()),r);
+                }else{
+                Warning d = new Warning(this, true,"This room is reserved");
+                d.setVisible(true);
+            }
+        } else {
+            if (table_rooms.getRowCount() == 0) {
+                Warning d = new Warning(this, true,"Select a row to edit");
+                d.setVisible(true);
+            } else {
+                Warning d = new Warning(this, true,"");
+                d.setVisible(true);
+            }
+        }
     }
 
     private void editbuttonMousePressed(MouseEvent evt) {
@@ -531,14 +600,15 @@ public class Principal_Admin extends JFrame{
 
     }
 
-    private void deletebuttonActionPerformed(ActionEvent evt) {
+    private void deletebuttonActionPerformed(ActionEvent evt,Hotel hotel) {
         DefaultTableModel tab = (DefaultTableModel) table_rooms.getModel();
         if (table_rooms.getSelectedRowCount() == 1) {
-            if(table_rooms.getValueAt(table_rooms.getSelectedRow(), 4)== Room_status.Available){
+            if(table_rooms.getValueAt(table_rooms.getSelectedRow(), 4) == Room_status.Available){
+                hotel.rooms.remove(Integer.parseInt(table_rooms.getValueAt(table_rooms.getSelectedRow(), 0).toString()));
             tab.removeRow(table_rooms.getSelectedRow());
             }
             else{
-                Warning d = new Warning(this, true,"You can't delete");
+                Warning d = new Warning(this, true,"You can't delete room reserved");
                 d.setVisible(true);
             }
         } else {

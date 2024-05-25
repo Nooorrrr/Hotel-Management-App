@@ -1,6 +1,8 @@
 package mainPackage.interfaces_graphiques;
 
 
+import mainPackage.model.Hotel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +12,7 @@ public class Welcome extends JFrame {
 
     private JLabel Background = new JLabel();
 
-    public Welcome() {
+    public Welcome(Hotel hotel) {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(800,450));
@@ -42,7 +44,7 @@ public class Welcome extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // Fermer la fenêtre
-                Choice c = new Choice(); // ouvrir la fenètre de login
+                Choice c = new Choice(hotel); // ouvrir la fenètre de login
                 c.setVisible(true);
             }
         });

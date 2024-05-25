@@ -1,5 +1,7 @@
 package mainPackage.interfaces_graphiques;
 
+import mainPackage.model.Hotel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -21,7 +23,7 @@ public class Login_Admin extends JFrame {
     private JLabel left = new JLabel();
 
 
-    public Login_Admin() {
+    public Login_Admin(Hotel hotel) {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(800,450));
         setUndecorated(true);
@@ -63,8 +65,8 @@ public class Login_Admin extends JFrame {
         Return.setIcon(new ImageIcon("src/mainPackage/images/flèche-32.png"));
         Return.setCursor(new Cursor(HAND_CURSOR));
         Return.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                ReturnMouseClicked(evt);
+            public void mouseClicked(MouseEvent evt ) {
+                ReturnMouseClicked(evt,hotel);
             }
             public void mouseEntered(MouseEvent evt) {
                 ReturnMouseEntered(evt);
@@ -128,7 +130,7 @@ public class Login_Admin extends JFrame {
         });
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                loginActionPerformed(evt);
+                loginActionPerformed(evt,hotel);
             }
         });
         login.setBounds(530, 360, 140, 40);
@@ -193,9 +195,9 @@ public class Login_Admin extends JFrame {
     private void exitMousePressed(MouseEvent evt) {
         exit.setForeground(new Color(64, 34, 25));
     }
-    private void ReturnMouseClicked(MouseEvent evt) {
+    private void ReturnMouseClicked(MouseEvent evt,Hotel hotel) {
         dispose();
-        Choice c = new Choice ();
+        Choice c = new Choice (hotel);
         c.setVisible(true);
     }
     private void ReturnMouseEntered(MouseEvent evt) {
@@ -207,8 +209,15 @@ public class Login_Admin extends JFrame {
     private void ReturnMousePressed(MouseEvent evt) {
         Return.setIcon(new ImageIcon("src/mainPackage/images/flèche-32-1.png"));
     }
-    private void loginActionPerformed(ActionEvent evt) {
-        login();
+    private void loginActionPerformed(ActionEvent evt,Hotel hotel) {
+        String password = String.valueOf(psw.getPassword());
+
+        if (password.isEmpty()){
+            Warning d = new Warning(this , true,"Please enter password");
+            d.setVisible(true);
+        }else{
+            AuthentificationPassword(this,password,hotel);
+        }
     }
     private void loginMousePressed(MouseEvent evt) {
         login.setForeground(new Color(209, 174, 149));
@@ -219,14 +228,5 @@ public class Login_Admin extends JFrame {
         login.setForeground(new Color(64, 34, 25));
     }
 
-    private void login() {
-        String password = String.valueOf(psw.getPassword());
 
-        if (password.isEmpty()){
-            Warning d = new Warning(this , true,"Please enter password");
-            d.setVisible(true);
-        }else{
-            AuthentificationPassword(this,password);
-        }
-    }
 }

@@ -1,5 +1,7 @@
 package mainPackage.interfaces_graphiques;
 
+import mainPackage.model.Hotel;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -35,7 +37,7 @@ public class Signup extends JFrame {
     private JLabel logo = new JLabel();
 
 
-    public Signup() {
+    public Signup(Hotel hotel) {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -105,7 +107,7 @@ public class Signup extends JFrame {
         login.setCursor(new Cursor(HAND_CURSOR));
         login.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                loginMouseClicked(evt);
+                loginMouseClicked(evt,hotel);
             }
             public void mouseEntered(MouseEvent evt) {
                 loginMouseEntered(evt);
@@ -140,7 +142,7 @@ public class Signup extends JFrame {
         });
         SignUp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                SignUpActionPerformed(evt);
+                SignUpActionPerformed(evt,hotel);
             }
         });
         panel.add(SignUp);
@@ -348,9 +350,9 @@ public class Signup extends JFrame {
     private void loginMouseReleased(MouseEvent evt) {
         login.setForeground(new Color(209, 174, 149));
     }
-    private void loginMouseClicked(MouseEvent evt) {
+    private void loginMouseClicked(MouseEvent evt,Hotel hotel) {
         this.setVisible(false);
-        Login l = new Login();
+        Login l = new Login(hotel);
         l.setVisible(true);
     }
 
@@ -403,7 +405,7 @@ public class Signup extends JFrame {
         SignUp.setBackground(new Color(209, 174, 149));
         SignUp.setForeground(new Color(64, 34, 25));
     }
-    private void SignUpActionPerformed(ActionEvent evt) {
-        registerUser(this,Name.getText(),phone.getText(),email.getText(),String.valueOf(psw.getPassword()));
+    private void SignUpActionPerformed(ActionEvent evt,Hotel hotel) {
+        registerUser(this,Name.getText(),phone.getText(),email.getText(),String.valueOf(psw.getPassword()),hotel);
     }
 }

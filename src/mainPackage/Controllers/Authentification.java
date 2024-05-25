@@ -16,20 +16,20 @@ public class Authentification {
         return admin.getAdminPassword();
     }
 
-    public static void AuthentificationPassword(Login_Admin l,String pswd){
+    public static void AuthentificationPassword(Login_Admin l,String pswd,Hotel hotel){
         if (!pswd.equals(getAdPassword()) ){
             Warning d = new Warning(null, true, "Wrong Password");
             //System.out.println("The password uve entered is wrong and it was : "+ pswd); for testing purposes
             d.setVisible(true);
         }else{
             l.dispose();
-            Principal_Admin p = new Principal_Admin();
+            Principal_Admin p = new Principal_Admin(hotel);
             p.setVisible(true);
 
         }
     }
     
-    public static void AuthentificationClient(HashMap<String, User> users,Login l, String Email , String Password ) {
+    public static void AuthentificationClient(HashMap<String, User> users,Login l, String Email , String Password ,Hotel hotel) {
         if (Email.isEmpty() || Password.isEmpty()) {
             Warning d = new Warning(l, true, "Please enter all fields");
             d.setVisible(true);
@@ -37,7 +37,7 @@ public class Authentification {
             try {
                 User user = Authentification.login(users,Email, Password); // Made the login method static
                 l.dispose();
-                Principal_client p = new Principal_client(user);
+                Principal_client p = new Principal_client(user,hotel);
                 p.setVisible(true); // Added line to make the Principal_client visible
 
             } catch (Exception e) {
@@ -62,7 +62,7 @@ public class Authentification {
         }
     }
 
-    public static void registerUser(Signup s,String firstName, String Phone, String Email, String password) {
+    public static void registerUser(Signup s,String firstName, String Phone, String Email, String password,Hotel hotel) {
         if (firstName.isEmpty() || Phone.isEmpty() || Email.isEmpty() || password.isEmpty()){
             Warning d = new Warning(s , true,"Enter all fields");
             d.setVisible(true);
@@ -71,7 +71,7 @@ public class Authentification {
            try {
                User user = Authentification.createUser(new Hotel().users,firstName, password, Email, Phone);
                s.dispose();
-               Principal_client p = new Principal_client(user);
+               Principal_client p = new Principal_client(user,hotel);
                p.setVisible(true);
            } catch (Exception e) {
                Warning d = new Warning(s, true, e.getMessage());
